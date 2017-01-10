@@ -28,6 +28,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var beaconRegion = CLBeaconRegion(proximityUUID: self.uuid, major: self.major, minor: self.minor, identifier: "Hello")
         self.locationManager.startMonitoring(for: beaconRegion)
         self.pro.text = "Runing...."
+        print("Helo")
         //self.loadItems()
     }
     
