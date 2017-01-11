@@ -37,7 +37,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         //self.pro.text = "Runing...."
    
         //self.loadItems()
+        registerBackgroundTask()
+        //NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
+    
+//    deinit {
+//        NotificationCenter.default.removeObserver(self)
+//    }
 
     let major : [CLBeaconMajorValue] = [58949, 23254,24890]
     let minor : [CLBeaconMinorValue] = [29933, 34430, 6699]
@@ -79,12 +85,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.locationManager.startMonitoring(for: self.regionList[0])
         self.locationManager.startMonitoring(for: self.regionList[1])
         
-        let timer1 = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: Selector("changeRegion"), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 180.0, target: self, selector: #selector(changeRegion), userInfo: nil, repeats: true)
     }
     
+    var updateTimer: Timer?
     var status = false
     var i = 1
-
+    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+    
+//    func reinstateBackgroundTask() {
+//        if updateTimer != nil && (backgroundTask == UIBackgroundTaskInvalid) {
+//            registerBackgroundTask()
+//        }
+//    }
+    func registerBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTask()
+        }
+        assert(backgroundTask != UIBackgroundTaskInvalid)
+    }
+    
+    func endBackgroundTask() {
+//        print("Background task ended.")
+//        UIApplication.shared.endBackgroundTask(backgroundTask)
+//        backgroundTask = UIBackgroundTaskInvalid
+    }
+    
     func changeRegion(){
         
        // print("XYZ")
@@ -106,8 +132,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.i = self.i + 1
         }
         
-        self.locationManager.stopMonitoring(for: self.regionList[j])
         self.locationManager.startMonitoring(for: self.regionList[i])
+        self.locationManager.stopMonitoring(for: self.regionList[j])
+        
         print("Stop \(self.name[j])   Start  \(self.name[i])")
         
         setupView(k: i)
