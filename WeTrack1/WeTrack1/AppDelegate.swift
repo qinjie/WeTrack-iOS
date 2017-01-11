@@ -51,18 +51,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         print("Started monitoring \(region.identifier) region")
+        var notification = UILocalNotification()
+        notification.alertBody = "START \(region.identifier)"
+        notification.soundName = "Default"
+        UIApplication.shared.presentLocalNotificationNow(notification)
+
     }
+    
+    func locationManager(_ manager: CLLocationManager, didStopMonitoringFor region: CLRegion) {
+        print("Stop monitoring \(region.identifier) region")
+        var notification = UILocalNotification()
+        notification.alertBody = "STOP \(region.identifier)"
+        notification.soundName = "Default"
+        UIApplication.shared.presentLocalNotificationNow(notification)
+
+    }
+    
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
-        print("@1: did enter region!!!")
+        //print("@1: did enter region!!!")
         
         if (region is CLBeaconRegion) {
             
-            print("@2: did enter region!!!")
+            print("@2: did enter region!!!  \(region.identifier)" )
             
             var notification = UILocalNotification()
-            notification.alertBody = "You are in Region"
+            notification.alertBody = "IN \(region.identifier)"
             notification.soundName = "Default"
             UIApplication.shared.presentLocalNotificationNow(notification)
         }
@@ -70,13 +85,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         
-        print("@1: did exit region!!!")
+       // print("@1: did exit region!!!")
         
         if (region is CLBeaconRegion) {
-            print("@2: did exit region!!!")
+            print("@2: did exit region!!!   \(region.identifier)")
             
             var notification = UILocalNotification()
-            notification.alertBody = "You are out of Region"
+            notification.alertBody = "OUT \(region.identifier)"
             notification.soundName = "Default"
             UIApplication.shared.presentLocalNotificationNow(notification)
         }

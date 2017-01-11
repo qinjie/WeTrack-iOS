@@ -51,7 +51,6 @@
 		388C37D01E236A6400864885 /* WeTrack1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeTrack1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		388C37D41E236A6400864885 /* WeTrack1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeTrack1UITests.swift; sourceTree = "<group>"; };
 		388C37D61E236A6400864885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38C864F81E239A560022ADBA /* ObjCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ObjCBridge.h; path = WeTrack1/ObjCBridge.h; sourceTree = "<group>"; };
 		38C864FB1E23BE250022ADBA /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		54FF04045B39D5C307965253 /* Pods-WeTrack1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeTrack1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeTrack1/Pods-WeTrack1.debug.xcconfig"; sourceTree = "<group>"; };
 		5BBF7AECE011CBB4AB01E3E3 /* Pods-WeTrack1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeTrack1.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeTrack1/Pods-WeTrack1.release.xcconfig"; sourceTree = "<group>"; };
@@ -87,7 +86,6 @@
 		388C37A51E236A6300864885 = {
 			isa = PBXGroup;
 			children = (
-				38C864F81E239A560022ADBA /* ObjCBridge.h */,
 				388C37B01E236A6300864885 /* WeTrack1 */,
 				388C37C81E236A6300864885 /* WeTrack1Tests */,
 				388C37D31E236A6400864885 /* WeTrack1UITests */,
