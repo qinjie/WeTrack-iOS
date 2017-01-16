@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import CoreData
+import Alamofire
 
 @UIApplicationMain
 
@@ -69,6 +70,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion){
+        
+        print("@3: -____- state \(region.identifier)" )
+        switch state {
+            case .inside:
+                print(" -____- Inside \(region.identifier)");
+                let info = region.identifier.components(separatedBy: "#")
+                report(beaconId : info[1], userId : info[2])
+            //report(region: CLRegion)
+            case .outside:
+                print(" -____- Outside");
+            case .unknown:
+                print(" -____- Unknown");
+            default:
+                print(" -____-  default");
+        }
+    }
+    
+    func report(beaconId : String, userId : String){
+        
+        let url = Constant.baseURL + "api/web/index.php/v1/location-history/create"
+        
+        let lat = locationManager.location?.coordinate.latitude
+        let long = locationManager.location?.coordinate.longitude
+   
+        
+        let parameters: [String: Any] = [
+            "beacon_id" : beaconId,
+            "user_id" : userId,
+            "longitude": long,
+            "latitude": lat
+            ]
+
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            let JSONS = response.result.value
+            print(" reponse\(JSONS)")
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
