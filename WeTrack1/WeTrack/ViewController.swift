@@ -53,9 +53,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         registerBackgroundTask()
         
         loadServerList()
-        
-        
-        
+
         
         // registerBackgroundTask()
         //NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
@@ -80,10 +78,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         loadServerList()
         
     }
+    
+    // after connect and load data from server, it inits again with the view and new list of beacon region
     func initt(){
         
         if (newRegionList.count > 0){
             regionList = newRegionList
+            
+            
             
             if (regionList.count > 1){
                 region1 = regionList[0]
@@ -100,12 +102,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 major2.text = String(describing: region2.major!)
                 minor2.text = String(describing: region2.minor!)
                 
-                updateTimer = Timer.scheduledTimer(timeInterval: 90.0, target: self, selector: #selector(changeRegion), userInfo: nil, repeats: true)
+                // in the case of having more than 2 beacon region, it has to dynamically register in timeInterval
                 
-                self.i = 1
+                if (regionList.count > 2){
+                    updateTimer = Timer.scheduledTimer(timeInterval: 120.0, target: self, selector: #selector(changeRegion), userInfo: nil, repeats: true)
+                
+                    self.i = 1
+                }
                 
                 
             }else{
+                
+                // if there is only one missing patient, app just need take care only one
+                // so no need to switch beacon in time interval
+                
                 if (regionList.count == 1){
                     
                     region1 = regionList[0]
@@ -123,7 +133,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         }else{
             
-            updateTimer?.invalidate()
+            // no missing resident, it will start to monitor as soon as there is something change
+            // in server at the time it connect
+            
+            updateTimer?.invalidate() // no missing resident, no need to switch beacon
             
             name1.text = "NULL"
             major1.text = "NULL"
@@ -132,11 +145,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             name2.text = "NULL"
             major2.text = "NULL"
             minor2.text = "NULL"
+            
         }
-        updateTimer = Timer.scheduledTimer(timeInterval: 150.0, target: self, selector: #selector(restart), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 180.0, target: self, selector: #selector(restart), userInfo: nil, repeats: true)
         self.n = regionList.count - 1
         
-       
+       saveCurrentListLocal()
         
     }
     
@@ -166,26 +180,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func changeRegion(){
-        
-        // print("XYZ")
-        //var j = 0
-        
-        switch (self.i){
+  
+        if (self.i == self.n){
             
-        case (self.n):
-          //  j = self.i - 1
             self.i = 0
             
+        }else{
             
-        case ( 0 ):
             self.i = self.i + 1
-         //   j = self.n
-            
-        default:
-          //  j = self.i - 1
-            self.i = self.i + 1
+
         }
-        
+
         if (self.status == false){
             
             self.locationManager.stopMonitoring(for: region1)
@@ -237,7 +242,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         if ((newResident.status.hashValue != 0)){
                             
                             newResident.name = (json["fullname"] as? String)!
-                            newResident.id = (json["id"] as? Int16)!
+                            newResident.id = (json["id"] as? Int32)!
                             
                             if let beacon = json["beacons"] as? [[String: Any]] {
                                 
@@ -245,9 +250,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                     
                                     let newBeacon = Beaconx()
                                     newBeacon.uuid = (b["uuid"] as? String)!
-                                    newBeacon.major = (b["major"] as? UInt16)!
-                                    newBeacon.minor = (b["minor"] as? UInt16)!
-                                    newBeacon.id = (b["id"] as? Int16)!
+                                    newBeacon.major = (b["major"] as? Int32)!
+                                    newBeacon.minor = (b["minor"] as? Int32)!
+                                    newBeacon.id = (b["id"] as? Int32)!
                                     print("\(newBeacon.id)")
                                     newBeacon.resident_id = newResident.id
                                     newBeacon.status = (b["status"] as? Bool)!
@@ -259,9 +264,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                                         let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: name )
                                         print("mornitor \(name)")
                                         self.newRegionList.append(newRegion)
+                                        self.beaconList.append(newBeacon)
                                         
                                     }
-                                }
+                                } 
                             }
                         
                             self.residentList.append(newResident)
@@ -277,8 +283,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 }
                 
             }else{
-                print("Connectionfail")
+                // when connecting internet is fail, the app uses the lastest local data to run
+                // the new data will be update for both app and local data
+                
+                self.loadLocal()
+                print("beaconlistwhen loadlocal \(self.beaconList.count)")
                 self.updateTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.restart), userInfo: nil, repeats: true)
+                
+                
             }// if status
             
             
@@ -295,7 +307,82 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-
+    func loadLocal(){
+        
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Beacon")
+            request.returnsObjectsAsFaults = false
+            
+            do {
+                beaconList = try! context.fetch(request) as! [Beaconx]
+            }catch{
+                fatalError("Failed to fetch \(error)")
+            }
+            
+            //subjects = subjects?.sorted(by: {$0.name!.compare($1.name! as String) == .orderedAscending})
+        }
+        
+    }
+    
+    func saveCurrentListLocal(){
+        
+        if (regionList.count == 0 || beaconList.count == 0){
+            return
+        }
+        
+        clearLocal()
+        
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            for b in beaconList {
+                
+                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
+                newBeacon.id = b.id
+                newBeacon.resident_id = b.resident_id
+                newBeacon.major = Int32(b.major.hashValue)
+                newBeacon.minor = Int32(b.minor.hashValue)
+                newBeacon.uuid = b.uuid
+                newBeacon.status = b.status
+                
+            }
+            
+        }
+        
+    }
+    
+    func clearLocal() {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            do {
+                
+                let entityNames = ["Beacon"]
+                
+                for entityName in entityNames {
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+                    
+                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
+                    
+                    for object in objects! {
+                        context.delete(object)
+                    }
+                    
+                }
+                
+                try(context.save())
+                
+            } catch let err {
+                print(err)
+            }
+            
+        }
+    }
     
 //    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion){
 //        

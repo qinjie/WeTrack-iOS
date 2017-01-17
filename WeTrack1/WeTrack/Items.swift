@@ -14,10 +14,10 @@ struct Constant{
 
 class Beaconx{
     var uuid: String
-    var major: UInt16
-    var minor: UInt16
-    var id: Int16
-    var resident_id: Int16
+    var major: Int32
+    var minor: Int32
+    var id: Int32
+    var resident_id: Int32
     var status: Bool
     init() {
        uuid = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
@@ -32,7 +32,7 @@ class Beaconx{
 
 class Residentx{
     var name: String
-    var id: Int16
+    var id: Int32
     var status: Bool
     init() {
         name = "Zerry"
