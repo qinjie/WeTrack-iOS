@@ -54,20 +54,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         print("Started monitoring \(region.identifier) region")
+        
+        //noti(content: "start " + region.identifier)
+        
+    }
+    
+    func noti(content : String){
         var notification = UILocalNotification()
-        notification.alertBody = "START \(region.identifier)"
+        notification.alertBody = content
         notification.soundName = "Default"
         UIApplication.shared.presentLocalNotificationNow(notification)
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didStopMonitoringFor region: CLRegion) {
         print("Stop monitoring \(region.identifier) region")
-        var notification = UILocalNotification()
-        notification.alertBody = "STOP \(region.identifier)"
-        notification.soundName = "Default"
-        UIApplication.shared.presentLocalNotificationNow(notification)
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion){
@@ -76,11 +76,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         switch state {
             case .inside:
                 print(" -____- Inside \(region.identifier)");
+        
+                noti(content: "INSIDE  " + region.identifier)
+                
                 let info = region.identifier.components(separatedBy: "#")
-                report(beaconId : info[1], userId : info[2])
+                
+                DispatchQueue.global().async {
+                    self.report(beaconId : info[1], userId : info[2])
+                   
+                }
+                 GlobalData.history.append(Beaconx(beaconId: info[1], userId: info[2], d: true))
+                //for b in GlobalData.history{
+                 //   print(" history  \(b.name )  ++ \(b.detect)")
+                //}
+            
             //report(region: CLRegion)
             case .outside:
                 print(" -____- Outside");
+            
+               // noti(content: "OUTSIDE  " + region.identifier)
+            
             case .unknown:
                 print(" -____- Unknown");
             default:
@@ -117,10 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             
             print("@2: did enter region!!!  \(region.identifier)" )
             
-            var notification = UILocalNotification()
-            notification.alertBody = "IN \(region.identifier)"
-            notification.soundName = "Default"
-            UIApplication.shared.presentLocalNotificationNow(notification)
+         //   noti(content: "ENTER  " + region.identifier)
         }
     }
     
@@ -130,11 +142,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         if (region is CLBeaconRegion) {
             print("@2: did exit region!!!   \(region.identifier)")
+            let info = region.identifier.components(separatedBy: "#")
             
-            var notification = UILocalNotification()
-            notification.alertBody = "OUT \(region.identifier)"
-            notification.soundName = "Default"
-            UIApplication.shared.presentLocalNotificationNow(notification)
+            GlobalData.history.append(Beaconx(beaconId: info[1], userId: info[2], d: false))
+            
+            noti(content: "EXIT " + region.identifier)
         }
     }
     

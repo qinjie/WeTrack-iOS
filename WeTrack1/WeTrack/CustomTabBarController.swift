@@ -1,70 +1,114 @@
 //
-//  ViewController.swift
+//  CustomTabBarController.swift
 //  WeTrack
 //
-//  Created by xuhelios on 1/13/17.
+//  Created by xuhelios on 1/19/17.
 //  Copyright © 2017 beacon. All rights reserved.
 //
 
 import UIKit
-
-import CoreData
 import CoreLocation
 import Alamofire
+import CoreData
 
 
+class CustomTabBarController: UITabBarController, CLLocationManagerDelegate {
 
-class ViewController: UIViewController, CLLocationManagerDelegate{
-    
-  
-    
-    //    let uuid = NSUUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D") as! UUID
-    //    let majorx = 24890 as CLBeaconMajorValue
-    //    let minorx = 6699 as CLBeaconMinorValue
-    
-    var locationManager : CLLocationManager!
-    
-    var residentList = [Residentx]()
-    var beaconList = [Beaconx]()
-    var currentRegionList = [CLBeaconRegion]()
-    var newRegionList = [CLBeaconRegion]()
-    
-    var region1 : CLBeaconRegion!
-    var region2 : CLBeaconRegion!
-    
 
-    var n = 0
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-    
+        
+        let residentList = ResidentList(collectionViewLayout: UICollectionViewFlowLayout())
+        let navigationController = UINavigationController(rootViewController: residentList)
+        navigationController.title = "Active Resident"
+        navigationController.tabBarItem.image = UIImage(named: "resident")
+        
+        let beaconController = BeaconController(collectionViewLayout: UICollectionViewFlowLayout())
+        let secondNavigationController = UINavigationController(rootViewController: beaconController)
+        secondNavigationController.title = "Beacon Detecting"
+        secondNavigationController.tabBarItem.image = UIImage(named: "geo")
+        
+//        let messengerVC = UIViewController()
+//        let messengerNavigationController = UINavigationController(rootViewController: messengerVC)
+//        messengerNavigationController.title = "Messenger"
+//        messengerNavigationController.tabBarItem.image = UIImage(named: "messenger_icon")
+//        
+//        let notificationsNavController = UINavigationController(rootViewController: UIViewController())
+//        notificationsNavController.title = "Notifications"
+//        notificationsNavController.tabBarItem.image = UIImage(named: "globe_icon")
+//        
+//        let moreNavController = UINavigationController(rootViewController: UIViewController())
+//        moreNavController.title = "More"
+//        moreNavController.tabBarItem.image = UIImage(named: "more_icon")
+//        
+//        viewControllers = [navigationController, secondNavigationController, messengerNavigationController, notificationsNavController, moreNavController]
+        
+       
+        viewControllers = [navigationController, secondNavigationController]
+        
+        tabBar.isTranslucent = false
+        
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
+        topBorder.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.92, alpha:1.0).cgColor
+        
+        tabBar.layer.addSublayer(topBorder)
+        tabBar.clipsToBounds = true
+        
+        let selectedColor   = UIColor(red: 246.0/255.0, green: 155.0/255.0, blue: 13.0/255.0, alpha: 1.0)
+        let unselectedColor = UIColor(red: 16.0/255.0, green: 224.0/255.0, blue: 223.0/255.0, alpha: 1.0)
+        
+        tabBar.unselectedItemTintColor = unselectedColor
+            
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: unselectedColor], for: .normal)
+   
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: selectedColor], for: .selected)
+        
+        
         
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
-
-        registerBackgroundTask()
         
-        loadServerList()
-        
-        updateTimer = Timer.scheduledTimer(timeInterval: Constant.restartTime, target: self, selector: #selector(loadServerList), userInfo: nil, repeats: true)
-        
-        // registerBackgroundTask()
-        //NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        setUp()
         
     }
     
-    //    deinit {
-    //        NotificationCenter.default.removeObserver(self)
-    //    }
+    fileprivate func createDummyNavControllerWithTitle(_ title: String, imageName: String) -> UINavigationController {
+        let viewController = UIViewController()
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = UIImage(named: imageName)
+        return navController
+    }
 
+    var locationManager : CLLocationManager!
+
+    //    var beaconList = [Beaconx]()
+    //    var currentRegionList = [CLBeaconRegion]()
+    var newRegionList = [CLBeaconRegion]()
+    var residentList = [Residentx]()
+    
+    
+    var n = 0
+    
+    func setUp(){
+        
+        newRegionList = GlobalData.currentRegionList
+        switchMornitoringList()
+        
+        self.updateTimer = Timer.scheduledTimer(timeInterval: Constant.restartTime, target: self, selector: #selector(self.loadServerList), userInfo: nil, repeats: true)
+        
+        
+    }
+    
     
     func switchMornitoringList(){
         
         if (self.n > 1){
             
-            for uniqueRegion in currentRegionList{
+            for uniqueRegion in GlobalData.currentRegionList{
                 
                 self.locationManager.stopMonitoring(for: uniqueRegion)
             }
@@ -73,11 +117,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         if (newRegionList.count > 0){
             
-            currentRegionList = newRegionList
+            GlobalData.currentRegionList = newRegionList
             
-            if (currentRegionList.count <= 20){
+            if (GlobalData.currentRegionList.count <= 20){
                 
-                for uniqueRegion in currentRegionList{
+                for uniqueRegion in GlobalData.currentRegionList{
                     
                     self.locationManager.startMonitoring(for: uniqueRegion)
                 }
@@ -90,12 +134,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     func loadServerList(){
-      
+        
+        
+        
         let url = Constant.baseURL + "api/web/index.php/v1/resident?expand=beacons"
         
         newRegionList = [CLBeaconRegion]()
         residentList = [Residentx]()
-        beaconList = [Beaconx]()
+        GlobalData.beaconList = [Beaconx]()
         
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
@@ -116,6 +162,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                             
                             newResident.name = (json["fullname"] as? String)!
                             newResident.id = (json["id"] as? Int32)!
+                            newResident.photo = (json["image_path"] as? String)!
                             
                             if let beacon = json["beacons"] as? [[String: Any]] {
                                 
@@ -129,6 +176,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                                     print("\(newBeacon.id)")
                                     newBeacon.resident_id = newResident.id
                                     newBeacon.status = (b["status"] as? Bool)!
+                                    newBeacon.photopath = (json["image_path"] as? String)!
                                     if (newBeacon.status.hashValue != 0){
                                         
                                         newBeacon.name = newResident.name + "#" + String(newBeacon.id) + "#" + String(newResident.id)
@@ -137,17 +185,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                                         let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
                                         print("mornitor \(newBeacon.name)")
                                         self.newRegionList.append(newRegion)
-                                        self.beaconList.append(newBeacon)
+                                        
+                                        GlobalData.beaconList.append(newBeacon)
+                                        GlobalData.findB.updateValue(newBeacon, forKey: newBeacon.id.description)
                                         
                                     }
                                 }
                             }
                             
                             self.residentList.append(newResident)
+                            GlobalData.findR.updateValue(newResident, forKey: newResident.id.description)
                         }
                     }
                 }
                 print("finish load")
+                
+                //self.collectionView?.reloadData()
+                
+                GlobalData.residentList = self.residentList
+                
+                
                 var notification = UILocalNotification()
                 notification.alertBody = "Load new list"
                 notification.soundName = "Default"
@@ -161,13 +218,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 // the new data will be update for both app and local data
                 
                 self.loadLocal()
-                print("beaconlistwhen loadlocal \(self.beaconList.count)")
+                print("beaconlistwhen loadlocal \(GlobalData.beaconList.count)")
                 
                 
             }// if status
-            
+          
         }
-       
+        
+        
     }
     
     
@@ -181,16 +239,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             request.returnsObjectsAsFaults = false
             
             do {
-                beaconList = try! context.fetch(request) as! [Beaconx]
+                GlobalData.beaconList = try! context.fetch(request) as! [Beaconx]
                 
-                for newBeacon in beaconList{
+                for newBeacon in GlobalData.beaconList{
                     
                     let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
                     let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
                     print("mornitor \(newBeacon.name)")
-                    self.newRegionList.append(newRegion)
-                    self.beaconList.append(newBeacon)
                     
+                    GlobalData.currentRegionList.append(newRegion)
+                    GlobalData.findB = [String: Beaconx]()
+                    GlobalData.findR = [String: Residentx]()
+                    
+                    let info = newBeacon.name.components(separatedBy: "#")
+                    
+                    GlobalData.findB.updateValue(newBeacon, forKey: info[1])
+                    
+                    //let x = GlobalData.findR[info[2]]! as Residentx
+                    let newResident = Residentx()
+                    newResident.name = info[0]
+                    newResident.id = Int32(info[2])!
+                    newResident.photo = newBeacon.photopath
+                    GlobalData.residentList.append(newResident)
+                    GlobalData.findR.updateValue(newResident, forKey: newResident.id.description)
                 }
                 
             }catch{
@@ -204,7 +275,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     func saveCurrentListLocal(){
         
-        if (currentRegionList.count == 0 || beaconList.count == 0){
+        if (GlobalData.currentRegionList.count == 0 || GlobalData.beaconList.count == 0){
             return
         }
         
@@ -214,7 +285,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         if let context = delegate?.persistentContainer.viewContext {
             
-            for b in beaconList {
+            for b in GlobalData.beaconList {
                 
                 let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
                 newBeacon.id = b.id
@@ -226,6 +297,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                 newBeacon.name = b.name
                 
             }
+            
             
         }
         
@@ -259,10 +331,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             
         }
     }
-
     
-    // Manage Collection View
-
     
     var updateTimer: Timer?
     
@@ -281,9 +350,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         //        UIApplication.shared.endBackgroundTask(backgroundTask)
         //        backgroundTask = UIBackgroundTaskInvalid
     }
-    
-    
-    
-    
-}
 
+    
+    
+    
+    
+    // for important Data
+    
+        /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

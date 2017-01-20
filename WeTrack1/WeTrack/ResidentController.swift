@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  ResidentControllerCollectionViewController.swift
 //  WeTrack
 //
-//  Created by xuhelios on 1/13/17.
+//  Created by xuhelios on 1/18/17.
 //  Copyright © 2017 beacon. All rights reserved.
 //
 
@@ -12,16 +12,16 @@ import CoreData
 import CoreLocation
 import Alamofire
 
+private let cellId = "Cell"
+
+class ResidentController: UICollectionViewController, CLLocationManagerDelegate {
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate{
-    
-  
-    
-    //    let uuid = NSUUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D") as! UUID
-    //    let majorx = 24890 as CLBeaconMajorValue
-    //    let minorx = 6699 as CLBeaconMinorValue
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     var locationManager : CLLocationManager!
     
     var residentList = [Residentx]()
@@ -32,18 +32,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     var region1 : CLBeaconRegion!
     var region2 : CLBeaconRegion!
     
-
+    
     var n = 0
     
+   
     override func viewDidLoad() {
         
         super.viewDidLoad()
-    
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 90, height: 120)
+        collectionView?.alwaysBounceVertical = true
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        self.collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
+        navigationItem.title = "Recent"
         
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
-
+        
         registerBackgroundTask()
         
         loadServerList()
@@ -58,7 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     //    deinit {
     //        NotificationCenter.default.removeObserver(self)
     //    }
-
+    
     
     func switchMornitoringList(){
         
@@ -90,7 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     func loadServerList(){
-      
+        
         let url = Constant.baseURL + "api/web/index.php/v1/resident?expand=beacons"
         
         newRegionList = [CLBeaconRegion]()
@@ -148,6 +156,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                     }
                 }
                 print("finish load")
+                self.collectionView?.reloadData()
                 var notification = UILocalNotification()
                 notification.alertBody = "Load new list"
                 notification.soundName = "Default"
@@ -167,7 +176,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             }// if status
             
         }
-       
+        
     }
     
     
@@ -259,11 +268,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             
         }
     }
-
+    
     
     // Manage Collection View
-
     
+    // MARK: UICollectionViewDataSource
+    
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//
+//        return 0
+//    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of items
+        print("count2 \(residentList.count)")
+        return 2
+            //residentList.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ResidentCell
+        
+        // Configure the cell
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
+    }
+
     var updateTimer: Timer?
     
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
@@ -287,3 +323,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
 }
 
+
+
+
+
+
+        
