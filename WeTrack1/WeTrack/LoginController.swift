@@ -17,6 +17,7 @@ class LoginController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        clearLocal()
         // Do any additional setup after loading the view.
     }
 

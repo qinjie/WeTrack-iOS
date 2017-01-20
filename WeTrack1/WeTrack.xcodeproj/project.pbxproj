@@ -533,7 +533,7 @@
 				DEVELOPMENT_TEAM = S7QWTC4RY5;
 				INFOPLIST_FILE = WeTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrack2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -547,7 +547,7 @@
 				DEVELOPMENT_TEAM = S7QWTC4RY5;
 				INFOPLIST_FILE = WeTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrack;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrack2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

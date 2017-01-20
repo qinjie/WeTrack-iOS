@@ -85,7 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     self.report(beaconId : info[1], userId : info[2])
                    
                 }
-                 GlobalData.history.append(Beaconx(beaconId: info[1], userId: info[2], d: true))
+                let today = Date()
+                GlobalData.history.insert(Beaconx(beaconId: info[1], userId: info[2], d: true, day: today), at: 0)// append(Beaconx(beaconId: info[1], userId: info[2], d: true))
                 //for b in GlobalData.history{
                  //   print(" history  \(b.name )  ++ \(b.detect)")
                 //}
@@ -144,7 +145,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print("@2: did exit region!!!   \(region.identifier)")
             let info = region.identifier.components(separatedBy: "#")
             
-            GlobalData.history.append(Beaconx(beaconId: info[1], userId: info[2], d: false))
+            let today = Date()
+            GlobalData.history.insert(Beaconx(beaconId: info[1], userId: info[2], d: false, day: today), at: 0)
             
             noti(content: "EXIT " + region.identifier)
         }

@@ -28,7 +28,7 @@ struct GlobalData{
 
 
 class Beaconx{
-    
+    var seen: Date
     var name: String
     var uuid: String
     var major: Int32
@@ -49,9 +49,11 @@ class Beaconx{
        photopath = "uploads/human_images/no_image.png"
         
        detect = false
+    
+       seen = Date()
     }
     
-    init(beaconId: String, userId: String, d: Bool) {
+    init(beaconId: String, userId: String, d: Bool, day: Date) {
         
         let x = GlobalData.findB[beaconId]! as Beaconx
         
@@ -70,6 +72,7 @@ class Beaconx{
         photopath = x.photopath
         
         detect = d
+        seen = day
     }
 
 }
