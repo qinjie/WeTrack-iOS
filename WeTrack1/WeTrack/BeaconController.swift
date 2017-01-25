@@ -12,7 +12,7 @@ import CoreLocation
 import Alamofire
 import CoreData
 
-class BeaconController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
+class BeaconController: UICollectionViewController, UICollectionViewDelegateFlowLayout,CLLocationManagerDelegate  {
     
     var beacons : [Beaconx]?
     
@@ -22,6 +22,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         super.viewWillAppear(true)
         self.beacons = GlobalData.history
         self.collectionView!.reloadData()
+        
         
     }
 
@@ -34,11 +35,9 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         super.viewDidLoad()
         //setupData()
         self.beacons = GlobalData.history
-        
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
-        
         setUp()
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -53,8 +52,43 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         collectionView?.alwaysBounceVertical = true
         
         collectionView?.register(BeaconCell.self, forCellWithReuseIdentifier: cellId)
-
         
+        NotificationCenter.default.addObserver(self,selector: #selector(load), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
+        
+        let newClearButton = UIBarButtonItem(title: "Clear", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.clearAll(sender:)))
+        
+        self.navigationItem.rightBarButtonItem = newClearButton
+        let LogoutBTN = UIBarButtonItem(title: "LogOut", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.logOut(sender:)))
+        
+        self.navigationItem.leftBarButtonItem = LogoutBTN
+    }
+    
+    func logOut(sender: UIBarButtonItem) {
+        // Perform your custom actions
+        // ...
+        GlobalData.history.removeAll()
+        clearLocal()
+        // Go back to the previous ViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "setting") as! ViewController
+        present(vc, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    func clearAll(sender: UIBarButtonItem) {
+        // Perform your custom actions
+        // ...
+        GlobalData.history.removeAll()
+        self.beacons = GlobalData.history
+        self.collectionView?.reloadData()
+        // Go back to the previous ViewController
+        //self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func load(){
+        self.beacons = GlobalData.history
+        self.collectionView!.reloadData()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -216,7 +250,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                             }
                             
                             self.residentList.append(newResident)
-                            GlobalData.findR.updateValue(newResident, forKey: newResident.id.description)
+                           
                         }
                     }
                 }
@@ -271,7 +305,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                     
                     GlobalData.currentRegionList.append(newRegion)
                     GlobalData.findB = [String: Beaconx]()
-                    GlobalData.findR = [String: Residentx]()
+              
                     
                     let info = newBeacon.name.components(separatedBy: "#")
                     
@@ -283,7 +317,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                     newResident.id = Int32(info[2])!
                     newResident.photo = newBeacon.photopath
                     GlobalData.residentList.append(newResident)
-                    GlobalData.findR.updateValue(newResident, forKey: newResident.id.description)
+                
                 }
                 
             }catch{
@@ -357,6 +391,15 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     
     var updateTimer: Timer?
     
+    func appDidEnterBackground(notification:NSNotification) {
+        updateTimer?.invalidate()
+        updateTimer = nil
+        if backgroundTask != UIBackgroundTaskInvalid {
+            endBackgroundTask()
+        }
+    }
+
+    
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     
     
@@ -369,42 +412,41 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     
     func endBackgroundTask() {
         //        print("Background task ended.")
-        //        UIApplication.shared.endBackgroundTask(backgroundTask)
-        //        backgroundTask = UIBackgroundTaskInvalid
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion){
-        
-        print("@3: -____- state \(region.identifier)" )
-        switch state {
-        case .inside:
-            print(" -____- Inside \(region.identifier)");
-            
-            self.beacons = GlobalData.history
-            self.collectionView!.reloadData()
-            
-        //report(region: CLRegion)
-        case .outside:
-            print(" -____- Outside");
-            
-
-            
-        case .unknown:
-            print(" -____- Unknown");
-        default:
-            print(" -____-  default");
-        }
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = UIBackgroundTaskInvalid
     }
     
     
-    
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
-        // print("@1: did exit region!!!")
-        
-        self.beacons = GlobalData.history
-        self.collectionView!.reloadData()
-    }
+//    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion){
+//        
+//        print("@3: -____- state \(region.identifier)" )
+//        switch state {
+//        case .inside:
+//            print(" -____- Inside \(region.identifier)");
+//            
+//            self.beacons = GlobalData.history
+//            self.collectionView!.reloadData()
+//            
+//        //report(region: CLRegion)
+//        case .outside:
+//            print(" -____- Outside");
+//             
+//        case .unknown:
+//            print(" -____- Unknown");
+//        default:
+//            print(" -____-  default");
+//        }
+//    }
+//    
+//    
+//    
+//    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+//        
+//        // print("@1: did exit region!!!")
+//        
+//        self.beacons = GlobalData.history
+//        self.collectionView!.reloadData()
+//    }
     
 }
 class BeaconCell: BaseCell {
@@ -470,7 +512,7 @@ class BeaconCell: BaseCell {
     let time : UILabel = {
         let label = UILabel()
         label.text = "00 : 00"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.italicSystemFont(ofSize: 16)
         return label
     }()
     
@@ -513,7 +555,7 @@ class BeaconCell: BaseCell {
         let containerView = UIView()
         addSubview(containerView)
         
-        addConstraintsWithFormat("H:|-90-[v0]|", views: containerView)
+        addConstraintsWithFormat("H:|-100-[v0]|", views: containerView)
         addConstraintsWithFormat("V:[v0(69)]", views: containerView)
         addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         

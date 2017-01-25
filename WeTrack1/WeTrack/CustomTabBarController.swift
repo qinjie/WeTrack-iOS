@@ -13,16 +13,16 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let residentList = ResidentList(collectionViewLayout: UICollectionViewFlowLayout())
-        let navigationController = UINavigationController(rootViewController: residentList)
-        navigationController.title = "Active Resident"
-        navigationController.tabBarItem.image = UIImage(named: "resident")
-        
-        let beaconController = BeaconController(collectionViewLayout: UICollectionViewFlowLayout())
-        let secondNavigationController = UINavigationController(rootViewController: beaconController)
-        secondNavigationController.title = "Beacon Detecting"
-        secondNavigationController.tabBarItem.image = UIImage(named: "geo")
-        
+//        let residentList = ResidentList(collectionViewLayout: UICollectionViewFlowLayout())
+//        let navigationController = UINavigationController(rootViewController: residentList)
+//        navigationController.title = "Active Resident"
+//        navigationController.tabBarItem.image = UIImage(named: "resident")
+//        
+//        let beaconController = BeaconController(collectionViewLayout: UICollectionViewFlowLayout())
+//        let secondNavigationController = UINavigationController(rootViewController: beaconController)
+//        secondNavigationController.title = "Beacon Detecting"
+//        secondNavigationController.tabBarItem.image = UIImage(named: "geo")
+//        viewControllers = [navigationController, secondNavigationController]
 //        let messengerVC = UIViewController()
 //        let messengerNavigationController = UINavigationController(rootViewController: messengerVC)
 //        messengerNavigationController.title = "Messenger"
@@ -39,7 +39,7 @@ class CustomTabBarController: UITabBarController {
 //        viewControllers = [navigationController, secondNavigationController, messengerNavigationController, notificationsNavController, moreNavController]
         
        
-        viewControllers = [navigationController, secondNavigationController]
+        
         
         tabBar.isTranslucent = false
         
@@ -59,10 +59,11 @@ class CustomTabBarController: UITabBarController {
    
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: selectedColor], for: .selected)
         
-        
-        
-        
+
     }
+
+
+    
     
     fileprivate func createDummyNavControllerWithTitle(_ title: String, imageName: String) -> UINavigationController {
         let viewController = UIViewController()

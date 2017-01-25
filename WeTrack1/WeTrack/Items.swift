@@ -17,9 +17,8 @@ struct Constant{
 struct GlobalData{
     static var residentList = [Residentx]()
     static var history = [Beaconx]()
-    static var findR = [String: Residentx]()
     static var findB = [String: Beaconx]()
-    
+    //static var nearbyList = [Beaconx]()
 
     static var beaconList = [Beaconx]()
     static var currentRegionList = [CLBeaconRegion]()
@@ -28,7 +27,7 @@ struct GlobalData{
 
 
 class Beaconx{
-    var seen: Date
+    var seen: String
     var name: String
     var uuid: String
     var major: Int32
@@ -50,10 +49,10 @@ class Beaconx{
         
        detect = false
     
-       seen = Date()
+       seen = "00"
     }
     
-    init(beaconId: String, userId: String, d: Bool, day: Date) {
+    init(beaconId: String, userId: String, d: Bool, day: String) {
         
         let x = GlobalData.findB[beaconId]! as Beaconx
         

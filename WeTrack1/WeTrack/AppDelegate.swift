@@ -81,16 +81,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 
                 let info = region.identifier.components(separatedBy: "#")
                 
-                DispatchQueue.global().async {
-                    self.report(beaconId : info[1], userId : info[2])
-                   
-                }
+//                DispatchQueue.global().async {
+//                    self.report(beaconId : info[1], userId : info[2])
+//                   
+//                }
+                
                 let today = Date()
-                GlobalData.history.insert(Beaconx(beaconId: info[1], userId: info[2], d: true, day: today), at: 0)// append(Beaconx(beaconId: info[1], userId: info[2], d: true))
-                //for b in GlobalData.history{
-                 //   print(" history  \(b.name )  ++ \(b.detect)")
+                let dateFormatter = DateFormatter()
+                
+                dateFormatter.dateFormat = "hh:mm:ss"
+                let y = dateFormatter.string(from: today)
+                
+                let x = Beaconx(beaconId: info[1], userId: info[2], d: true, day: y) as Beaconx
+                GlobalData.history.insert(x, at: 0)
+                
+                
                 //}
-            
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
             //report(region: CLRegion)
             case .outside:
                 print(" -____- Outside");
@@ -146,7 +153,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let info = region.identifier.components(separatedBy: "#")
             
             let today = Date()
-            GlobalData.history.insert(Beaconx(beaconId: info[1], userId: info[2], d: false, day: today), at: 0)
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateFormat = "hh:mm:ss"
+            let y = dateFormatter.string(from: today)
+            
+            let x = Beaconx(beaconId: info[1], userId: info[2], d: false, day: y) as Beaconx
+            GlobalData.history.insert(x, at: 0)
             
             noti(content: "EXIT " + region.identifier)
         }

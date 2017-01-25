@@ -1,4 +1,4 @@
-//
+ //
 //  FViewCellCollection.swift
 //  WeTrack
 //
@@ -58,7 +58,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         
-        navigationItem.title = "Resident Active"
+        navigationItem.title = "Missing Resident"
   
         collectionView?.backgroundColor = UIColor.white
         collectionView?.alwaysBounceVertical = true
@@ -93,21 +93,41 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         return true
     }
     
+  
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-   
-        let controller = UIViewController()
-
-        navigationController?.pushViewController(controller, animated: true)
-        
-//                let controller = self.storyboard?.instantiateViewController(withIdentifier: "ResidentInfo") as! ResidentInfo
-//                self.navigationController?.pushViewController(controller, animated: true)
-//                if self.navigationController != nil {
-//                    self.navigationController?.pushViewController(controller, animated: true)
+        self.performSegue(withIdentifier: "detailSegue", sender: nil)
+    //    self.performSegue(withIdentifier: "detailSegue", sender: nil)
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = storyboard?.instantiateViewController(withIdentifier: "Detail") as! Detail
+//                   self.navigationController?.pushViewController(controller, animated: true)
 //                } else {
 //                    NSLog("Nil cmnr")
 //                }
 
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // retrieve selected cell & fruit
+        
+        if let indexPath = getIndexPathForSelectedCell() {
+            
+            let x = residents?[indexPath.item]
+            
+            let detailViewController = segue.destination as! Detail
+            detailViewController.resident = x!
+        }
+    }
+    
+    func getIndexPathForSelectedCell() -> IndexPath? {
+        
+        var indexPath:IndexPath?
+        
+        if (collectionView?.indexPathsForSelectedItems!.count)! > 0 {
+            indexPath = collectionView?.indexPathsForSelectedItems![0]
+        }
+        return indexPath
     }
 
     
@@ -220,22 +240,20 @@ class ResidentCell: BaseCell {
         let containerView = UIView()
         addSubview(containerView)
         
-        addConstraintsWithFormat("H:|-90-[v0]|", views: containerView)
+        addConstraintsWithFormat("H:|-100-[v0]|", views: containerView)
         addConstraintsWithFormat("V:[v0(69)]", views: containerView)
         addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
-        containerView.addSubview(idLabel)
+   
         containerView.addSubview(residentName)
         containerView.addSubview(lastseen)
         containerView.addSubview(statusImage)
         
-        containerView.addConstraintsWithFormat("V:|[v0(23)][v1(23)][v2(23)]|", views: idLabel, residentName, lastseen)
+        containerView.addConstraintsWithFormat("V:|[v0(35)][v1(34)]|", views: residentName, lastseen)
         
         containerView.addConstraintsWithFormat("H:|[v0]-8-[v1(40)]-12-|", views: residentName, statusImage)
         
         containerView.addConstraintsWithFormat("H:|[v0]-8-[v1(40)]-12-|", views: lastseen, statusImage)
-        
-        containerView.addConstraintsWithFormat("H:|[v0]-8-[v1(20)]-12-|", views: idLabel, statusImage)
         
         containerView.addConstraintsWithFormat("V:[v0(20)]|", views: statusImage)
     }

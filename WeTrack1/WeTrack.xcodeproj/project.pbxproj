@@ -10,10 +10,10 @@
 		388049141E304C4C009CF14F /* ResidentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049131E304C4C009CF14F /* ResidentList.swift */; };
 		388049161E304FE9009CF14F /* BeaconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049151E304FE9009CF14F /* BeaconController.swift */; };
 		388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049171E3056EB009CF14F /* CustomTabBarController.swift */; };
-		3880491A1E3060E7009CF14F /* ResidentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049191E3060E7009CF14F /* ResidentInfo.swift */; };
 		38C286401E2F3E60004526BF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2863F1E2F3E60004526BF /* LoginController.swift */; };
-		38C286441E2F4DA2004526BF /* ResidentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C286431E2F4DA2004526BF /* ResidentController.swift */; };
 		38C286461E2F4E8D004526BF /* ResidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C286451E2F4E8D004526BF /* ResidentCell.swift */; };
+		38C3867A1E38804F00EE4727 /* ResidentInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C386791E38804F00EE4727 /* ResidentInfo2.swift */; };
+		38C3867C1E3888A900EE4727 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3867B1E3888A900EE4727 /* Detail.swift */; };
 		38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563231E28B6A0004DE7A1 /* AppDelegate.swift */; };
 		38D563261E28B6A0004DE7A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563251E28B6A0004DE7A1 /* ViewController.swift */; };
 		38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D563271E28B6A0004DE7A1 /* Main.storyboard */; };
@@ -48,10 +48,10 @@
 		388049131E304C4C009CF14F /* ResidentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentList.swift; sourceTree = "<group>"; };
 		388049151E304FE9009CF14F /* BeaconController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconController.swift; sourceTree = "<group>"; };
 		388049171E3056EB009CF14F /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
-		388049191E3060E7009CF14F /* ResidentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentInfo.swift; sourceTree = "<group>"; };
 		38C2863F1E2F3E60004526BF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		38C286431E2F4DA2004526BF /* ResidentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentController.swift; sourceTree = "<group>"; };
 		38C286451E2F4E8D004526BF /* ResidentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentCell.swift; sourceTree = "<group>"; };
+		38C386791E38804F00EE4727 /* ResidentInfo2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentInfo2.swift; sourceTree = "<group>"; };
+		38C3867B1E3888A900EE4727 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		38D563201E28B6A0004DE7A1 /* WeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D563231E28B6A0004DE7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D563251E28B6A0004DE7A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -122,19 +122,19 @@
 		38D563221E28B6A0004DE7A1 /* WeTrack */ = {
 			isa = PBXGroup;
 			children = (
+				38C386791E38804F00EE4727 /* ResidentInfo2.swift */,
 				388049151E304FE9009CF14F /* BeaconController.swift */,
 				388049171E3056EB009CF14F /* CustomTabBarController.swift */,
+				38C3867B1E3888A900EE4727 /* Detail.swift */,
 				388049131E304C4C009CF14F /* ResidentList.swift */,
 				38D563251E28B6A0004DE7A1 /* ViewController.swift */,
 				38C286451E2F4E8D004526BF /* ResidentCell.swift */,
-				388049191E3060E7009CF14F /* ResidentInfo.swift */,
 				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
 				38D5632D1E28B6A0004DE7A1 /* Assets.xcassets */,
 				38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */,
 				38C2863F1E2F3E60004526BF /* LoginController.swift */,
 				38D563321E28B6A0004DE7A1 /* Info.plist */,
 				38D5632A1E28B6A0004DE7A1 /* WeTrack.xcdatamodeld */,
-				38C286431E2F4DA2004526BF /* ResidentController.swift */,
 				38D563231E28B6A0004DE7A1 /* AppDelegate.swift */,
 				38D563571E28BC77004DE7A1 /* Items.swift */,
 			);
@@ -369,16 +369,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38C286441E2F4DA2004526BF /* ResidentController.swift in Sources */,
 				388049141E304C4C009CF14F /* ResidentList.swift in Sources */,
+				38C3867C1E3888A900EE4727 /* Detail.swift in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,
 				38D563261E28B6A0004DE7A1 /* ViewController.swift in Sources */,
 				38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */,
 				38C286461E2F4E8D004526BF /* ResidentCell.swift in Sources */,
-				3880491A1E3060E7009CF14F /* ResidentInfo.swift in Sources */,
 				38D5632C1E28B6A0004DE7A1 /* WeTrack.xcdatamodeld in Sources */,
 				388049161E304FE9009CF14F /* BeaconController.swift in Sources */,
+				38C3867A1E38804F00EE4727 /* ResidentInfo2.swift in Sources */,
 				38C286401E2F3E60004526BF /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

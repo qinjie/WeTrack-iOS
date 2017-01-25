@@ -11,16 +11,18 @@ import CoreData
 import Alamofire
 import CoreLocation
 
-class LoginController: UIViewController, CLLocationManagerDelegate {
+class LoginController: UIViewController{
 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        clearLocal()
+      
+       
         // Do any additional setup after loading the view.
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -110,7 +112,7 @@ class LoginController: UIViewController, CLLocationManagerDelegate {
                                 }
                                 
                                 GlobalData.residentList.append(newResident)
-                                GlobalData.findR.updateValue(newResident, forKey: newResident.id.description)
+                           
                             }
                         }
                     }
@@ -139,6 +141,7 @@ class LoginController: UIViewController, CLLocationManagerDelegate {
 
 //                }
             })
+       //     alertController.dismiss(animated: true, completion: nil)
             }
 
     }
@@ -164,8 +167,7 @@ class LoginController: UIViewController, CLLocationManagerDelegate {
                     
                     GlobalData.currentRegionList.append(newRegion)
                     GlobalData.findB = [String: Beaconx]()
-                    GlobalData.findR = [String: Residentx]()
-                    
+                                      
                     let info = newBeacon.name.components(separatedBy: "#")
                     
                     GlobalData.findB.updateValue(newBeacon, forKey: info[1])
@@ -176,7 +178,7 @@ class LoginController: UIViewController, CLLocationManagerDelegate {
                     newResident.id = Int32(info[2])!
                     newResident.photo = newBeacon.photopath
                     GlobalData.residentList.append(newResident)
-                    GlobalData.findR.updateValue(newResident, forKey: newResident.id.description)
+                    
                 }
                 
             }catch{
@@ -246,7 +248,6 @@ class LoginController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
- 
     
 
     
