@@ -22,10 +22,17 @@ class Detail: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         name.text = resident.name
-        let url = NSURL(string: Constant.photoURL + (resident.photo))
-        let data = NSData(contentsOf: url as! URL)
-        if data != nil {
-            residentPhoto.image = UIImage(data:data! as Data)
+        if (resident.photo == ""){
+            residentPhoto.image = UIImage(named: "default_avatar")
+        }else{
+            let url = NSURL(string: Constant.photoURL + (resident.photo))
+            
+            //print("Urlimage \(url)")
+            
+            let data = NSData(contentsOf: url as! URL)
+            if data != nil {
+                residentPhoto.image = UIImage(data:data! as Data)
+            }
         }
         self.view.addConstraint(NSLayoutConstraint(item: residentPhoto, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: bg, attribute: .centerY, relatedBy: .equal, toItem: residentPhoto, attribute: .centerY, multiplier: 1.0, constant: 0.0))

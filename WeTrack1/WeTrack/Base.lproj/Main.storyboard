@@ -273,18 +273,18 @@
                     <connections>
                         <segue destination="2ny-GK-oJ6" kind="relationship" relationship="viewControllers" id="cOO-1y-Jp2"/>
                         <segue destination="jLr-mg-zG3" kind="relationship" relationship="viewControllers" id="PE7-iu-jWL"/>
-                        <segue destination="KRB-bp-S0w" kind="relationship" relationship="viewControllers" id="jIm-Av-B2h"/>
+                        <segue destination="dES-MZ-6uH" kind="relationship" relationship="viewControllers" id="T5Z-sj-UBs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHg-Hu-imx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2816" y="-1763"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Resident-->
         <scene sceneID="SjX-vh-jQ6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2ny-GK-oJ6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="resident" selectedImage="resident" id="7Jb-i6-gBv"/>
+                    <tabBarItem key="tabBarItem" title="Resident" image="resident" selectedImage="residentf" id="7Jb-i6-gBv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KR8-XL-79i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -299,11 +299,11 @@
             </objects>
             <point key="canvasLocation" x="3976.875" y="-1887.6760563380283"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Detect-->
         <scene sceneID="ozb-lq-fKh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jLr-mg-zG3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="geo" selectedImage="geo" id="OPE-Vj-rEa"/>
+                    <tabBarItem key="tabBarItem" title="Detect" image="Online" selectedImage="Onlinef" id="OPE-Vj-rEa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Udl-R0-xfW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -318,53 +318,73 @@
             </objects>
             <point key="canvasLocation" x="3977" y="-1127"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="5Iy-HI-VHw">
+        <!--Near Me Controller-->
+        <scene sceneID="yPb-DD-D98">
             <objects>
-                <viewController id="f6N-48-M0g" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OYk-c1-YzM"/>
-                        <viewControllerLayoutGuide type="bottom" id="uEg-RP-AHB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ent-NN-KJG">
+                <collectionViewController id="TdR-eY-IVo" customClass="NearMeController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="hbb-aO-zrv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="QFi-y0-Eod"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0i2-1g-3wc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4hw-zO-6Ah">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7F9-gq-tj3">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="TdR-eY-IVo" id="xgl-eg-sat"/>
+                            <outlet property="delegate" destination="TdR-eY-IVo" id="kxr-5v-nIg"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="nGn-wJ-XEk"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pRW-14-Auj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4974" y="-346"/>
+            <point key="canvasLocation" x="4974" y="-331"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="JWt-hZ-1hS">
+        <!--Near Me-->
+        <scene sceneID="Lv3-qx-GGL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KRB-bp-S0w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="hr0-Yi-eoG"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dES-MZ-6uH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Near Me" image="Near" selectedImage="Nearf" id="Dqi-au-Mst"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KoD-ql-kUm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9fR-dn-8xi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="f6N-48-M0g" kind="relationship" relationship="rootViewController" id="A1c-x1-9cm"/>
+                        <segue destination="TdR-eY-IVo" kind="relationship" relationship="rootViewController" id="fUl-R5-TjS"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N2C-64-308" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mqf-4P-CJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3977" y="-346"/>
+            <point key="canvasLocation" x="3977" y="-331"/>
         </scene>
     </scenes>
     <resources>
         <image name="Loginbg" width="750" height="1334"/>
+        <image name="Near" width="30" height="30"/>
+        <image name="Nearf" width="30" height="30"/>
+        <image name="Online" width="30" height="30"/>
+        <image name="Onlinef" width="30" height="30"/>
         <image name="Slice" width="461" height="6"/>
         <image name="btn" width="73" height="51"/>
-        <image name="geo" width="30" height="30"/>
         <image name="icon" width="280" height="280"/>
         <image name="pbg" width="79" height="60"/>
         <image name="resident" width="30" height="30"/>
+        <image name="residentf" width="30" height="30"/>
         <image name="yoo2" width="542" height="454"/>
     </resources>
     <color key="tintColor" red="0.37957310676574707" green="0.83446025848388672" blue="0.91115373373031616" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

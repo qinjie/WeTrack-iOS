@@ -92,9 +92,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 dateFormatter.dateFormat = "hh:mm:ss"
                 let y = dateFormatter.string(from: today)
                 
-                let x = Beaconx(beaconId: info[1], userId: info[2], d: true, day: y) as Beaconx
-                GlobalData.history.insert(x, at: 0)
+                let x = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
+                x?.detect = true
+                x?.seen = y
+                    
+                    
+                GlobalData.history.insert(x!, at: 0)
                 
+                if (!GlobalData.nearMe.contains(where: {$0.id.description == info[2]})){
+                    let z = Residentx(Name: info[0], Id: info[2], Status: true, Photo: (x?.photopath)!)
+                    GlobalData.nearMe.append(z)
+                }
                 
                 //}
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
@@ -158,9 +166,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             dateFormatter.dateFormat = "hh:mm:ss"
             let y = dateFormatter.string(from: today)
             
-            let x = Beaconx(beaconId: info[1], userId: info[2], d: false, day: y) as Beaconx
-            GlobalData.history.insert(x, at: 0)
+            let x =  GlobalData.beaconList.first(where: {$0.id.description == info[1]})
+            // at here
+            GlobalData.history.insert(x!, at: 0)
             
+            GlobalData.nearMe = GlobalData.nearMe.filter({$0.id.description != info[2]})
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
             noti(content: "EXIT " + region.identifier)
         }
     }

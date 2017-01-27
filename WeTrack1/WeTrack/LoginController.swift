@@ -56,7 +56,7 @@ class LoginController: UIViewController{
         
 
         
-        let url = Constant.baseURL + "api/web/index.php/v1/resident?expand=beacons"
+        let url = Constant.baseURL + "api/web/index.php/v1/resident/missing?expand=beacons,relatives,locations"
         
         GlobalData.residentList = [Residentx]()
         GlobalData.beaconList = [Beaconx]()
@@ -105,7 +105,7 @@ class LoginController: UIViewController{
                                             
                                             GlobalData.currentRegionList.append(newRegion)
                                             GlobalData.beaconList.append(newBeacon)
-                                            GlobalData.findB.updateValue(newBeacon, forKey: newBeacon.id.description)
+                                            //GlobalData.findB.updateValue(newBeacon, forKey: newBeacon.id.description)
                                             
                                         }
                                     }
@@ -166,11 +166,11 @@ class LoginController: UIViewController{
                     print("mornitor \(newBeacon.name)")
                     
                     GlobalData.currentRegionList.append(newRegion)
-                    GlobalData.findB = [String: Beaconx]()
+                   // GlobalData.findB = [String: Beaconx]()
                                       
                     let info = newBeacon.name.components(separatedBy: "#")
                     
-                    GlobalData.findB.updateValue(newBeacon, forKey: info[1])
+                   // GlobalData.findB.updateValue(newBeacon, forKey: info[1])
                     
                     //let x = GlobalData.findR[info[2]]! as Residentx
                     let newResident = Residentx()

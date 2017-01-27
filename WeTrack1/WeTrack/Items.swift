@@ -17,9 +17,10 @@ struct Constant{
 struct GlobalData{
     static var residentList = [Residentx]()
     static var history = [Beaconx]()
-    static var findB = [String: Beaconx]()
+    static var nearMe =  [Residentx]()
+  //  static var findB = [String: Beaconx]()
     //static var nearbyList = [Beaconx]()
-
+    
     static var beaconList = [Beaconx]()
     static var currentRegionList = [CLBeaconRegion]()
     
@@ -52,28 +53,7 @@ class Beaconx{
        seen = "00"
     }
     
-    init(beaconId: String, userId: String, d: Bool, day: String) {
-        
-        let x = GlobalData.findB[beaconId]! as Beaconx
-        
-        let info = x.name.components(separatedBy: "#")
-        
-        
-        uuid = x.uuid
-        major = x.major
-        id = x.id
-        minor = x.minor
-        status = x.status
-        name = x.name
-        
-        resident_id = Int32(info[2])!
-        
-        photopath = x.photopath
-        
-        detect = d
-        seen = day
-    }
-
+    
 }
 
 class Residentx{
@@ -90,5 +70,15 @@ class Residentx{
         
         status = false
     }
+    init(Name: String, Id: String, Status: Bool, Photo: String) {
+        name = Name
+        
+        id = Int32(Id)!
+        
+        photo = Photo
+        
+        status = Status
+    }
+   
     
 }

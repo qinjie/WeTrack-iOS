@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DE4061E3AEC0C00528AD7 /* NearMeController.swift */; };
 		388049141E304C4C009CF14F /* ResidentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049131E304C4C009CF14F /* ResidentList.swift */; };
 		388049161E304FE9009CF14F /* BeaconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049151E304FE9009CF14F /* BeaconController.swift */; };
 		388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049171E3056EB009CF14F /* CustomTabBarController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		22D45AAD9A3520E6085A7B73 /* Pods_WeTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		384DE4061E3AEC0C00528AD7 /* NearMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeController.swift; sourceTree = "<group>"; };
 		388049131E304C4C009CF14F /* ResidentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentList.swift; sourceTree = "<group>"; };
 		388049151E304FE9009CF14F /* BeaconController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconController.swift; sourceTree = "<group>"; };
 		388049171E3056EB009CF14F /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -124,9 +126,10 @@
 			children = (
 				38C386791E38804F00EE4727 /* ResidentInfo2.swift */,
 				388049151E304FE9009CF14F /* BeaconController.swift */,
+				384DE4061E3AEC0C00528AD7 /* NearMeController.swift */,
+				388049131E304C4C009CF14F /* ResidentList.swift */,
 				388049171E3056EB009CF14F /* CustomTabBarController.swift */,
 				38C3867B1E3888A900EE4727 /* Detail.swift */,
-				388049131E304C4C009CF14F /* ResidentList.swift */,
 				38D563251E28B6A0004DE7A1 /* ViewController.swift */,
 				38C286451E2F4E8D004526BF /* ResidentCell.swift */,
 				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
@@ -374,6 +377,7 @@
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,
 				38D563261E28B6A0004DE7A1 /* ViewController.swift in Sources */,
+				384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */,
 				38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */,
 				38C286461E2F4E8D004526BF /* ResidentCell.swift in Sources */,
 				38D5632C1E28B6A0004DE7A1 /* WeTrack.xcdatamodeld in Sources */,

@@ -243,7 +243,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                                         self.newRegionList.append(newRegion)
                                         
                                         GlobalData.beaconList.append(newBeacon)
-                                        GlobalData.findB.updateValue(newBeacon, forKey: newBeacon.id.description)
+                                       // GlobalData.findB.updateValue(newBeacon, forKey: newBeacon.id.description)
                                         
                                     }
                                 }
@@ -304,12 +304,12 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                     print("mornitor \(newBeacon.name)")
                     
                     GlobalData.currentRegionList.append(newRegion)
-                    GlobalData.findB = [String: Beaconx]()
+                //    GlobalData.findB = [String: Beaconx]()
               
                     
                     let info = newBeacon.name.components(separatedBy: "#")
                     
-                    GlobalData.findB.updateValue(newBeacon, forKey: info[1])
+                  //  GlobalData.findB.updateValue(newBeacon, forKey: info[1])
                     
                     //let x = GlobalData.findR[info[2]]! as Residentx
                     let newResident = Residentx()
@@ -473,17 +473,18 @@ class BeaconCell: BaseCell {
                 statusImage.image = UIImage(named: "enter2")
             }
             
-            //let url = Constant.photoURL + (resident?.photo)!
-            
-            let url = NSURL(string: Constant.photoURL + (beacon?.photopath)!)
-            
-            //print("Urlimage \(url)")
-            
-            let data = NSData(contentsOf: url as! URL)
-            if data != nil {
-                residentPhoto.image = UIImage(data:data! as Data)
+            if (beacon?.photopath == ""){
+                residentPhoto.image = UIImage(named: "default_avatar")
+            }else{
+                let url = NSURL(string: Constant.photoURL + (beacon?.photopath)!)
+                
+                //print("Urlimage \(url)")
+                
+                let data = NSData(contentsOf: url as! URL)
+                if data != nil {
+                    residentPhoto.image = UIImage(data:data! as Data)
+                }
             }
-            //residentPhoto.image = UIImage(data: <#T##Data#>)
 
         }
     }

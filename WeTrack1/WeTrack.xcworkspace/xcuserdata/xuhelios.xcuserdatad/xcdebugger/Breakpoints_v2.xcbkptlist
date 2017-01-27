@@ -327,13 +327,13 @@
                   symbolName = "WeTrack.LoginController.saveCurrentListLocal () -&gt; ()"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/intern/WeTrack9%20_%20clearAll/WeTrack/LoginController.swift"
-                  timestampString = "507028292.510625"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack10%20_%20detail/WeTrack/LoginController.swift"
+                  timestampString = "507179991.334453"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "203"
                   endingLineNumber = "203"
-                  offsetFromSymbolStart = "496">
+                  offsetFromSymbolStart = "500">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -342,13 +342,13 @@
                   symbolName = "WeTrack.LoginController.saveCurrentListLocal () -&gt; ()"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/intern/WeTrack9%20_%20clearAll/WeTrack/LoginController.swift"
-                  timestampString = "507028292.511821"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack10%20_%20detail/WeTrack/LoginController.swift"
+                  timestampString = "507179991.340721"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "203"
                   endingLineNumber = "203"
-                  offsetFromSymbolStart = "692">
+                  offsetFromSymbolStart = "664">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -455,13 +455,13 @@
                   symbolName = "WeTrack.LoginController.clearLocal () -&gt; ()"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/intern/WeTrack9%20_%20clearAll/WeTrack/LoginController.swift"
-                  timestampString = "507028292.526415"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack10%20_%20detail/WeTrack/LoginController.swift"
+                  timestampString = "507179991.373219"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "225"
                   endingLineNumber = "225"
-                  offsetFromSymbolStart = "297">
+                  offsetFromSymbolStart = "264">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -470,13 +470,13 @@
                   symbolName = "WeTrack.LoginController.clearLocal () -&gt; ()"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/intern/WeTrack9%20_%20clearAll/WeTrack/LoginController.swift"
-                  timestampString = "507028292.52758"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack10%20_%20detail/WeTrack/LoginController.swift"
+                  timestampString = "507179991.376723"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "225"
                   endingLineNumber = "225"
-                  offsetFromSymbolStart = "493">
+                  offsetFromSymbolStart = "428">
                </Location>
             </Locations>
          </BreakpointContent>
