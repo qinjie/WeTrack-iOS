@@ -11,10 +11,13 @@ import UIKit
 import CoreLocation
 import Alamofire
 import CoreData
+import RealmSwift
+
+let realm = try! Realm()
 
 class BeaconController: UICollectionViewController, UICollectionViewDelegateFlowLayout,CLLocationManagerDelegate  {
     
-    var beacons : [Beaconx]?
+    var beacons : [Beacon]?
     
     fileprivate let cellId = "cellId"
     
@@ -55,26 +58,31 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         
         NotificationCenter.default.addObserver(self,selector: #selector(load), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
         
+        
+        let endButton = UIBarButtonItem(title: "end", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.endBackgroundTask))
+        
+        self.navigationItem.leftBarButtonItem = endButton
+        
         let newClearButton = UIBarButtonItem(title: "Clear", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.clearAll(sender:)))
         
         self.navigationItem.rightBarButtonItem = newClearButton
-        let LogoutBTN = UIBarButtonItem(title: "LogOut", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.logOut(sender:)))
-        
-        self.navigationItem.leftBarButtonItem = LogoutBTN
+//        let LogoutBTN = UIBarButtonItem(title: "LogOut", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.logOut(sender:)))
+//        
+//        self.navigationItem.leftBarButtonItem = LogoutBTN
     }
     
-    func logOut(sender: UIBarButtonItem) {
-        // Perform your custom actions
-        // ...
-        GlobalData.history.removeAll()
-        clearLocal()
-        // Go back to the previous ViewController
-        let vc = storyboard?.instantiateViewController(withIdentifier: "setting") as! ViewController
-        present(vc, animated: true, completion: nil)
-        
-        
-        
-    }
+//    func logOut(sender: UIBarButtonItem) {
+//        // Perform your custom actions
+//        // ...
+//        GlobalData.history.removeAll()
+//        clearLocal()
+//        // Go back to the previous ViewController
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "setting") as! ViewController
+//        present(vc, animated: true, completion: nil)
+//        
+//        
+//        
+//    }
     
     func clearAll(sender: UIBarButtonItem) {
         // Perform your custom actions
@@ -140,10 +148,10 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     
     var locationManager : CLLocationManager!
     
-    //    var beaconList = [Beaconx]()
+    //    var beaconList = [Beacon]()
     //    var currentRegionList = [CLBeaconRegion]()
     var newRegionList = [CLBeaconRegion]()
-    var residentList = [Residentx]()
+    var residentList = [Resident]()
     
     
     var n = 0
@@ -196,8 +204,8 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         let url = Constant.baseURL + "api/web/index.php/v1/resident?expand=beacons"
         
         newRegionList = [CLBeaconRegion]()
-        residentList = [Residentx]()
-        GlobalData.beaconList = [Beaconx]()
+        residentList = [Resident]()
+        GlobalData.beaconList = [Beacon]()
         
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
@@ -210,7 +218,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                     
                     for json in JSONS {
                         
-                        let newResident = Residentx()
+                        let newResident = Resident()
                         
                         newResident.status = (json["status"] as? Bool)!
                         
@@ -224,7 +232,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                                 
                                 for b in beacon{
                                     
-                                    let newBeacon = Beaconx()
+                                    let newBeacon = Beacon()
                                     newBeacon.uuid = (b["uuid"] as? String)!
                                     newBeacon.major = (b["major"] as? Int32)!
                                     newBeacon.minor = (b["minor"] as? Int32)!
@@ -257,7 +265,8 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                 print("finish load")
                 
                 //self.collectionView?.reloadData()
-                
+                let today = Date()
+                print("now2 \(today)")
                 GlobalData.residentList = self.residentList
                 
                 
@@ -278,6 +287,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                 
                 
             }// if status
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "syncServer"), object: nil)
             
         }
         
@@ -287,45 +297,48 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     
     func loadLocal(){
         
-        let delegate = UIApplication.shared.delegate as? AppDelegate
         
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Beacon")
-            request.returnsObjectsAsFaults = false
-            
-            do {
-                GlobalData.beaconList = try! context.fetch(request) as! [Beaconx]
-                
-                for newBeacon in GlobalData.beaconList{
-                    
-                    let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
-                    let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
-                    print("mornitor \(newBeacon.name)")
-                    
-                    GlobalData.currentRegionList.append(newRegion)
-                //    GlobalData.findB = [String: Beaconx]()
-              
-                    
-                    let info = newBeacon.name.components(separatedBy: "#")
-                    
-                  //  GlobalData.findB.updateValue(newBeacon, forKey: info[1])
-                    
-                    //let x = GlobalData.findR[info[2]]! as Residentx
-                    let newResident = Residentx()
-                    newResident.name = info[0]
-                    newResident.id = Int32(info[2])!
-                    newResident.photo = newBeacon.photopath
-                    GlobalData.residentList.append(newResident)
-                
-                }
-                
-            }catch{
-                fatalError("Failed to fetch \(error)")
-            }
-            
-            //subjects = subjects?.sorted(by: {$0.name!.compare($1.name! as String) == .orderedAscending})
-        }
+        GlobalData.beaconList = Array(realm.objects(Beacon.self))
+        
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        
+//        if let context = delegate?.persistentContainer.viewContext {
+//            
+//            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Beacon")
+//            request.returnsObjectsAsFaults = false
+//            
+//            do {
+//                GlobalData.beaconList = try! context.fetch(request) as! [Beacon]
+//                
+//                for newBeacon in GlobalData.beaconList{
+//                    
+//                    let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
+//                    let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
+//                    print("mornitor \(newBeacon.name)")
+//                    
+//                    GlobalData.currentRegionList.append(newRegion)
+//                //    GlobalData.findB = [String: Beacon]()
+//              
+//                    
+//                    let info = newBeacon.name.components(separatedBy: "#")
+//                    
+//                  //  GlobalData.findB.updateValue(newBeacon, forKey: info[1])
+//                    
+//                    //let x = GlobalData.findR[info[2]]! as Residentx
+//                    let newResident = Resident()
+//                    newResident.name = info[0]
+//                    newResident.id = Int32(info[2])!
+//                    newResident.photo = newBeacon.photopath
+//                    GlobalData.residentList.append(newResident)
+//                
+//                }
+//                
+//            }catch{
+//                fatalError("Failed to fetch \(error)")
+//            }
+//            
+//            //subjects = subjects?.sorted(by: {$0.name!.compare($1.name! as String) == .orderedAscending})
+//        }
         
     }
     
@@ -337,55 +350,63 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         
         clearLocal()
         
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            for b in GlobalData.beaconList {
-                
-                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
-                newBeacon.id = b.id
-                newBeacon.resident_id = b.resident_id
-                newBeacon.major = Int32(b.major.hashValue)
-                newBeacon.minor = Int32(b.minor.hashValue)
-                newBeacon.uuid = b.uuid
-                newBeacon.status = b.status
-                newBeacon.name = b.name
-                
-            }
-            
-            
+        try! realm.write {
+            realm.add(GlobalData.beaconList)
         }
+        
+        
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        
+//        if let context = delegate?.persistentContainer.viewContext {
+//            
+//            for b in GlobalData.beaconList {
+//                
+//                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
+//                newBeacon.id = b.id
+//                newBeacon.resident_id = b.resident_id
+//                newBeacon.major = Int32(b.major.hashValue)
+//                newBeacon.minor = Int32(b.minor.hashValue)
+//                newBeacon.uuid = b.uuid
+//                newBeacon.status = b.status
+//                newBeacon.name = b.name
+//                
+//            }
+//            
+//            
+//        }
         
     }
     
     func clearLocal() {
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            do {
-                
-                let entityNames = ["Beacon"]
-                
-                for entityName in entityNames {
-                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-                    
-                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
-                    
-                    for object in objects! {
-                        context.delete(object)
-                    }
-                    
-                }
-                
-                try(context.save())
-                
-            } catch let err {
-                print(err)
-            }
-            
+        try! realm.write {
+            realm.deleteAll()
         }
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        
+//        if let context = delegate?.persistentContainer.viewContext {
+//            
+//            do {
+//                
+//                let entityNames = ["Beacon"]
+//                
+//                for entityName in entityNames {
+//                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+//                    
+//                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
+//                    
+//                    for object in objects! {
+//                        context.delete(object)
+//                    }
+//                    
+//                }
+//                
+//                try(context.save())
+//                
+//            } catch let err {
+//                print(err)
+//            }
+//            
+//        }
     }
     
     
@@ -411,7 +432,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func endBackgroundTask() {
-        //        print("Background task ended.")
+                print("Background task ended.")
         UIApplication.shared.endBackgroundTask(backgroundTask)
         backgroundTask = UIBackgroundTaskInvalid
     }
@@ -459,7 +480,7 @@ class BeaconCell: BaseCell {
     //        return imageView
     //    }()
     
-    var beacon: Beaconx?{
+    var beacon: Beacon?{
         didSet {
             
             time.text = beacon?.seen.description

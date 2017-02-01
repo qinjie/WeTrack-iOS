@@ -127,7 +127,18 @@
                             <outlet property="delegate" destination="366-1k-Nfo" id="SOp-S2-18D"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="COI-xa-BF0"/>
+                    <navigationItem key="navigationItem" id="COI-xa-BF0">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="aPf-vH-deA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FIm-uC-IM0">
+                                <rect key="frame" x="233" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LogOut"/>
+                            </button>
+                            <connections>
+                                <segue destination="9Kr-As-A1I" kind="show" id="U3m-q7-pTz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VnP-uN-tRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -145,10 +156,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="abc" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9gQ-0D-s1R">
-                                <rect key="frame" x="112" y="326" width="125" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="abc" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9gQ-0D-s1R">
+                                <rect key="frame" x="94" y="234" width="133" height="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="yoo2" translatesAutoresizingMaskIntoConstraints="NO" id="x7x-XY-Rqb">
@@ -159,12 +170,11 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pbg" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-OS-9ig">
-                                <rect key="frame" x="0.0" y="64" width="320" height="205"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="211"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oSh-ka-Gtk" firstAttribute="top" secondItem="9gQ-0D-s1R" secondAttribute="bottom" constant="163" id="0yM-aJ-ae8"/>
                             <constraint firstItem="Qf8-OS-9ig" firstAttribute="leading" secondItem="Ici-1u-7M0" secondAttribute="leading" id="FQI-2q-XvC"/>
                             <constraint firstItem="9gQ-0D-s1R" firstAttribute="top" secondItem="x7x-XY-Rqb" secondAttribute="bottom" constant="95" id="HDy-uy-IzQ"/>
                             <constraint firstItem="x7x-XY-Rqb" firstAttribute="top" secondItem="zPC-we-7CP" secondAttribute="bottom" constant="34" id="Xhr-03-hmr"/>
@@ -322,7 +332,7 @@
         <scene sceneID="yPb-DD-D98">
             <objects>
                 <collectionViewController id="TdR-eY-IVo" customClass="NearMeController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="hbb-aO-zrv">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hbb-aO-zrv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

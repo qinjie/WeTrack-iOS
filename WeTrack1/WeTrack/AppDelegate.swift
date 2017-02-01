@@ -81,10 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 
                 let info = region.identifier.components(separatedBy: "#")
                 
-//                DispatchQueue.global().async {
-//                    self.report(beaconId : info[1], userId : info[2])
-//                   
-//                }
+                DispatchQueue.global().async {
+                    self.report(beaconId : info[1], userId : info[2])
+                   
+                }
                 
                 let today = Date()
                 let dateFormatter = DateFormatter()
@@ -92,15 +92,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 dateFormatter.dateFormat = "hh:mm:ss"
                 let y = dateFormatter.string(from: today)
                 
-                let x = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
-                x?.detect = true
-                x?.seen = y
-                    
-                    
-                GlobalData.history.insert(x!, at: 0)
+                let x = Beacon()
+                
+                let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
+                let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
+                t?.seen = y
+                try! realm.write {
+                    z?.seen = y
+                }
+                
+                x.name = (z?.name)!
+                x.major = (z?.major)!
+                x.minor = (z?.minor)!
+                x.photopath = (z?.photopath)!
+                x.resident_id = (z?.resident_id)!
+                x.id = Int32(info[1])!
+                x.detect = true
+                x.seen = y
+                // at here
+                GlobalData.history.insert(x, at: 0)
+                                
                 
                 if (!GlobalData.nearMe.contains(where: {$0.id.description == info[2]})){
-                    let z = Residentx(Name: info[0], Id: info[2], Status: true, Photo: (x?.photopath)!)
+                    let z = Resident()
+                    z.name = info[0]
+                    z.id = Int32(info[2])!
+                    z.status = true
+                    z.photo = x.photopath
                     GlobalData.nearMe.append(z)
                 }
                 
@@ -121,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func report(beaconId : String, userId : String){
         
-        let url = Constant.baseURL + "api/web/index.php/v1/location-history/create"
+        let url = Constant.baseURL + "api/web/index.php/v1/location-history"
         
         let lat = locationManager.location?.coordinate.latitude
         let long = locationManager.location?.coordinate.longitude
@@ -129,7 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let parameters: [String: Any] = [
             "beacon_id" : beaconId,
-            "user_id" : userId,
+            "user_id" : 68,
             "longitude": long,
             "latitude": lat
             ]
@@ -166,9 +184,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             dateFormatter.dateFormat = "hh:mm:ss"
             let y = dateFormatter.string(from: today)
             
-            let x =  GlobalData.beaconList.first(where: {$0.id.description == info[1]})
-            // at here
-            GlobalData.history.insert(x!, at: 0)
+           // at here
+            let x = Beacon()
+            let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
+            let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
+            t?.seen = y
+            try! realm.write {
+                z?.seen = y
+            }
+            x.name = (z?.name)!
+            x.major = (z?.major)!
+            x.minor = (z?.minor)!
+            x.photopath = (z?.photopath)!
+            x.resident_id = (z?.resident_id)!
+            x.id = Int32(info[1])!
+     
+            x.detect = false
+            x.seen = y
+            GlobalData.history.insert(x, at: 0)
             
             GlobalData.nearMe = GlobalData.nearMe.filter({$0.id.description != info[2]})
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)

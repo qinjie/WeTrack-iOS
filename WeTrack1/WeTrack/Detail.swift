@@ -17,7 +17,7 @@ class Detail: UIViewController {
     
     var txt = ""
     
-    var resident = Residentx()
+    var resident = Resident()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +35,13 @@ class Detail: UIViewController {
             }
         }
         self.view.addConstraint(NSLayoutConstraint(item: residentPhoto, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        self.view.addConstraint(NSLayoutConstraint(item: name, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         self.view.addConstraint(NSLayoutConstraint(item: bg, attribute: .centerY, relatedBy: .equal, toItem: residentPhoto, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         residentPhoto.layer.cornerRadius = residentPhoto.frame.size.width / 2
         residentPhoto.clipsToBounds = true
         residentPhoto.layer.borderWidth = 5.0
         bg.addSubview(residentPhoto)
+        bg.addSubview(name)
         residentPhoto.layer.borderColor = UIColor.white.cgColor
         // Do any additional setup after loading the view.
     }

@@ -24,8 +24,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     var locationManager : CLLocationManager!
     
-    var residentList = [Residentx]()
-    var beaconList = [Beaconx]()
+    var residentList = [Resident]()
+    var beaconList = [Beacon]()
     var currentRegionList = [CLBeaconRegion]()
     var newRegionList = [CLBeaconRegion]()
     
@@ -94,8 +94,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         let url = Constant.baseURL + "api/web/index.php/v1/resident?expand=beacons"
         
         newRegionList = [CLBeaconRegion]()
-        residentList = [Residentx]()
-        beaconList = [Beaconx]()
+        residentList = [Resident]()
+        beaconList = [Beacon]()
         
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
@@ -108,7 +108,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                     
                     for json in JSONS {
                         
-                        let newResident = Residentx()
+                        let newResident = Resident()
                         
                         newResident.status = (json["status"] as? Bool)!
                         
@@ -121,7 +121,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
                                 
                                 for b in beacon{
                                     
-                                    let newBeacon = Beaconx()
+                                    let newBeacon = Beacon()
                                     newBeacon.uuid = (b["uuid"] as? String)!
                                     newBeacon.major = (b["major"] as? Int32)!
                                     newBeacon.minor = (b["minor"] as? Int32)!
@@ -172,34 +172,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     
     func loadLocal(){
-        
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Beacon")
-            request.returnsObjectsAsFaults = false
-            
-            do {
-                beaconList = try! context.fetch(request) as! [Beaconx]
-                
-                for newBeacon in beaconList{
-                    
-                    let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
-                    let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
-                    print("mornitor \(newBeacon.name)")
-                    self.newRegionList.append(newRegion)
-                    self.beaconList.append(newBeacon)
-                    
-                }
-                
-            }catch{
-                fatalError("Failed to fetch \(error)")
-            }
-            
-            //subjects = subjects?.sorted(by: {$0.name!.compare($1.name! as String) == .orderedAscending})
-        }
-        
+         GlobalData.beaconList = Array(realm.objects(Beacon))
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        
+//        if let context = delegate?.persistentContainer.viewContext {
+//            
+//            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Beacon")
+//            request.returnsObjectsAsFaults = false
+//            
+//            do {
+//                beaconList = try! context.fetch(request) as! [Beacon]
+//                
+//                for newBeacon in beaconList{
+//                    
+//                    let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
+//                    let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
+//                    print("mornitor \(newBeacon.name)")
+//                    self.newRegionList.append(newRegion)
+//                    self.beaconList.append(newBeacon)
+//                    
+//                }
+//                
+//            }catch{
+//                fatalError("Failed to fetch \(error)")
+//            }
+//            
+//            //subjects = subjects?.sorted(by: {$0.name!.compare($1.name! as String) == .orderedAscending})
+//        }
+//        
     }
     
     func saveCurrentListLocal(){
@@ -210,24 +210,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         clearLocal()
         
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            for b in beaconList {
-                
-                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
-                newBeacon.id = b.id
-                newBeacon.resident_id = b.resident_id
-                newBeacon.major = Int32(b.major.hashValue)
-                newBeacon.minor = Int32(b.minor.hashValue)
-                newBeacon.uuid = b.uuid
-                newBeacon.status = b.status
-                newBeacon.name = b.name
-                
-            }
-            
+        try! realm.write {
+            realm.add(GlobalData.beaconList)
         }
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        
+//        if let context = delegate?.persistentContainer.viewContext {
+//            
+//            for b in beaconList {
+//                
+//                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
+//                newBeacon.id = b.id
+//                newBeacon.resident_id = b.resident_id
+//                newBeacon.major = Int32(b.major.hashValue)
+//                newBeacon.minor = Int32(b.minor.hashValue)
+//                newBeacon.uuid = b.uuid
+//                newBeacon.status = b.status
+//                newBeacon.name = b.name
+//                
+//            }
+//            
+//        }
         
     }
     

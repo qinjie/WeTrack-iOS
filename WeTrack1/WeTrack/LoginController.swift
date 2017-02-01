@@ -58,8 +58,8 @@ class LoginController: UIViewController{
         
         let url = Constant.baseURL + "api/web/index.php/v1/resident/missing?expand=beacons,relatives,locations"
         
-        GlobalData.residentList = [Residentx]()
-        GlobalData.beaconList = [Beaconx]()
+        GlobalData.residentList = [Resident]()
+        GlobalData.beaconList = [Beacon]()
         
       
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
@@ -72,7 +72,7 @@ class LoginController: UIViewController{
                         
                         for json in JSONS {
                             
-                            let newResident = Residentx()
+                            let newResident = Resident()
                             
                             newResident.status = (json["status"] as? Bool)!
                             
@@ -86,7 +86,7 @@ class LoginController: UIViewController{
                                     
                                     for b in beacon{
                                         
-                                        let newBeacon = Beaconx()
+                                        let newBeacon = Beacon()
                                         newBeacon.uuid = (b["uuid"] as? String)!
                                         newBeacon.major = (b["major"] as? Int32)!
                                         newBeacon.minor = (b["minor"] as? Int32)!
@@ -157,7 +157,7 @@ class LoginController: UIViewController{
             request.returnsObjectsAsFaults = false
             
             do {
-                GlobalData.beaconList = try! context.fetch(request) as! [Beaconx]
+                GlobalData.beaconList = try! context.fetch(request) as! [Beacon]
                 
                 for newBeacon in GlobalData.beaconList{
                     
@@ -166,14 +166,14 @@ class LoginController: UIViewController{
                     print("mornitor \(newBeacon.name)")
                     
                     GlobalData.currentRegionList.append(newRegion)
-                   // GlobalData.findB = [String: Beaconx]()
+                   // GlobalData.findB = [String: Beacon]()
                                       
                     let info = newBeacon.name.components(separatedBy: "#")
                     
                    // GlobalData.findB.updateValue(newBeacon, forKey: info[1])
                     
                     //let x = GlobalData.findR[info[2]]! as Residentx
-                    let newResident = Residentx()
+                    let newResident = Resident()
                     newResident.name = info[0]
                     newResident.id = Int32(info[2])!
                     newResident.photo = newBeacon.photopath
@@ -198,54 +198,61 @@ class LoginController: UIViewController{
         
         clearLocal()
         
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            for b in GlobalData.beaconList {
-                
-                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
-                newBeacon.id = b.id
-                newBeacon.resident_id = b.resident_id
-                newBeacon.major = Int32(b.major.hashValue)
-                newBeacon.minor = Int32(b.minor.hashValue)
-                newBeacon.uuid = b.uuid
-                newBeacon.status = b.status
-                newBeacon.name = b.name
-                
-            }
-
+        try! realm.write {
+            realm.add(GlobalData.beaconList)
         }
+        
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        
+//        if let context = delegate?.persistentContainer.viewContext {
+//            
+//            for b in GlobalData.beaconList {
+//                
+//                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
+//                newBeacon.id = b.id
+//                newBeacon.resident_id = b.resident_id
+//                newBeacon.major = Int32(b.major.hashValue)
+//                newBeacon.minor = Int32(b.minor.hashValue)
+//                newBeacon.uuid = b.uuid
+//                newBeacon.status = b.status
+//                newBeacon.name = b.name
+//                
+//            }
+//
+//        }
         
     }
     
     func clearLocal() {
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            do {
-                
-                let entityNames = ["Beacon"]
-                
-                for entityName in entityNames {
-                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-                    
-                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
-                    
-                    for object in objects! {
-                        context.delete(object)
-                    }
-                    
-                }
-                
-                try(context.save())
-                
-            } catch let err {
-                print(err)
-            }
-            
+        try! realm.write {
+            realm.deleteAll()
         }
+//        let delegate = UIApplication.shared.delegate as? AppDelegate
+//        
+//        if let context = delegate?.persistentContainer.viewContext {
+//            
+//            do {
+//                
+//                let entityNames = ["Beacon"]
+//                
+//                for entityName in entityNames {
+//                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+//                    
+//                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
+//                    
+//                    for object in objects! {
+//                        context.delete(object)
+//                    }
+//                    
+//                }
+//                
+//                try(context.save())
+//                
+//            } catch let err {
+//                print(err)
+//            }
+//            
+//        }
     }
     
     

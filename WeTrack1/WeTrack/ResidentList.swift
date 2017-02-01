@@ -24,7 +24,7 @@ import CoreBluetooth
 
 class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayout {
  
-    var residents : [Residentx]?
+    var residents : [Resident]?
     
     fileprivate let cellId = "cellId"
     
@@ -64,8 +64,21 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         collectionView?.alwaysBounceVertical = true
         
         collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
-  
+        
+        
+
+        NotificationCenter.default.addObserver(self,selector: #selector(sync), name: NSNotification.Name(rawValue: "syncServer"), object: nil)
+        
     }
+    
+    func sync(){
+        self.residents = GlobalData.residentList
+        self.collectionView!.reloadData()
+        let today = Date()
+        print("now1 \(today)")
+    
+    }
+
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = residents?.count {
@@ -142,7 +155,7 @@ class ResidentCell: BaseCell {
     //        return imageView
     //    }()
     
-    var resident: Residentx?{
+    var resident: Resident?{
         didSet {
             
             residentName.text = resident?.name
@@ -161,6 +174,7 @@ class ResidentCell: BaseCell {
                     residentPhoto.image = UIImage(data:data! as Data)
                 }
             }
+            lastseen.text = resident?.seen
         
             
         }

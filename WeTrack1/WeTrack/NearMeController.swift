@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class NearMeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var residents : [Residentx]?
+    var residents : [Resident]?
     
     fileprivate let cellId = "cellId"
     
@@ -137,7 +137,7 @@ class NearCell: BaseCell {
     //        return imageView
     //    }()
     
-    var resident: Residentx?{
+    var resident: Resident?{
         didSet {
             
             residentName.text = resident?.name
