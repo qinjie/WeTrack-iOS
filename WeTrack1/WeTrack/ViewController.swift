@@ -91,14 +91,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     func loadServerList(){
       
-        let url = Constant.baseURL + "api/web/index.php/v1/resident?expand=beacons"
         
         newRegionList = [CLBeaconRegion]()
         residentList = [Resident]()
         beaconList = [Beacon]()
         
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             
             let statusCode = response.response?.statusCode
             print("connection code \(statusCode)")
@@ -172,7 +171,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     
     func loadLocal(){
-         GlobalData.beaconList = Array(realm.objects(Beacon))
+         GlobalData.beaconList = Array(realm.objects(Beacon.self))
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        
 //        if let context = delegate?.persistentContainer.viewContext {
@@ -212,6 +211,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         
         try! realm.write {
             realm.add(GlobalData.beaconList)
+            realm.add(GlobalData.residentList)
         }
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        

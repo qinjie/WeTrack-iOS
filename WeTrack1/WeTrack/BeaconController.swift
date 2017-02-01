@@ -24,6 +24,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.beacons = GlobalData.history
+        self.collectionView?.collectionViewLayout.invalidateLayout()
         self.collectionView!.reloadData()
         
         
@@ -58,11 +59,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         
         NotificationCenter.default.addObserver(self,selector: #selector(load), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
         
-        
-        let endButton = UIBarButtonItem(title: "end", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.endBackgroundTask))
-        
-        self.navigationItem.leftBarButtonItem = endButton
-        
+               
         let newClearButton = UIBarButtonItem(title: "Clear", style: UIBarButtonItemStyle.plain, target: self, action: #selector(BeaconController.clearAll(sender:)))
         
         self.navigationItem.rightBarButtonItem = newClearButton
@@ -200,19 +197,15 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     func loadServerList(){
         
         
-        
-        let url = Constant.baseURL + "api/web/index.php/v1/resident?expand=beacons"
-        
-        newRegionList = [CLBeaconRegion]()
-        residentList = [Resident]()
-        GlobalData.beaconList = [Beacon]()
-        
-        
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             
             let statusCode = response.response?.statusCode
             print("connection code \(statusCode)")
             if (statusCode == 200){
+                
+                self.newRegionList = [CLBeaconRegion]()
+                self.residentList = [Resident]()
+                GlobalData.beaconList = [Beacon]()
                 
                 if let JSONS = response.result.value as? [[String: Any]] {
                     
@@ -227,6 +220,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                             newResident.name = (json["fullname"] as? String)!
                             newResident.id = (json["id"] as? Int32)!
                             newResident.photo = (json["image_path"] as? String)!
+                            newResident.remark = (json["remark"] as? String)!
                             
                             if let beacon = json["beacons"] as? [[String: Any]] {
                                 
@@ -256,7 +250,11 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                                     }
                                 }
                             }
-                            
+                            if let location = json["locations"] as? [[String: Any]] {
+                                if (location.count>0){
+                                    newResident.seen = (location[0]["created_at"] as! String)
+                                }
+                            }
                             self.residentList.append(newResident)
                            
                         }
@@ -265,9 +263,8 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                 print("finish load")
                 
                 //self.collectionView?.reloadData()
-                let today = Date()
-                print("now2 \(today)")
-                GlobalData.residentList = self.residentList
+                
+                
                 
                 
                 var notification = UILocalNotification()
@@ -282,8 +279,8 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                 // when connecting internet is fail, the app uses the lastest local data to run
                 // the new data will be update for both app and local data
                 
-                self.loadLocal()
-                print("beaconlistwhen loadlocal \(GlobalData.beaconList.count)")
+               // self.loadLocal()
+                //print("beaconlistwhen loadlocal \(GlobalData.beaconList.count)")
                 
                 
             }// if status
@@ -299,6 +296,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         
         
         GlobalData.beaconList = Array(realm.objects(Beacon.self))
+        GlobalData.residentList = Array(realm.objects(Resident.self))
         
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        
@@ -348,12 +346,23 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
             return
         }
         
-        clearLocal()
-        
+      //  clearLocal()
         try! realm.write {
+            
+            let bc = Array(realm.objects(Beacon.self))
+            GlobalData.residentList = Array(realm.objects(Resident.self))
+            realm.delete(GlobalData.residentList)
+            realm.delete(bc)
+            GlobalData.residentList = self.residentList
+            
+            realm.add(GlobalData.residentList)
             realm.add(GlobalData.beaconList)
         }
-        
+      /*  try! realm.write {
+            realm.add(GlobalData.beaconList)
+            realm.add(GlobalData.residentList)
+        }
+        */
         
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        
@@ -378,9 +387,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func clearLocal() {
-        try! realm.write {
-            realm.deleteAll()
-        }
+     
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        
 //        if let context = delegate?.persistentContainer.viewContext {
@@ -412,16 +419,16 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     
     var updateTimer: Timer?
     
-    func appDidEnterBackground(notification:NSNotification) {
+   /* func appDidEnterBackground(notification:NSNotification) {
         updateTimer?.invalidate()
         updateTimer = nil
         if backgroundTask != UIBackgroundTaskInvalid {
             endBackgroundTask()
         }
-    }
+    }*/
 
     
-    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+  /* var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     
     
     func registerBackgroundTask() {
@@ -430,13 +437,13 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
         }
         assert(backgroundTask != UIBackgroundTaskInvalid)
     }
-    
+ 
     func endBackgroundTask() {
                 print("Background task ended.")
         UIApplication.shared.endBackgroundTask(backgroundTask)
         backgroundTask = UIBackgroundTaskInvalid
     }
-    
+     */
     
 //    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion){
 //        
@@ -534,7 +541,7 @@ class BeaconCell: BaseCell {
     let time : UILabel = {
         let label = UILabel()
         label.text = "00 : 00"
-        label.font = UIFont.italicSystemFont(ofSize: 16)
+        label.font = UIFont.italicSystemFont(ofSize: 14)
         return label
     }()
     

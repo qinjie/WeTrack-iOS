@@ -13,7 +13,9 @@ class Detail: UIViewController {
     @IBOutlet weak var residentPhoto: UIImageView!
     @IBOutlet weak var name: UITextField!
     
+    @IBOutlet weak var userId: UITextField!
     @IBOutlet weak var bg: UIImageView!
+    @IBOutlet weak var remark: UITextField!
     
     var txt = ""
     
@@ -21,7 +23,10 @@ class Detail: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         name.text = resident.name
+        userId.text = resident.id.description
+        remark.text = resident.remark
         if (resident.photo == ""){
             residentPhoto.image = UIImage(named: "default_avatar")
         }else{
@@ -41,7 +46,7 @@ class Detail: UIViewController {
         residentPhoto.clipsToBounds = true
         residentPhoto.layer.borderWidth = 5.0
         bg.addSubview(residentPhoto)
-        bg.addSubview(name)
+        
         residentPhoto.layer.borderColor = UIColor.white.cgColor
         // Do any additional setup after loading the view.
     }

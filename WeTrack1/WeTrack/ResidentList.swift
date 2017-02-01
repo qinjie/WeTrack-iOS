@@ -66,7 +66,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
         
         
-
+         NotificationCenter.default.addObserver(self,selector: #selector(sync), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(sync), name: NSNotification.Name(rawValue: "syncServer"), object: nil)
         
     }

@@ -45,7 +45,8 @@ class LoginController: UIViewController{
 
     
     func loadServerList(){
-        
+        var today = Date()
+        print("now1 \(today)")
         let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
         let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
         spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
@@ -54,19 +55,16 @@ class LoginController: UIViewController{
         alertController.view.addSubview(spinnerIndicator)
         self.present(alertController, animated: false, completion: nil)
         
-
         
-        let url = Constant.baseURL + "api/web/index.php/v1/resident/missing?expand=beacons,relatives,locations"
-        
-        GlobalData.residentList = [Resident]()
-        GlobalData.beaconList = [Beacon]()
-        
-      
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-                
+        Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            
                 let statusCode = response.response?.statusCode
                 print("connection code \(statusCode)")
                 if (statusCode == 200){
+                    
+                    GlobalData.beaconList = [Beacon]()
+                    GlobalData.residentList = [Resident]()
+                    
                     
                     if let JSONS = response.result.value as? [[String: Any]] {
                         
@@ -81,7 +79,7 @@ class LoginController: UIViewController{
                                 newResident.name = (json["fullname"] as? String)!
                                 newResident.id = (json["id"] as? Int32)!
                                 newResident.photo = (json["image_path"] as? String)!
-                                
+                                newResident.remark = (json["remark"] as? String)!
                                 if let beacon = json["beacons"] as? [[String: Any]] {
                                     
                                     for b in beacon{
@@ -108,6 +106,12 @@ class LoginController: UIViewController{
                                             //GlobalData.findB.updateValue(newBeacon, forKey: newBeacon.id.description)
                                             
                                         }
+                                    }
+                                }
+                                
+                                if let location = json["locations"] as? [[String: Any]] {
+                                    if (location.count>0){
+                                       newResident.seen = (location[0]["created_at"] as! String)
                                     }
                                 }
                                 
@@ -142,6 +146,9 @@ class LoginController: UIViewController{
 //                }
             })
        //     alertController.dismiss(animated: true, completion: nil)
+            today = Date()
+            print("now2 \(today)")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "finishLogin"), object: nil)
             }
 
     }
@@ -149,7 +156,9 @@ class LoginController: UIViewController{
     
     func loadLocal(){
         
-        let delegate = UIApplication.shared.delegate as? AppDelegate
+        GlobalData.beaconList = Array(realm.objects(Beacon.self))
+        GlobalData.residentList = Array(realm.objects(Resident.self))
+    /*    let delegate = UIApplication.shared.delegate as? AppDelegate
         
         if let context = delegate?.persistentContainer.viewContext {
             
@@ -186,7 +195,7 @@ class LoginController: UIViewController{
             }
             
             //subjects = subjects?.sorted(by: {$0.name!.compare($1.name! as String) == .orderedAscending})
-        }
+        }*/
         
     }
     
@@ -196,11 +205,12 @@ class LoginController: UIViewController{
             return
         }
         
-        clearLocal()
+     //   clearLocal()
         
-        try! realm.write {
-            realm.add(GlobalData.beaconList)
-        }
+     /*  try! realm.write {
+          realm.add(GlobalData.beaconList)
+           realm.add(GlobalData.residentList)
+     }*/
         
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        
@@ -224,9 +234,10 @@ class LoginController: UIViewController{
     }
     
     func clearLocal() {
-        try! realm.write {
-            realm.deleteAll()
-        }
+       /* try! realm.write {
+            realm.delete(Beacon.self)
+            realm.delete(Resident.self)
+        }*/
 //        let delegate = UIApplication.shared.delegate as? AppDelegate
 //        
 //        if let context = delegate?.persistentContainer.viewContext {

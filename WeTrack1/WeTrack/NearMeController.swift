@@ -51,6 +51,16 @@ class NearMeController: UICollectionViewController, UICollectionViewDelegateFlow
         
         collectionView?.register(NearCell.self, forCellWithReuseIdentifier: cellId)
         NotificationCenter.default.addObserver(self,selector: #selector(load), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
+        let mapBtn = UIBarButtonItem(title: "Map", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NearMeController.maps(sender:)))
+        mapBtn.image = UIImage(named: "map")
+        self.navigationItem.rightBarButtonItem = mapBtn
+        
+    }
+    func maps(sender: UIBarButtonItem) {
+        // Perform your custom actions
+        // ...
+         self.performSegue(withIdentifier: "mapSegue", sender: nil)
+       
     }
     
     

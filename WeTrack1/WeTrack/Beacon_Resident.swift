@@ -94,6 +94,7 @@ class Resident: Object{
     dynamic var id: Int32 = 0
     dynamic var photo: String = ""
     dynamic var status: Bool = true
+    dynamic var remark: String = "00"
     dynamic var seen: String = "00"
 //    required init() {
 //        name = "Zerry"
@@ -115,4 +116,12 @@ class Resident: Object{
 //    }
 
 
+}
+
+class LocationHistory: Object{
+    dynamic var beaconId: String = "123"
+    dynamic var userId: String = "68"
+    dynamic var lat: String = "1.0"
+    dynamic var long: String = "123"
+    
 }

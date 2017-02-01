@@ -16,16 +16,38 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
     var window: UIWindow!
     var locationManager: CLLocationManager!
+    private var reachability:Reachability!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+        UIApplication.shared.cancelAllLocalNotifications()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self,selector: #selector(startBackground), name: NSNotification.Name(rawValue: "finishLogin"), object: nil)
+        
+        self.reachability = Reachability.init()
+        do {
+            try self.reachability.startNotifier()
+        } catch {
+        }
+ 
+        return true
+    }
+    
+    func startBackground(){
+        
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
-        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
-        UIApplication.shared.cancelAllLocalNotifications()
-        return true
+        
+        
+        
     }
+    
+    
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -89,16 +111,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let today = Date()
                 let dateFormatter = DateFormatter()
                 
-                dateFormatter.dateFormat = "hh:mm:ss"
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let y = dateFormatter.string(from: today)
                 
                 let x = Beacon()
                 
                 let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
                 let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
-                t?.seen = y
+                
                 try! realm.write {
                     z?.seen = y
+                    t?.seen = y
                 }
                 
                 x.name = (z?.name)!
@@ -139,23 +162,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func report(beaconId : String, userId : String){
         
-        let url = Constant.baseURL + "api/web/index.php/v1/location-history"
-        
         let lat = locationManager.location?.coordinate.latitude
         let long = locationManager.location?.coordinate.longitude
-   
         
-        let parameters: [String: Any] = [
-            "beacon_id" : beaconId,
-            "user_id" : 68,
-            "longitude": long,
-            "latitude": lat
+       
+        if (reachability.isReachable){
+            
+            
+            let parameters: [String: Any] = [
+                "beacon_id" : beaconId,
+                "user_id" : 68,
+                "longitude": long,
+                "latitude": lat
             ]
-
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            let JSONS = response.result.value
-            print(" reponse\(JSONS)")
+            Alamofire.request(Constant.URLreport , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+                let JSONS = response.result.value
+                print(" reponse\(JSONS)")
+            }
+            
+        }else{
+            
+            print("Notreachable")
+            try! realm.write {
+                let lh = LocationHistory()
+                lh.beaconId = beaconId
+                lh.userId = userId
+                lh.lat = (lat?.description)!
+                lh.long = (long?.description)!
+                realm.add(lh)
+            }
         }
+        
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -181,16 +219,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let today = Date()
             let dateFormatter = DateFormatter()
             
-            dateFormatter.dateFormat = "hh:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let y = dateFormatter.string(from: today)
             
            // at here
             let x = Beacon()
             let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
             let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
-            t?.seen = y
+            
             try! realm.write {
                 z?.seen = y
+                t?.seen = y
             }
             x.name = (z?.name)!
             x.major = (z?.major)!
@@ -260,6 +299,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+    
+    func reachabilityChanged(notification:Notification) {
+        let reachability = notification.object as! Reachability
+        if reachability.isReachable {
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+            
+          /*  let lh = Array(realm.objects(LocationHistory.self))
+            for l in lh{
+                
+                    let parameters: [String: Any] = [
+                        "beacon_id" : l.beaconId,
+                        "user_id" : 68,
+                        "longitude": l.long,
+                        "latitude": l.lat
+                    ]
+                    Alamofire.request(Constant.URLreport , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+                        let JSONS = response.result.value
+                        print(" reponse\(JSONS)")
+                    }
+                
+            }*/
+
+        } else {
+            print("Network not reachable")
         }
     }
 
