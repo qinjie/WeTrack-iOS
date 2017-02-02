@@ -32,6 +32,12 @@
             <PersistentString
                value = "GlobalData.beaconList">
             </PersistentString>
+            <PersistentString
+               value = "newRegionList.count">
+            </PersistentString>
+            <PersistentString
+               value = "self.n">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -47,6 +53,14 @@
          <PersistentStrings>
             <PersistentString
                value = "GlobalData.beaconList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ResidentList.start() -&gt; ():ResidentList.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "GlobalData.currentRegionList.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

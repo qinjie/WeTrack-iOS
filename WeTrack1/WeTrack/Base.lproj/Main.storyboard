@@ -13,7 +13,7 @@
         <!--Login-->
         <scene sceneID="SxN-pf-mpn">
             <objects>
-                <viewController title="Login" id="9Kr-As-A1I" customClass="LoginController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" title="Login" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Kr-As-A1I" customClass="LoginController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zWv-Gz-cfo"/>
                         <viewControllerLayoutGuide type="bottom" id="Hoe-Hd-1hd"/>
@@ -28,7 +28,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Slice" translatesAutoresizingMaskIntoConstraints="NO" id="cuo-41-6wI">
                                 <rect key="frame" x="62" y="271" width="229" height="2"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="HuyenHoaLong" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="u4f-27-uUi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="xuhelios" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="u4f-27-uUi">
                                 <rect key="frame" x="81" y="177" width="182" height="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
@@ -299,7 +299,7 @@
         <!--Custom Tab Bar Controller-->
         <scene sceneID="mEx-Fj-Y5N">
             <objects>
-                <tabBarController id="3Cj-NQ-GNh" customClass="CustomTabBarController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Cj-NQ-GNh" customClass="CustomTabBarController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="07L-F7-Zog">
                         <barButtonItem key="backBarButtonItem" title="Logout" id="nM3-xX-JVj"/>
                     </navigationItem>

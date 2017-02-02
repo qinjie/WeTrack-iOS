@@ -15,14 +15,10 @@
 //
 
 import UIKit
-
+import Alamofire
 import CoreLocation
-import QuartzCore
-import CoreBluetooth
 
-
-
-class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
  
     var residents : [Resident]?
     
@@ -35,21 +31,136 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
     }
 
+    func loadFirstTime(){
+        Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            
+            let statusCode = response.response?.statusCode
+            print("connection code \(statusCode)")
+            if (statusCode == 200){
+                
+                GlobalData.beaconList = [Beacon]()
+                GlobalData.residentList = [Resident]()
+                
+                
+                if let JSONS = response.result.value as? [[String: Any]] {
+                    
+                    for json in JSONS {
+                        
+                        let newResident = Resident()
+                        
+                        newResident.status = (json["status"] as? Bool)!
+                        
+                        if ((newResident.status.hashValue != 0)){
+                            
+                            newResident.name = (json["fullname"] as? String)!
+                            newResident.id = (json["id"] as? Int32)!
+                            newResident.photo = (json["image_path"] as? String)!
+                            newResident.remark = (json["remark"] as? String)!
+                            if let beacon = json["beacons"] as? [[String: Any]] {
+                                
+                                for b in beacon{
+                                    
+                                    let newBeacon = Beacon()
+                                    newBeacon.uuid = (b["uuid"] as? String)!
+                                    newBeacon.major = (b["major"] as? Int32)!
+                                    newBeacon.minor = (b["minor"] as? Int32)!
+                                    newBeacon.id = (b["id"] as? Int32)!
+                                    print("\(newBeacon.id)")
+                                    newBeacon.resident_id = newResident.id
+                                    newBeacon.status = (b["status"] as? Bool)!
+                                    newBeacon.photopath = (json["image_path"] as? String)!
+                                    if (newBeacon.status.hashValue != 0){
+                                        
+                                        newBeacon.name = newResident.name + "#" + String(newBeacon.id) + "#" + String(newResident.id)
+                                        print("** NAME \(newBeacon.name)")
+                                        let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
+                                        let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
+                                        print("mornitor \(newBeacon.name)")
+                                        
+                                        GlobalData.currentRegionList.append(newRegion)
+                                        GlobalData.beaconList.append(newBeacon)
+                                        
+                                    }
+                                }
+                            }
+                            
+                            if let location = json["locations"] as? [[String: Any]] {
+                                if (location.count>0){
+                                    newResident.seen = (location[0]["created_at"] as! String)
+                                }
+                            }
+                            
+                            GlobalData.residentList.append(newResident)
+                            
+                        }
+                    }
+                }
+                print("finish load")
+                
+                var notification = UILocalNotification()
+                notification.alertBody = "Load new list"
+                notification.soundName = "Default"
+                UIApplication.shared.presentLocalNotificationNow(notification)
+                
+                self.saveCurrentListLocal()
+                
+            }else{
+                
+                self.loadLocal()
+                print("beaconlistwhen loadlocal \(GlobalData.beaconList.count)")
+                
+            }// if status
+            
+            self.residents = GlobalData.residentList
+            self.collectionView!.reloadData()
+            self.start()
+        }
+    }
     
-    
-    // send information of 2 classmates you detected to server
-    // if it sends successfully, you will take attendance successfully
+    let locationManager = CLLocationManager()
+    func start(){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "start"), object: nil)
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+        if (GlobalData.currentRegionList.count > 0 && GlobalData.currentRegionList.count < 20 ){
+            for uniqueRegion in GlobalData.currentRegionList{
+                
+                locationManager.startMonitoring(for: uniqueRegion)
+            }
+        }
+        
 
+    }
+ 
+    func loadLocal(){
+        
+        GlobalData.beaconList = Array(realm.objects(Beacon.self))
+        GlobalData.residentList = Array(realm.objects(Resident.self))
+    }
+    
+    func saveCurrentListLocal(){
+        if (GlobalData.currentRegionList.count == 0 || GlobalData.beaconList.count == 0){
+            return
+        }
+        
+        //  clearLocal()
+        try! realm.write {
+            
+            let bc = Array(realm.objects(Beacon.self))
+            let rl = Array(realm.objects(Resident.self))
+            realm.delete(rl)
+            realm.delete(bc)
+            
+            realm.add(GlobalData.residentList)
+            realm.add(GlobalData.beaconList)
+        }
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupData()
-        self.residents = GlobalData.residentList
-        self.collectionView!.reloadData()
-  
-        
-        //for location
-        
+
         // for Collection View
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -65,6 +176,10 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
         collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
         
+        
+        //setupData()
+        loadFirstTime()
+       
         
          NotificationCenter.default.addObserver(self,selector: #selector(sync), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(sync), name: NSNotification.Name(rawValue: "syncServer"), object: nil)

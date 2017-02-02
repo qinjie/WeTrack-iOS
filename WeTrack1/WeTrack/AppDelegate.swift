@@ -17,16 +17,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow!
     var locationManager: CLLocationManager!
     private var reachability:Reachability!
+    var lh = [LocationHistory]()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+      
+        var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if (UserDefaults.standard.string(forKey: "username") == nil) {
+            
+            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
+            
+            self.window.rootViewController = loginController
+        }else{
+            
+            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
+
+            self.window.rootViewController = mainViewController
+        }
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
         UIApplication.shared.cancelAllLocalNotifications()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification, object: nil)
-        NotificationCenter.default.addObserver(self,selector: #selector(startBackground), name: NSNotification.Name(rawValue: "finishLogin"), object: nil)
-        
+        NotificationCenter.default.addObserver(self,selector: #selector(startBackground), name: NSNotification.Name(rawValue: "start"), object: nil)  
+        print("Hi guys")
         self.reachability = Reachability.init()
         do {
             try self.reachability.startNotifier()
@@ -118,23 +132,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 
                 let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
                 let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
-                
-                try! realm.write {
-                    z?.seen = y
-                    t?.seen = y
+                if (z != nil && t != nil){
+                    try! realm.write {
+                        z?.seen = y
+                        t?.seen = y
+                    }
+                    
+                    x.name = (z?.name)!
+                    x.major = (z?.major)!
+                    x.minor = (z?.minor)!
+                    x.photopath = (z?.photopath)!
+                    x.resident_id = (z?.resident_id)!
+                    x.id = Int32(info[1])!
+                    x.detect = true
+                    x.seen = y
+                    // at here
+                    GlobalData.history.insert(x, at: 0)
                 }
-                
-                x.name = (z?.name)!
-                x.major = (z?.major)!
-                x.minor = (z?.minor)!
-                x.photopath = (z?.photopath)!
-                x.resident_id = (z?.resident_id)!
-                x.id = Int32(info[1])!
-                x.detect = true
-                x.seen = y
-                // at here
-                GlobalData.history.insert(x, at: 0)
-                                
                 
                 if (!GlobalData.nearMe.contains(where: {$0.id.description == info[2]})){
                     let z = Resident()
@@ -183,14 +197,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }else{
             
             print("Notreachable")
-            try! realm.write {
-                let lh = LocationHistory()
-                lh.beaconId = beaconId
-                lh.userId = userId
-                lh.lat = (lat?.description)!
-                lh.long = (long?.description)!
-                realm.add(lh)
-            }
+            let x = LocationHistory(bId: beaconId, uId: userId, newlat: (lat?.description)!, newlong: (long?.description)!)
+            self.lh.append(x)
+//            try! realm.write {
+//                let lh = LocationHistory()
+//                lh.beaconId = beaconId
+//                lh.userId = userId
+//                lh.lat = (lat?.description)!
+//                lh.long = (long?.description)!
+//                realm.add(lh)
+//            }
         }
         
         
@@ -226,22 +242,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let x = Beacon()
             let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
             let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
-            
-            try! realm.write {
-                z?.seen = y
-                t?.seen = y
+            if (z != nil && t != nil){
+                try! realm.write {
+                    z?.seen = y
+                    t?.seen = y
+                }
+                x.name = (z?.name)!
+                x.major = (z?.major)!
+                x.minor = (z?.minor)!
+                x.photopath = (z?.photopath)!
+                x.resident_id = (z?.resident_id)!
+                x.id = Int32(info[1])!
+                
+                x.detect = false
+                x.seen = y
+                GlobalData.history.insert(x, at: 0)
             }
-            x.name = (z?.name)!
-            x.major = (z?.major)!
-            x.minor = (z?.minor)!
-            x.photopath = (z?.photopath)!
-            x.resident_id = (z?.resident_id)!
-            x.id = Int32(info[1])!
-     
-            x.detect = false
-            x.seen = y
-            GlobalData.history.insert(x, at: 0)
-            
             GlobalData.nearMe = GlobalData.nearMe.filter({$0.id.description != info[2]})
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
             noti(content: "EXIT " + region.identifier)
@@ -254,53 +270,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+      //  self.saveContext()
     }
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "WeTrack")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-
-    // MARK: - Core Data Saving support
-
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
+//    lazy var persistentContainer: NSPersistentContainer = {
+//        /*
+//         The persistent container for the application. This implementation
+//         creates and returns a container, having loaded the store for the
+//         application to it. This property is optional since there are legitimate
+//         error conditions that could cause the creation of the store to fail.
+//        */
+//        let container = NSPersistentContainer(name: "WeTrack")
+//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//            if let error = error as NSError? {
+//                // Replace this implementation with code to handle the error appropriately.
+//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                 
+//                /*
+//                 Typical reasons for an error here include:
+//                 * The parent directory does not exist, cannot be created, or disallows writing.
+//                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+//                 * The device is out of space.
+//                 * The store could not be migrated to the current model version.
+//                 Check the error message to determine what the actual problem was.
+//                 */
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
+//            }
+//        })
+//        return container
+//    }()
+//
+//    // MARK: - Core Data Saving support
+//
+//    func saveContext () {
+//        let context = persistentContainer.viewContext
+//        if context.hasChanges {
+//            do {
+//                try context.save()
+//            } catch {
+//                // Replace this implementation with code to handle the error appropriately.
+//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                let nserror = error as NSError
+//                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//            }
+//        }
+//    }
     
     func reachabilityChanged(notification:Notification) {
         let reachability = notification.object as! Reachability
@@ -310,8 +326,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             } else {
                 print("Reachable via Cellular")
             }
-            
-          /*  let lh = Array(realm.objects(LocationHistory.self))
+            if (lh.count > 0){
+                noti(content: "please open app")
+            }
+          //  let lh = Array(realm.objects(LocationHistory.self))
             for l in lh{
                 
                     let parameters: [String: Any] = [
@@ -325,7 +343,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                         print(" reponse\(JSONS)")
                     }
                 
-            }*/
+            }
 
         } else {
             print("Network not reachable")

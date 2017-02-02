@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import CoreData
 import Alamofire
-import CoreLocation
+
 
 class LoginController: UIViewController{
 
@@ -17,7 +16,7 @@ class LoginController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+
        
         // Do any additional setup after loading the view.
     }
@@ -34,12 +33,14 @@ class LoginController: UIViewController{
         //Wating dialog
         
         loadServerList()
-            
-        
-        
+ 
         //for Location Manager
-        
-        
+        DispatchQueue.main.async(execute: {
+            
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            
+            //                }
+        })
         
     }
 
@@ -47,191 +48,22 @@ class LoginController: UIViewController{
     func loadServerList(){
         var today = Date()
         print("now1 \(today)")
-        let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
-        let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
-        spinnerIndicator.color = UIColor.black
-        spinnerIndicator.startAnimating()
-        alertController.view.addSubview(spinnerIndicator)
-        self.present(alertController, animated: false, completion: nil)
+//        let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
+//        let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+//        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
+//        spinnerIndicator.color = UIColor.black
+//        spinnerIndicator.startAnimating()
+//        alertController.view.addSubview(spinnerIndicator)
+//        self.present(alertController, animated: false, completion: nil)
         
-        
-        Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            
-                let statusCode = response.response?.statusCode
-                print("connection code \(statusCode)")
-                if (statusCode == 200){
-                    
-                    GlobalData.beaconList = [Beacon]()
-                    GlobalData.residentList = [Resident]()
-                    
-                    
-                    if let JSONS = response.result.value as? [[String: Any]] {
-                        
-                        for json in JSONS {
-                            
-                            let newResident = Resident()
-                            
-                            newResident.status = (json["status"] as? Bool)!
-                            
-                            if ((newResident.status.hashValue != 0)){
-                                
-                                newResident.name = (json["fullname"] as? String)!
-                                newResident.id = (json["id"] as? Int32)!
-                                newResident.photo = (json["image_path"] as? String)!
-                                newResident.remark = (json["remark"] as? String)!
-                                if let beacon = json["beacons"] as? [[String: Any]] {
-                                    
-                                    for b in beacon{
-                                        
-                                        let newBeacon = Beacon()
-                                        newBeacon.uuid = (b["uuid"] as? String)!
-                                        newBeacon.major = (b["major"] as? Int32)!
-                                        newBeacon.minor = (b["minor"] as? Int32)!
-                                        newBeacon.id = (b["id"] as? Int32)!
-                                        print("\(newBeacon.id)")
-                                        newBeacon.resident_id = newResident.id
-                                        newBeacon.status = (b["status"] as? Bool)!
-                                        newBeacon.photopath = (json["image_path"] as? String)!
-                                        if (newBeacon.status.hashValue != 0){
-                                            
-                                            newBeacon.name = newResident.name + "#" + String(newBeacon.id) + "#" + String(newResident.id)
-                                            print("** NAME \(newBeacon.name)")
-                                            let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
-                                            let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
-                                            print("mornitor \(newBeacon.name)")
-                                            
-                                            GlobalData.currentRegionList.append(newRegion)
-                                            GlobalData.beaconList.append(newBeacon)
-                                            //GlobalData.findB.updateValue(newBeacon, forKey: newBeacon.id.description)
-                                            
-                                        }
-                                    }
-                                }
-                                
-                                if let location = json["locations"] as? [[String: Any]] {
-                                    if (location.count>0){
-                                       newResident.seen = (location[0]["created_at"] as! String)
-                                    }
-                                }
-                                
-                                GlobalData.residentList.append(newResident)
-                           
-                            }
-                        }
-                    }
-                    print("finish load")
-                    
-                    var notification = UILocalNotification()
-                    notification.alertBody = "Load new list"
-                    notification.soundName = "Default"
-                    UIApplication.shared.presentLocalNotificationNow(notification)
-                    
-                    self.saveCurrentListLocal()
-                    
-                }else{
-                    // when connecting internet is fail, the app uses the lastest local data to run
-                    // the new data will be update for both app and local data
-                    
-                    self.loadLocal()
-                    print("beaconlistwhen loadlocal \(GlobalData.beaconList.count)")
-        
-                }// if status
-            
-                        DispatchQueue.main.async(execute: {
-                //                        alertController.dismiss(animated: true, completion: nil)
-            //   alertController.dismiss(animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        UserDefaults.standard.set("xuhelios", forKey: "username")
 
-//                }
-            })
-       //     alertController.dismiss(animated: true, completion: nil)
-            today = Date()
-            print("now2 \(today)")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "finishLogin"), object: nil)
-            }
+        
 
     }
     
     
-    func loadLocal(){
-        
-        GlobalData.beaconList = Array(realm.objects(Beacon.self))
-        GlobalData.residentList = Array(realm.objects(Resident.self))
-    /*    let delegate = UIApplication.shared.delegate as? AppDelegate
-        
-        if let context = delegate?.persistentContainer.viewContext {
-            
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Beacon")
-            request.returnsObjectsAsFaults = false
-            
-            do {
-                GlobalData.beaconList = try! context.fetch(request) as! [Beacon]
-                
-                for newBeacon in GlobalData.beaconList{
-                    
-                    let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
-                    let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
-                    print("mornitor \(newBeacon.name)")
-                    
-                    GlobalData.currentRegionList.append(newRegion)
-                   // GlobalData.findB = [String: Beacon]()
-                                      
-                    let info = newBeacon.name.components(separatedBy: "#")
-                    
-                   // GlobalData.findB.updateValue(newBeacon, forKey: info[1])
-                    
-                    //let x = GlobalData.findR[info[2]]! as Residentx
-                    let newResident = Resident()
-                    newResident.name = info[0]
-                    newResident.id = Int32(info[2])!
-                    newResident.photo = newBeacon.photopath
-                    GlobalData.residentList.append(newResident)
-                    
-                }
-                
-            }catch{
-                fatalError("Failed to fetch \(error)")
-            }
-            
-            //subjects = subjects?.sorted(by: {$0.name!.compare($1.name! as String) == .orderedAscending})
-        }*/
-        
-    }
     
-    func saveCurrentListLocal(){
-        
-        if (GlobalData.currentRegionList.count == 0 || GlobalData.beaconList.count == 0){
-            return
-        }
-        
-     //   clearLocal()
-        
-     /*  try! realm.write {
-          realm.add(GlobalData.beaconList)
-           realm.add(GlobalData.residentList)
-     }*/
-        
-//        let delegate = UIApplication.shared.delegate as? AppDelegate
-//        
-//        if let context = delegate?.persistentContainer.viewContext {
-//            
-//            for b in GlobalData.beaconList {
-//                
-//                let newBeacon = NSEntityDescription.insertNewObject(forEntityName: "Beacon", into: context) as! Beacon
-//                newBeacon.id = b.id
-//                newBeacon.resident_id = b.resident_id
-//                newBeacon.major = Int32(b.major.hashValue)
-//                newBeacon.minor = Int32(b.minor.hashValue)
-//                newBeacon.uuid = b.uuid
-//                newBeacon.status = b.status
-//                newBeacon.name = b.name
-//                
-//            }
-//
-//        }
-        
-    }
     
     func clearLocal() {
        /* try! realm.write {

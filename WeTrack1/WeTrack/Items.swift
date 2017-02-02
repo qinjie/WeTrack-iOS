@@ -14,7 +14,7 @@ struct Constant{
     static let baseURL = "http://128.199.93.67/WeTrack/"
     static let URLreport = baseURL + "api/web/index.php/v1/location-history"
     static let URLmissing = baseURL + "api/web/index.php/v1/resident/missing?expand=beacons,relatives,locations"
-    static let restartTime = 30.0
+    static let restartTime = 50.0
     static let photoURL = "http://128.199.93.67/WeTrack/backend/web/"
 }
 

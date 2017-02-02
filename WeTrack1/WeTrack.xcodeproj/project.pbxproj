@@ -18,7 +18,6 @@
 		38C3867A1E38804F00EE4727 /* ResidentInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C386791E38804F00EE4727 /* ResidentInfo2.swift */; };
 		38C3867C1E3888A900EE4727 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3867B1E3888A900EE4727 /* Detail.swift */; };
 		38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563231E28B6A0004DE7A1 /* AppDelegate.swift */; };
-		38D563261E28B6A0004DE7A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563251E28B6A0004DE7A1 /* ViewController.swift */; };
 		38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D563271E28B6A0004DE7A1 /* Main.storyboard */; };
 		38D5632E1E28B6A0004DE7A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38D5632D1E28B6A0004DE7A1 /* Assets.xcassets */; };
 		38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */; };
@@ -72,7 +71,6 @@
 		38C3867B1E3888A900EE4727 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		38D563201E28B6A0004DE7A1 /* WeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D563231E28B6A0004DE7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		38D563251E28B6A0004DE7A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		38D563281E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38D5632D1E28B6A0004DE7A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38D563301E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 				388049171E3056EB009CF14F /* CustomTabBarController.swift */,
 				3802C30E1E4181060028707E /* MapView.swift */,
 				38C3867B1E3888A900EE4727 /* Detail.swift */,
-				38D563251E28B6A0004DE7A1 /* ViewController.swift */,
 				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
 				38D5632D1E28B6A0004DE7A1 /* Assets.xcassets */,
 				380970A91E41B63D00BB8391 /* Reachability.swift */,
@@ -409,7 +406,6 @@
 				38C3867C1E3888A900EE4727 /* Detail.swift in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,
-				38D563261E28B6A0004DE7A1 /* ViewController.swift in Sources */,
 				384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */,
 				38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */,
 				388049161E304FE9009CF14F /* BeaconController.swift in Sources */,

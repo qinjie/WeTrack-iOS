@@ -10,7 +10,6 @@ import UIKit
 
 import CoreLocation
 import Alamofire
-import CoreData
 import RealmSwift
 
 let realm = try! Realm()
@@ -206,7 +205,7 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                 self.newRegionList = [CLBeaconRegion]()
                 self.residentList = [Resident]()
                 GlobalData.beaconList = [Beacon]()
-                
+             
                 if let JSONS = response.result.value as? [[String: Any]] {
                     
                     for json in JSONS {

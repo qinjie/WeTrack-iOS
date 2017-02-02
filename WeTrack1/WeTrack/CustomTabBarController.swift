@@ -13,14 +13,24 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
 //        let residentList = ResidentList(collectionViewLayout: UICollectionViewFlowLayout())
 //        let navigationController = UINavigationController(rootViewController: residentList)
-//        navigationController.title = "Active Resident"
-//        navigationController.tabBarItem.image = UIImage(named: "resident")
+//        navigationController.title = "Missing Resident"
+//        navigationController.tabBarItem.image = UIImage(named: "residentf")
+//        
 //        
 //        let beaconController = BeaconController(collectionViewLayout: UICollectionViewFlowLayout())
 //        let secondNavigationController = UINavigationController(rootViewController: beaconController)
 //        secondNavigationController.title = "Beacon Detecting"
+//        secondNavigationController.tabBarItem.image = UIImage(named: "Onlinef")
+//        
+//        let nearmeController = NearMeController(collectionViewLayout: UICollectionViewFlowLayout())
+//        let thirdNavigationController = UINavigationController(rootViewController: nearmeController)
+//        thirdNavigationController.title = "NearBy"
+//        thirdNavigationController.tabBarItem.image = UIImage(named: "Nearf")
+
+        
 //        secondNavigationController.tabBarItem.image = UIImage(named: "geo")
 //        viewControllers = [navigationController, secondNavigationController]
 //        let messengerVC = UIViewController()
@@ -35,9 +45,8 @@ class CustomTabBarController: UITabBarController {
 //        let moreNavController = UINavigationController(rootViewController: UIViewController())
 //        moreNavController.title = "More"
 //        moreNavController.tabBarItem.image = UIImage(named: "more_icon")
-//        
-//        viewControllers = [navigationController, secondNavigationController, messengerNavigationController, notificationsNavController, moreNavController]
-        
+////        
+//          viewControllers = [navigationController, secondNavigationController, thirdNavigationController]
        
         
         
