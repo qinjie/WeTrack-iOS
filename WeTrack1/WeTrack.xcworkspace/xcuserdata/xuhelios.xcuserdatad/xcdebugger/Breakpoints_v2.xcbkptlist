@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
             landmarkName = "BeaconController"
             landmarkType = "3">
             <Locations>
@@ -71,8 +71,8 @@
                   symbolName = "WeTrack.BeaconCell.__deallocating_deinit"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.335916"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.475371"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -86,8 +86,8 @@
                   symbolName = "WeTrack.BeaconCell.__ivar_destroyer"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.337192"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.477375"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -101,12 +101,12 @@
                   symbolName = "WeTrack.BeaconCell.init (frame : __C.CGRect) -&gt; WeTrack.BeaconCell"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.338485"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.479455"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "489"
-                  endingLineNumber = "489"
+                  startingLineNumber = "516"
+                  endingLineNumber = "516"
                   offsetFromSymbolStart = "64">
                </Location>
                <Location
@@ -116,8 +116,8 @@
                   symbolName = "WeTrack.BeaconCell.__allocating_init (frame : __C.CGRect) -&gt; WeTrack.BeaconCell"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.339891"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.481603"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -131,8 +131,8 @@
                   symbolName = "WeTrack.BeaconCell.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;WeTrack.BeaconCell&gt;"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.341648"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.483609"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -146,12 +146,12 @@
                   symbolName = "WeTrack.BeaconCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;WeTrack.BeaconCell&gt;"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.343447"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.487824"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "489"
-                  endingLineNumber = "489"
+                  startingLineNumber = "516"
+                  endingLineNumber = "516"
                   offsetFromSymbolStart = "36">
                </Location>
             </Locations>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "setUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "setUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "setUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -244,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "setUp()"
             landmarkType = "7">
          </BreakpointContent>
@@ -260,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "switchMornitoringList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "switchMornitoringList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
             landmarkName = "BeaconController"
             landmarkType = "3">
          </BreakpointContent>
@@ -404,11 +404,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "loadLocal()"
             landmarkType = "7">
          </BreakpointContent>
@@ -468,11 +468,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "switchMornitoringList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -484,11 +484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
             landmarkName = "saveCurrentListLocal()"
             landmarkType = "7">
          </BreakpointContent>
@@ -516,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
             landmarkName = "BeaconController"
             landmarkType = "3">
          </BreakpointContent>
@@ -532,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "loadServerList()"
             landmarkType = "7">
             <Locations>
@@ -547,12 +547,12 @@
                   symbolName = "WeTrack.BeaconController.loadServerList () -&gt; ()"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.416747"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.599288"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "199"
-                  endingLineNumber = "199"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
                   offsetFromSymbolStart = "32">
                </Location>
                <Location
@@ -562,12 +562,12 @@
                   symbolName = "WeTrack.BeaconController.(loadServerList () -&gt; ()).(closure #1)"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.418229"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.600624"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "201"
-                  endingLineNumber = "201"
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
                   offsetFromSymbolStart = "32">
                </Location>
             </Locations>
@@ -580,11 +580,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "loadServerList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -644,11 +644,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "saveCurrentListLocal()"
             landmarkType = "7">
             <Locations>
@@ -659,12 +659,12 @@
                   symbolName = "WeTrack.BeaconController.saveCurrentListLocal () -&gt; ()"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.435346"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.629191"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "359"
-                  endingLineNumber = "359"
+                  startingLineNumber = "386"
+                  endingLineNumber = "386"
                   offsetFromSymbolStart = "308">
                </Location>
                <Location
@@ -674,12 +674,12 @@
                   symbolName = "WeTrack.BeaconController.(saveCurrentListLocal () -&gt; ()).(closure #1)"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/BeaconController.swift"
-                  timestampString = "507711275.437405"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.631309"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "359"
-                  endingLineNumber = "359"
+                  startingLineNumber = "386"
+                  endingLineNumber = "386"
                   offsetFromSymbolStart = "688">
                </Location>
             </Locations>
@@ -692,11 +692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "switchMornitoringList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -708,11 +708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "switchMornitoringList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -724,11 +724,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeTrack/BeaconController.swift"
-            timestampString = "507709571.400702"
+            timestampString = "507718491.173984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "switchMornitoringList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -755,8 +755,8 @@
                   symbolName = "WeTrack.ResidentList.init (collectionViewLayout : __ObjC.UICollectionViewLayout) -&gt; WeTrack.ResidentList"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/ResidentList.swift"
-                  timestampString = "507711275.451542"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/ResidentList.swift"
+                  timestampString = "507718676.650741"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -770,8 +770,8 @@
                   symbolName = "WeTrack.ResidentList.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; WeTrack.ResidentList"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/ResidentList.swift"
-                  timestampString = "507711275.453459"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/ResidentList.swift"
+                  timestampString = "507718676.652925"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -785,8 +785,8 @@
                   symbolName = "WeTrack.ResidentList.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;WeTrack.ResidentList&gt;"
                   moduleName = "WeTrack"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack12%20_%20realm%20opt%20copy/WeTrack/ResidentList.swift"
-                  timestampString = "507711275.45528"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/ResidentList.swift"
+                  timestampString = "507718676.65829"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -873,6 +873,166 @@
             startingLineNumber = "92"
             endingLineNumber = "92"
             landmarkName = "locationManager(_:didStartMonitoringFor:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeTrack/BeaconController.swift"
+            timestampString = "507718635.202887"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeTrack.BeaconController.prepare (for : __ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "WeTrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.697835"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeTrack.BeaconController.prepare (for : __ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "WeTrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.699862"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeTrack/BeaconController.swift"
+            timestampString = "507718636.114934"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeTrack.BeaconController.prepare (for : __ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "WeTrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.706341"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeTrack.BeaconController.(prepare (for : __ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Any&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "WeTrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.709213"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeTrack/BeaconController.swift"
+            timestampString = "507718636.635433"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeTrack.BeaconController.prepare (for : __ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "WeTrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.714483"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeTrack.BeaconController.prepare (for : __ObjC.UIStoryboardSegue, sender : Swift.Optional&lt;Any&gt;) -&gt; ()"
+                  moduleName = "WeTrack"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xuhelios/Documents/xu/internsave/WeTrack/WeTrack14_%20off/WeTrack/BeaconController.swift"
+                  timestampString = "507718676.716488"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "896">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeTrack/BeaconController.swift"
+            timestampString = "507718782.458804"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

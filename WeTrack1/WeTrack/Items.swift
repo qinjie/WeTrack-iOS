@@ -19,7 +19,7 @@ struct Constant{
 }
 
 struct GlobalData{
-    static var residentList = Array(realm.objects(Resident.self))
+    static var residentList = [Resident]()
     static var history = [Beacon]()
     static var nearMe =  [Resident]()
   //  static var findB = [String: Beacon]()

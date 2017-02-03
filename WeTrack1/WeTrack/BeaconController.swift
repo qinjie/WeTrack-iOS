@@ -134,13 +134,34 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        self.performSegue(withIdentifier: "detailSegue2", sender: nil)
+      
         
-        let controller = UIViewController()
-        
-        navigationController?.pushViewController(controller, animated: true)
-        
-   
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let indexPath = getIndexPathForSelectedCell() {
+          //  print ("index  \(indexPath.item)")
+            let y = (beacons?[indexPath.item])! as Beacon
+            
+            let x = GlobalData.residentList.first(where: {$0.id == y.resident_id})
+            
+            let detailViewController = segue.destination as! Detail
+            detailViewController.resident = x!
+        }
+    }
+    
+    func getIndexPathForSelectedCell() -> IndexPath? {
+        
+        var indexPath:IndexPath?
+        
+        if (collectionView?.indexPathsForSelectedItems!.count)! > 0 {
+            indexPath = collectionView?.indexPathsForSelectedItems![0]
+        }
+        return indexPath
+    }
+
     
     var locationManager : CLLocationManager!
     

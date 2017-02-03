@@ -237,16 +237,18 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // retrieve selected cell & fruit
         
-        if let indexPath = getIndexPathForSelectedCell() {
-            
-            let x = residents?[indexPath.item]
-            
-            let detailViewController = segue.destination as! Detail
-            detailViewController.resident = x!
-        }
+            if let indexPath = getIndexPathForSelectedCell() {
+                
+                let x = residents?[indexPath.item]
+                
+                let detailViewController = segue.destination as! Detail
+                detailViewController.resident = x!
+            }
+    
+    
     }
+    
     
     func getIndexPathForSelectedCell() -> IndexPath? {
         

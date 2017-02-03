@@ -30,13 +30,21 @@
          contextName = "BeaconController.switchMornitoringList() -&gt; ():BeaconController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "GlobalData.beaconList">
+               value = "self.n">
             </PersistentString>
             <PersistentString
                value = "newRegionList.count">
             </PersistentString>
             <PersistentString
-               value = "self.n">
+               value = "GlobalData.beaconList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ResidentList.start() -&gt; ():ResidentList.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "GlobalData.currentRegionList.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -57,14 +65,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ResidentList.start() -&gt; ():ResidentList.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.currentRegionList.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "Realm.write(() throws -&gt; ()) throws -&gt; ():Realm.swift">
          <PersistentStrings>
             <PersistentString
@@ -77,6 +77,14 @@
          <PersistentStrings>
             <PersistentString
                value = "GlobalData.beaconList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Sequence.(first(where : (A.Iterator.Element) throws -&gt; Bool) throws -&gt; A.Iterator.Element?).(closure #1):(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "x">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -120,6 +120,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
+                                <connections>
+                                    <segue destination="v7q-KL-I3M" kind="show" identifier="detailSegue2" id="vZu-kh-uHo"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -226,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2S9-CG-810" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6886.875" y="-1982.7464788732395"/>
+            <point key="canvasLocation" x="6643" y="-1926"/>
         </scene>
         <!--Resident List-->
         <scene sceneID="Yxd-zq-Lbt">
@@ -462,4 +465,7 @@
         <image name="residentf" width="30" height="30"/>
         <image name="yoo2" width="542" height="454"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vZu-kh-uHo"/>
+    </inferredMetricsTieBreakers>
 </document>
