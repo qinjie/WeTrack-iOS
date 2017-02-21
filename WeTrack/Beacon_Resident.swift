@@ -96,9 +96,12 @@ class Resident: Object{
     dynamic var nric: String = ""
     dynamic var report: String = ""
     dynamic var status: Bool = true
-    dynamic var remark: String = "00"
+    dynamic var remark: String = "No report"
     dynamic var seen: String = "00"
     dynamic var dob: String = "00"
+    dynamic var address: String = "No report"
+    dynamic var lat: String = "00"
+    dynamic var long: String = "00"
 //    required init() {
 //        name = "Zerry"
 //        

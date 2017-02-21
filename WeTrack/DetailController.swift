@@ -136,11 +136,21 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        return CGSize(width: view.frame.width, height: 170)
     }
     
-    func buy(){
-        print("Byebyebyebay")
+    func map(){
+      
+        var testURL = URL(string: "comgooglemaps-x-callback://")
+        if UIApplication.shared.canOpenURL(testURL!) {
+            let add = (res?.address.replacingOccurrences(of: " ", with: "+"))! as String
+            print("add \(add)")
+            var directionsRequest: String = "comgooglemaps://?q=" + add + "&center=" + (res?.lat)! + "," + (res?.long)! + "&zoom=15"
+            print("\(directionsRequest)")
+            var directionsURL = URL(string: directionsRequest)
+            UIApplication.shared.openURL(directionsURL!)
+        }
+
  
     }
     
@@ -223,8 +233,15 @@ class AppDetailHeader: BaseCell {
                     imageView.image = UIImage(data:data! as Data)
                 }
             }
-            statusLabel.text = resident?.status.description
-            locationLabel.text = resident?.seen
+            if (resident?.status == true){
+                statusLabel.text = "Missing"
+                sttButton.isOn = true
+            }else{
+                sttButton.isOn = false
+                statusLabel.text = "Available"
+            }
+         
+            locationLabel.text = resident?.address
         }
     }
     
@@ -251,26 +268,32 @@ class AppDetailHeader: BaseCell {
         let label = UILabel()
         label.text = "Avaitable"
         label.textColor = UIColor(red:0.10, green:0.31, blue:0.17, alpha:1.0)
-        label.font =  UIFont.italicSystemFont(ofSize: 17)
+        label.font =  UIFont.italicSystemFont(ofSize: 16)
         
         return label
     }()
     
+
     let locationLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red:0.10, green:0.31, blue:0.17, alpha:1.0)
         label.text = "Ngee Ann Poly"
-        label.font = UIFont.italicSystemFont(ofSize: 17)
+        label.numberOfLines = 2
+        label.font = UIFont.italicSystemFont(ofSize: 15)
         return label
     }()
     
-    let buyButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("BUY", for: UIControlState())
-        button.layer.borderColor = UIColor(red: 0, green: 129/255, blue: 250/255, alpha: 1).cgColor
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(DetailController.buy), for: .touchUpInside)
+    let mapButton: UIButton = {
+        let button = UIButton()
+        
+      //  button.setTitle("BUY", for: UIControlState())
+
+        let image = UIImage(named: "ggmap") as UIImage?
+        
+        button.setImage(image, for: .normal)
+        //button.layer.borderColor = UIColor(red: 0, green: 129/255, blue: 250/255, alpha: 1).cgColor
+      
+        button.addTarget(self, action: #selector(DetailController.map), for: .touchUpInside)
         return button
     }()
     
@@ -294,19 +317,19 @@ class AppDetailHeader: BaseCell {
         addSubview(nameLabel)
         addSubview(statusLabel)
         addSubview(locationLabel)
-        addSubview(buyButton)
+        addSubview(mapButton)
         addSubview(dividerLineView)
         
         
         
-        addConstraintsWithFormat("H:|-15-[v0(150)]-10-[v1]-10-|", views: imageView, nameLabel)
-        addConstraintsWithFormat("H:|-15-[v0(150)]-10-[v1]-10-[v2]-10-|", views: imageView, locationLabel, buyButton)
-        addConstraintsWithFormat("H:|-15-[v0(150)]-10-[v1]-10-[v2]-10-|", views: imageView, statusLabel, sttButton)
+        addConstraintsWithFormat("H:|-15-[v0(120)]-10-[v1]-10-|", views: imageView, nameLabel)
         
-        addConstraintsWithFormat("V:|-15-[v0(150)]", views: imageView)
+        addConstraintsWithFormat("H:|-15-[v0(120)]-10-[v1]-10-[v2]-10-|", views: imageView, statusLabel, sttButton)
+        addConstraintsWithFormat("H:|-15-[v0(120)]-10-[v1]-10-[v2(50)]-10-|", views: imageView, locationLabel, mapButton)
+        addConstraintsWithFormat("V:|-15-[v0(120)]", views: imageView)
         
-        addConstraintsWithFormat("V:|-15-[v0(30)]-20-[v1(32)]-20-[v2(32)]", views: nameLabel, sttButton, buyButton)
-        addConstraintsWithFormat("V:|-15-[v0(30)]-20-[v1(32)]-20-[v2]", views: nameLabel, statusLabel, locationLabel)
+        addConstraintsWithFormat("V:|-15-[v0(30)]-15-[v1(32)]-12-[v2(50)]", views: nameLabel, sttButton, mapButton)
+        addConstraintsWithFormat("V:|-15-[v0(30)]-15-[v1(32)]-12-[v2(50)]", views: nameLabel, statusLabel, locationLabel)
         
         
         addConstraintsWithFormat("H:|[v0]|", views: dividerLineView)

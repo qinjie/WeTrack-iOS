@@ -64,6 +64,16 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
                             newResident.nric = (json["nric"] as? String)!
                             newResident.report = (json["reported_at"] as? String)!
                             newResident.dob = (json["dob"] as? String)!
+                            
+                            if let location = json["locations"] as? [[String: Any]]{
+                                if (location.count > 0){
+                                    newResident.address = location[0]["address"] as! String
+                                    newResident.lat = location[0]["latitude"] as! String
+                                    newResident.long = location[0]["longitude"] as! String
+                                    print("add \(newResident.address)")
+                                }
+                            }
+                            
                             if let beacon = json["beacons"] as? [[String: Any]] {
                                 
                                 for b in beacon{
