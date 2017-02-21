@@ -13,16 +13,18 @@
 		384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DE4061E3AEC0C00528AD7 /* NearMeController.swift */; };
 		384E0AAE1E49BEF4004CCFAF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384E0AAC1E49BEF4004CCFAF /* FBSDKCoreKit.framework */; };
 		384E0AAF1E49BEF4004CCFAF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384E0AAD1E49BEF4004CCFAF /* FBSDKLoginKit.framework */; };
+		386A34EC1E5BDF5D00BDC1DC /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */; };
+		386A34EE1E5BE61100BDC1DC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34ED1E5BE61100BDC1DC /* TableViewController.swift */; };
+		386A34F01E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386A34EF1E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets */; };
 		388049141E304C4C009CF14F /* ResidentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049131E304C4C009CF14F /* ResidentList.swift */; };
 		388049161E304FE9009CF14F /* BeaconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049151E304FE9009CF14F /* BeaconController.swift */; };
 		388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049171E3056EB009CF14F /* CustomTabBarController.swift */; };
 		38AD5E6A1E5A7FCB00E4A050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */; };
 		38C286401E2F3E60004526BF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2863F1E2F3E60004526BF /* LoginController.swift */; };
 		38C3867A1E38804F00EE4727 /* ResidentInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C386791E38804F00EE4727 /* ResidentInfo2.swift */; };
-		38C3867C1E3888A900EE4727 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3867B1E3888A900EE4727 /* Detail.swift */; };
+		38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3867B1E3888A900EE4727 /* DetailController.swift */; };
 		38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563231E28B6A0004DE7A1 /* AppDelegate.swift */; };
 		38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D563271E28B6A0004DE7A1 /* Main.storyboard */; };
-		38D5632E1E28B6A0004DE7A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38D5632D1E28B6A0004DE7A1 /* Assets.xcassets */; };
 		38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */; };
 		38D5633C1E28B6A0004DE7A1 /* WeTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5633B1E28B6A0004DE7A1 /* WeTrackTests.swift */; };
 		38D563471E28B6A0004DE7A1 /* WeTrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563461E28B6A0004DE7A1 /* WeTrackUITests.swift */; };
@@ -68,6 +70,9 @@
 		384DE4061E3AEC0C00528AD7 /* NearMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeController.swift; sourceTree = "<group>"; };
 		384E0AAC1E49BEF4004CCFAF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		384E0AAD1E49BEF4004CCFAF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
+		386A34ED1E5BE61100BDC1DC /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		386A34EF1E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 14-16-58-664.xcassets"; sourceTree = "<group>"; };
 		388049131E304C4C009CF14F /* ResidentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentList.swift; sourceTree = "<group>"; };
 		388049151E304FE9009CF14F /* BeaconController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconController.swift; sourceTree = "<group>"; };
 		388049171E3056EB009CF14F /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -75,11 +80,10 @@
 		38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeTrack-Bridging-Header.h"; sourceTree = "<group>"; };
 		38C2863F1E2F3E60004526BF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		38C386791E38804F00EE4727 /* ResidentInfo2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentInfo2.swift; sourceTree = "<group>"; };
-		38C3867B1E3888A900EE4727 /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		38C3867B1E3888A900EE4727 /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		38D563201E28B6A0004DE7A1 /* WeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D563231E28B6A0004DE7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D563281E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		38D5632D1E28B6A0004DE7A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38D563301E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38D563321E28B6A0004DE7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38D563371E28B6A0004DE7A1 /* WeTrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,17 +156,19 @@
 				388049131E304C4C009CF14F /* ResidentList.swift */,
 				388049171E3056EB009CF14F /* CustomTabBarController.swift */,
 				3802C30E1E4181060028707E /* MapView.swift */,
+				386A34ED1E5BE61100BDC1DC /* TableViewController.swift */,
 				38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */,
 				38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */,
-				38C3867B1E3888A900EE4727 /* Detail.swift */,
+				38C3867B1E3888A900EE4727 /* DetailController.swift */,
 				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
-				38D5632D1E28B6A0004DE7A1 /* Assets.xcassets */,
 				380970A91E41B63D00BB8391 /* Reachability.swift */,
 				38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */,
 				38303D7D1E40735D00893536 /* Beacon_Resident.swift */,
+				386A34EF1E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets */,
 				38C2863F1E2F3E60004526BF /* LoginController.swift */,
 				38D563321E28B6A0004DE7A1 /* Info.plist */,
 				38D563231E28B6A0004DE7A1 /* AppDelegate.swift */,
+				386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */,
 				38D563571E28BC77004DE7A1 /* Items.swift */,
 			);
 			path = WeTrack;
@@ -327,8 +333,8 @@
 			files = (
 				38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */,
 				38AD5E6A1E5A7FCB00E4A050 /* GoogleService-Info.plist in Resources */,
-				38D5632E1E28B6A0004DE7A1 /* Assets.xcassets in Resources */,
 				38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */,
+				386A34F01E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,8 +422,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				388049141E304C4C009CF14F /* ResidentList.swift in Sources */,
+				386A34EE1E5BE61100BDC1DC /* TableViewController.swift in Sources */,
 				3802C30F1E4181060028707E /* MapView.swift in Sources */,
-				38C3867C1E3888A900EE4727 /* Detail.swift in Sources */,
+				38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */,
+				386A34EC1E5BDF5D00BDC1DC /* MoreController.swift in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,
 				384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */,

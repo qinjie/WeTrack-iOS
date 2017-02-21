@@ -19,7 +19,10 @@ struct Constant{
     static let restartTime = 50.0
     static let photoURL = "http://128.199.93.67/WeTrack/backend/web/"
     static var token = ""
+    static var username = ""
+    static var role = 40
     static var id = 0
+    static var email = "np@gmail.com"
 }
 
 struct GlobalData{

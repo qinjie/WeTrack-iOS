@@ -147,8 +147,8 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
             
             let x = GlobalData.residentList.first(where: {$0.id == y.resident_id})
             
-            let detailViewController = segue.destination as! Detail
-            detailViewController.resident = x!
+            let detailViewController = segue.destination as! DetailController
+            detailViewController.res = x!
         }
     }
     
@@ -241,6 +241,9 @@ class BeaconController: UICollectionViewController, UICollectionViewDelegateFlow
                             newResident.id = (json["id"] as? Int32)!
                             newResident.photo = (json["image_path"] as? String)!
                             newResident.remark = (json["remark"] as? String)!
+                            newResident.nric = (json["nric"] as? String)!
+                            newResident.report = (json["reported_at"] as? String)!
+                            newResident.dob = (json["dob"] as? String)!
                             
                             if let beacon = json["beacons"] as? [[String: Any]] {
                                 

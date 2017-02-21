@@ -193,8 +193,10 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 if (result == "correct"){
                     Constant.token = JSON["token"] as! String
                     Constant.id = JSON["user_id"] as! Int
+                    Constant.username = JSON["username"] as! String
+                    print("Username \(Constant.username)")
                     print("tokenlogin =  \(Constant.token)")
-                    
+                    UserDefaults.standard.set(Constant.username, forKey: "username")
                     DispatchQueue.main.async(execute: {
                         //alertController.dismiss(animated: true, completion: nil)
                         OperationQueue.main.addOperation {
@@ -204,7 +206,8 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     
                 }
                 else{
-                    //displayMyAlertMessage(mess: "Username or Password is Invalid!")
+                    alertController.dismiss(animated: true, completion: nil)
+                    self.displayMyAlertMessage(mess: "Username or Password is Invalid!")
                 }
                 
             }
@@ -237,10 +240,6 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
 //        spinnerIndicator.startAnimating()
 //        alertController.view.addSubview(spinnerIndicator)
 //        self.present(alertController, animated: false, completion: nil)
-        
-        UserDefaults.standard.set("xuhelios", forKey: "username")
-
-        
 
     }
     
@@ -294,4 +293,26 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     }
     */
 
+}
+extension UIViewController {
+//    func hideKeyboardWhenTappedAround() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+//    }
+//    
+//    func dismissKeyboard() {
+//        view.endEditing(true)
+//    }
+//    
+    func displayMyAlertMessage(mess : String){
+        
+        var myAlert = UIAlertController(title: "Alert", message: mess, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "OK!!", style: UIAlertActionStyle.default, handler: nil)
+        
+        myAlert.addAction(okAction)
+        
+        self.present(myAlert, animated: true, completion: nil)
+        
+    }
 }
