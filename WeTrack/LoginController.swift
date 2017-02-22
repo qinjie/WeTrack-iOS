@@ -193,16 +193,11 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     Constant.token = JSON["token"] as! String
                     Constant.id = JSON["user_id"] as! Int
                     Constant.username = JSON["username"] as! String
+                    self.loadRelativeList()
                     print("Username \(Constant.username)")
                     print("tokenlogin =  \(Constant.token)")
                     UserDefaults.standard.set(Constant.username, forKey: "username")
-                    DispatchQueue.main.async(execute: {
-                        //alertController.dismiss(animated: true, completion: nil)
-                        OperationQueue.main.addOperation {
-                            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                        }
-                    })
-                    
+
                 }
                 else{
                     alertController.dismiss(animated: true, completion: nil)
@@ -228,17 +223,77 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
 
     }
     
-    func loadServerList(){
+    func loadRelativeList(){
         
         
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + Constant.token
+            // "Accept": "application/json"
+        ]
         
-//        let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
-//        let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-//        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
-//        spinnerIndicator.color = UIColor.black
-//        spinnerIndicator.startAnimating()
-//        alertController.view.addSubview(spinnerIndicator)
-//        self.present(alertController, animated: false, completion: nil)
+        Alamofire.request(Constant.URLall, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            
+            GlobalData.allResidents = [Resident]()
+          
+            if let JSON = response.result.value as? [[String: Any]] {
+   
+                for json in JSON {
+                    
+                    let newResident = Resident()
+                    
+                    newResident.status = (json["status"] as? Bool)!
+                    
+                    newResident.name = (json["fullname"] as? String)!
+                    newResident.id = (json["id"] as? Int32)!
+                    newResident.photo = (json["image_path"] as? String)!
+                    newResident.remark = (json["remark"] as? String)!
+                    newResident.nric = (json["nric"] as? String)!
+                    newResident.dob = (json["dob"] as? String)!
+                    
+                    
+                    if let location = json["locations"] as? [[String: Any]]{
+                        if (location.count > 0){
+                            if let add = location[0]["address"] as? String {
+                                newResident.address = add
+                            }
+                            if let add = location[0]["latitude"] as? String{
+                                newResident.lat = add
+                            }
+                            
+                            if let add = location[0]["longitude"] as? String{
+                                newResident.long = add
+                            }
+                            
+                            print("add \(newResident.address)")
+                        }
+                    }
+
+                    if let relatives = json["relatives"] as? [[String: Any]]{
+                
+                        for relative in relatives{
+                      
+                            let x = relative["id"] as! Int
+                            if (x == Constant.id){
+                                print("\(json["fullname"])")
+                                newResident.isRelative = true
+                                break
+                            }
+                        }
+                    }
+                
+                    GlobalData.allResidents.append(newResident)
+                    
+                    
+                }
+            }
+            print(" all re1 \(GlobalData.allResidents.count)")
+            DispatchQueue.main.async(execute: {
+                //alertController.dismiss(animated: true, completion: nil)
+                OperationQueue.main.addOperation {
+                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                }
+            })
+        }
 
     }
     

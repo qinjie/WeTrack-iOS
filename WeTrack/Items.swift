@@ -16,7 +16,8 @@ struct Constant{
     static let URLlogin = baseURL + "api/web/index.php/v1/user/login-email"
     static let URLreport = baseURL + "api/web/index.php/v1/location-history"
     static let URLmissing = baseURL + "api/web/index.php/v1/resident/missing?expand=beacons,relatives,locations"
-    static let restartTime = 50.0
+    static let URLall = baseURL + "api/web/index.php/v1/resident?expand=relatives,beacons,locations,locationHistories"
+    static let restartTime = 60.0
     static let photoURL = "http://128.199.93.67/WeTrack/backend/web/"
     static var token = ""
     static var username = ""
@@ -26,7 +27,9 @@ struct Constant{
 }
 
 struct GlobalData{
-    static var residentList = [Resident]()
+    static var missingList = [Resident]()
+    static var allResidents = [Resident]()
+    static var relativeList = [Resident]()
     static var history = [Beacon]()
     static var nearMe =  [Resident]()
   //  static var findB = [String: Beacon]()

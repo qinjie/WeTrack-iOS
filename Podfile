@@ -5,8 +5,6 @@ use_frameworks!
 target ‘WeTrack’ do
     pod 'Alamofire'
     pod 'RealmSwift'
-    pod 'GoogleMaps'
-    pod 'GooglePlaces'
     pod 'Firebase/Auth'
     pod 'GoogleSignIn'
  

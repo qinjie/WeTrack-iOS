@@ -111,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="1950" y="-1763.0281690140846"/>
         </scene>
-        <!--Beacon Controller-->
+        <!--Relative Controller-->
         <scene sceneID="fE4-bc-pJ5">
             <objects>
-                <collectionViewController id="366-1k-Nfo" customClass="BeaconController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="366-1k-Nfo" customClass="RelativeController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="VuL-wD-Glo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,22 +143,11 @@
                             <outlet property="delegate" destination="366-1k-Nfo" id="SOp-S2-18D"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="COI-xa-BF0">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="aPf-vH-deA">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FIm-uC-IM0">
-                                <rect key="frame" x="233" y="7" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="LogOut"/>
-                            </button>
-                            <connections>
-                                <segue destination="9Kr-As-A1I" kind="show" id="U3m-q7-pTz"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="COI-xa-BF0"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VnP-uN-tRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5211" y="-1102"/>
+            <point key="canvasLocation" x="5222" y="-1101"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8RM-Ho-inM">
@@ -274,7 +263,7 @@
         <scene sceneID="RbN-Lc-4HC">
             <objects>
                 <collectionViewController id="72n-jI-efJ" customClass="DetailController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="LY5-1p-oPo">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="LY5-1p-oPo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -308,7 +297,7 @@
         <scene sceneID="Yxd-zq-Lbt">
             <objects>
                 <collectionViewController storyboardIdentifier="ResidentList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bLa-sL-Tfk" customClass="ResidentList" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Cka-Uw-2td">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Cka-Uw-2td">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -422,11 +411,11 @@
             </objects>
             <point key="canvasLocation" x="3976.875" y="-1887.6760563380283"/>
         </scene>
-        <!--Detect-->
+        <!--Relatives-->
         <scene sceneID="ozb-lq-fKh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jLr-mg-zG3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Detect" image="Online" selectedImage="Onlinef" id="OPE-Vj-rEa"/>
+                    <tabBarItem key="tabBarItem" title="Relatives" image="Family" selectedImage="Familyf" id="OPE-Vj-rEa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Udl-R0-xfW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -445,7 +434,7 @@
         <scene sceneID="yPb-DD-D98">
             <objects>
                 <collectionViewController id="TdR-eY-IVo" customClass="NearMeController" customModule="WeTrack" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hbb-aO-zrv">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="hbb-aO-zrv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -754,13 +743,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Family" width="30" height="30"/>
+        <image name="Familyf" width="30" height="30"/>
         <image name="Loginbg" width="750" height="1334"/>
         <image name="Menu" width="30" height="30"/>
         <image name="Menuf" width="30" height="30"/>
         <image name="Near" width="30" height="30"/>
         <image name="Nearf" width="30" height="30"/>
-        <image name="Online" width="30" height="30"/>
-        <image name="Onlinef" width="30" height="30"/>
         <image name="Slice" width="461" height="6"/>
         <image name="btn" width="73" height="51"/>
         <image name="ggicon" width="47" height="47"/>

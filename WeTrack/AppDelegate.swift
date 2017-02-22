@@ -26,19 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Override point for customization after application launch.
       
         var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
-//         self.window.rootViewController = loginController
-        if (UserDefaults.standard.string(forKey: "username") == nil) {
-            
-            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
-            
-            self.window.rootViewController = loginController
-        }else{
-            
-            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
-
-            self.window.rootViewController = mainViewController
-        }
+        var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
+         self.window.rootViewController = loginController
+//        if (UserDefaults.standard.string(forKey: "username") == nil) {
+//            
+//            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
+//            
+//            self.window.rootViewController = loginController
+//        }else{
+//            
+//            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
+//
+//            self.window.rootViewController = mainViewController
+//        }
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
         UIApplication.shared.cancelAllLocalNotifications()
@@ -137,10 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 
                 let info = region.identifier.components(separatedBy: "#")
                 
-                DispatchQueue.global().async {
-                    self.report(beaconId : info[1], userId : info[2])
-                   
-                }
+                
                 
                 let today = Date()
                 let dateFormatter = DateFormatter()
@@ -151,11 +148,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let x = Beacon()
                 
                 let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
-                let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
+                let t = GlobalData.allResidents.first(where: {$0.id.description == info[2]})
                 if (z != nil && t != nil){
                     try! realm.write {
-                        z?.seen = y
-                        t?.seen = y
+                        z?.report = y
+                        t?.report = y
                     }
                     
                     x.name = (z?.name)!
@@ -165,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     x.resident_id = (z?.resident_id)!
                     x.id = Int32(info[1])!
                     x.detect = true
-                    x.seen = y
+                    x.report = y
                     // at here
                     GlobalData.history.insert(x, at: 0)
                 }
@@ -181,6 +178,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 
                 //}
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
+                DispatchQueue.global().async {
+                    self.report(beaconId : info[1], userId : info[2])
+                    
+                }
             //report(region: CLRegion)
             case .outside:
                 print(" -____- Outside");
@@ -209,7 +210,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 "longitude": long,
                 "latitude": lat
             ]
-            Alamofire.request(Constant.URLreport , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer " + Constant.token
+                // "Accept": "application/json"
+            ]
+            
+            Alamofire.request(Constant.URLreport , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
                 let JSONS = response.result.value
                 print(" reponse\(JSONS)")
             }
@@ -261,11 +268,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
            // at here
             let x = Beacon()
             let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
-            let t = GlobalData.residentList.first(where: {$0.id.description == info[2]})
+            let t = GlobalData.allResidents.first(where: {$0.id.description == info[2]})
             if (z != nil && t != nil){
                 try! realm.write {
-                    z?.seen = y
-                    t?.seen = y
+                    z?.report = y
+                    t?.report = y
                 }
                 x.name = (z?.name)!
                 x.major = (z?.major)!
@@ -275,7 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 x.id = Int32(info[1])!
                 
                 x.detect = false
-                x.seen = y
+                x.report = y
                 GlobalData.history.insert(x, at: 0)
             }
             GlobalData.nearMe = GlobalData.nearMe.filter({$0.id.description != info[2]})

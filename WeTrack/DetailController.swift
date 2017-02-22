@@ -79,7 +79,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     var res: Resident? {
         didSet {
             
-            info = [(res?.nric)!, (res?.dob)!, (res?.status.description)!, (res?.remark)!, (res?.report)!, (res?.seen)! ]
+            info = [(res?.nric)!, (res?.dob)!, (res?.status.description)!, (res?.remark)!, (res?.report)! ]
             
         }
     }
@@ -105,9 +105,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
-        
-        
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AppInfoCell
         
         cell.tittleView.text = tittles[indexPath.item]
@@ -132,6 +130,7 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! AppDetailHeader
         header.resident = res
+        
         return header
     }
     
@@ -157,10 +156,14 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     func changeStt(mySwitch: UISwitch) {
         if mySwitch.isOn {
             print("ON")
+            res?.status = true
         }
         else {
             print ("OFF")
+            res?.status = false
         }
+        self.info[2] = (res?.status.description)!
+        self.collectionView?.reloadData()
     }
     
 }
@@ -241,6 +244,8 @@ class AppDetailHeader: BaseCell {
                 statusLabel.text = "Available"
             }
          
+            sttButton.isEnabled = (resident?.isRelative)!
+            
             locationLabel.text = resident?.address
         }
     }
@@ -330,7 +335,6 @@ class AppDetailHeader: BaseCell {
         
         addConstraintsWithFormat("V:|-15-[v0(30)]-15-[v1(32)]-12-[v2(50)]", views: nameLabel, sttButton, mapButton)
         addConstraintsWithFormat("V:|-15-[v0(30)]-15-[v1(32)]-12-[v2(50)]", views: nameLabel, statusLabel, locationLabel)
-        
         
         addConstraintsWithFormat("H:|[v0]|", views: dividerLineView)
         addConstraintsWithFormat("V:[v0(1)]|", views: dividerLineView)

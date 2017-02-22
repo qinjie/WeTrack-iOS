@@ -17,13 +17,6 @@ PODS:
   - FirebaseCore (3.5.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (1.0.9)
-  - GoogleMaps (2.1.1):
-    - GoogleMaps/Maps (= 2.1.1)
-  - GoogleMaps/Base (2.1.1)
-  - GoogleMaps/Maps (2.1.1):
-    - GoogleMaps/Base
-  - GooglePlaces (2.1.1):
-    - GoogleMaps/Base (= 2.1.1)
   - GoogleSignIn (4.0.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
@@ -55,8 +48,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Firebase/Auth
-  - GoogleMaps
-  - GooglePlaces
   - GoogleSignIn
   - RealmSwift
 
@@ -67,8 +58,6 @@ SPEC CHECKSUMS:
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
   FirebaseCore: 1c0a13bf59bb95cdd19577252499f0ec6a03e999
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
-  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
-  GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
@@ -76,6 +65,6 @@ SPEC CHECKSUMS:
   Realm: bc829ad0ef3d4eea70c34cfcc3b1704d18d50df1
   RealmSwift: a4d4abbf0088c337cab5b738054395842e4b3052
 
-PODFILE CHECKSUM: 450082e2a8b13fe3be790950adcc4d380ea7bb2e
+PODFILE CHECKSUM: 95b8c3cff004d78a98813f25c423f517e8a0d6dd
 
 COCOAPODS: 1.1.1

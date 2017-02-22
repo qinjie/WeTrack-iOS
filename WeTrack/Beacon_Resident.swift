@@ -17,7 +17,7 @@ class Beacon: Object{
     dynamic var name: String = ""
     dynamic var photopath: String = ""
     dynamic var resident_id: Int32 = 0
-    dynamic var seen: String = ""
+    dynamic var report: String = ""
     dynamic var status: Bool = true
     dynamic var uuid: String = ""
     
@@ -97,11 +97,11 @@ class Resident: Object{
     dynamic var report: String = ""
     dynamic var status: Bool = true
     dynamic var remark: String = "No report"
-    dynamic var seen: String = "00"
     dynamic var dob: String = "00"
     dynamic var address: String = "No report"
     dynamic var lat: String = "00"
     dynamic var long: String = "00"
+    dynamic var isRelative: Bool = false
 //    required init() {
 //        name = "Zerry"
 //        

@@ -17,7 +17,10 @@
 import UIKit
 import Alamofire
 import CoreLocation
-
+import RealmSwift
+ 
+let realm = try! Realm()
+ 
 class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
  
     var residents : [Resident]?
@@ -26,52 +29,66 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.residents = GlobalData.residentList
+        self.residents = GlobalData.missingList
         self.collectionView!.reloadData()
         
+       print(" all re \(GlobalData.allResidents.count)")
+       print(" all mis \(GlobalData.missingList.count)")
     }
 
-    func loadFirstTime(){
+    func loadServerList(){
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + Constant.token
             // "Accept": "application/json"
         ]
         
         Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            
+            print("check2")
             let statusCode = response.response?.statusCode
             print("connection code \(statusCode)")
             if (statusCode == 200){
                 
+                self.newRegionList = [CLBeaconRegion]()
                 GlobalData.beaconList = [Beacon]()
-                GlobalData.residentList = [Resident]()
-                
+                GlobalData.missingList = [Resident]()
                 
                 if let JSONS = response.result.value as? [[String: Any]] {
                     
                     for json in JSONS {
                         
-                        let newResident = Resident()
+                        let status = (json["status"] as? Bool)!
                         
-                        newResident.status = (json["status"] as? Bool)!
-                        
-                        if ((newResident.status.hashValue != 0)){
+                        if ((status.hashValue != 0)){
                             
-                            newResident.name = (json["fullname"] as? String)!
-                            newResident.id = (json["id"] as? Int32)!
-                            newResident.photo = (json["image_path"] as? String)!
-                            newResident.remark = (json["remark"] as? String)!
-                            newResident.nric = (json["nric"] as? String)!
-                            newResident.report = (json["reported_at"] as? String)!
-                            newResident.dob = (json["dob"] as? String)!
+                            let rid = (json["id"] as? Int32)!
                             
-                            if let location = json["locations"] as? [[String: Any]]{
-                                if (location.count > 0){
-                                    newResident.address = location[0]["address"] as! String
-                                    newResident.lat = location[0]["latitude"] as! String
-                                    newResident.long = location[0]["longitude"] as! String
-                                    print("add \(newResident.address)")
+                            var r  = Resident()
+                            
+                            if let newMissing = GlobalData.allResidents.first(where: {$0.id == rid}){
+                                // error here
+                                try! realm.write {
+                                    newMissing.status = true
+                                
+                                    newMissing.report = (json["reported_at"] as? String)!
                                 }
+                                r = newMissing
+                                
+                            }else{
+                                
+                                let newMissing = Resident()
+                                
+                                newMissing.status = true
+                                
+                                newMissing.name = (json["fullname"] as? String)!
+                                newMissing.id = (json["id"] as? Int32)!
+                                newMissing.photo = (json["image_path"] as? String)!
+                                newMissing.remark = (json["remark"] as? String)!
+                                newMissing.report = (json["reported_at"] as? String)!
+                                newMissing.nric = (json["nric"] as? String)!
+                                newMissing.dob = (json["dob"] as? String)!
+                                newMissing.report = (json["reported_at"] as? String)!
+                                
+                                r = newMissing
                             }
                             
                             if let beacon = json["beacons"] as? [[String: Any]] {
@@ -84,34 +101,30 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
                                     newBeacon.minor = (b["minor"] as? Int32)!
                                     newBeacon.id = (b["id"] as? Int32)!
                                     print("\(newBeacon.id)")
-                                    newBeacon.resident_id = newResident.id
+                                    newBeacon.resident_id = (r.id)
                                     newBeacon.status = (b["status"] as? Bool)!
-                                    newBeacon.photopath = (json["image_path"] as? String)!
+                                 
                                     if (newBeacon.status.hashValue != 0){
                                         
-                                        newBeacon.name = newResident.name + "#" + String(newBeacon.id) + "#" + String(newResident.id)
+                                        newBeacon.name = (r.name) + "#" + String(newBeacon.id) + "#" + String(r.id)
                                         print("** NAME \(newBeacon.name)")
                                         let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
                                         let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
                                         print("mornitor \(newBeacon.name)")
                                         
-                                        GlobalData.currentRegionList.append(newRegion)
+                                        self.newRegionList.append(newRegion)
                                         GlobalData.beaconList.append(newBeacon)
                                         
                                     }
                                 }
                             }
-                            
-                            if let location = json["locations"] as? [[String: Any]] {
-                                if (location.count>0){
-                                    newResident.seen = (location[0]["created_at"] as! String)
-                                }
-                            }
-                            
-                            GlobalData.residentList.append(newResident)
-                            
+
+
+                            GlobalData.missingList.append(r)
+  
                         }
                     }
+                    GlobalData.relativeList = GlobalData.allResidents.filter({$0.isRelative == true})
                 }
                 print("finish load")
                 
@@ -120,7 +133,8 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
                 notification.soundName = "Default"
                 UIApplication.shared.presentLocalNotificationNow(notification)
                 
-                self.saveCurrentListLocal()
+                self.switchMornitoringList()
+                
                 
             }else{
                 
@@ -129,13 +143,14 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
                 
             }// if status
             
-            self.residents = GlobalData.residentList
+            self.residents = GlobalData.missingList
             self.collectionView!.reloadData()
-            self.start()
+            
         }
     }
     
     let locationManager = CLLocationManager()
+    
     func start(){
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "start"), object: nil)
         locationManager.delegate = self
@@ -154,7 +169,8 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     func loadLocal(){
         
         GlobalData.beaconList = Array(realm.objects(Beacon.self))
-        GlobalData.residentList = Array(realm.objects(Resident.self))
+        GlobalData.allResidents = Array(realm.objects(Resident.self))
+        GlobalData.missingList = GlobalData.allResidents.filter({$0.status == true})
     }
     
     func saveCurrentListLocal(){
@@ -165,15 +181,28 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         //  clearLocal()
         try! realm.write {
             
-            let bc = Array(realm.objects(Beacon.self))
-            let rl = Array(realm.objects(Resident.self))
-            realm.delete(rl)
-            realm.delete(bc)
+//            let bc = Array(realm.objects(Beacon.self))
+//            let rl = Array(realm.objects(Resident.self))
+//            realm.delete(rl)
+//            realm.delete(bc)
             
-            realm.add(GlobalData.residentList)
+            print("count \(GlobalData.allResidents.count)")
+            realm.add(GlobalData.allResidents)
             realm.add(GlobalData.beaconList)
         }
 
+    }
+    
+    var updateTimer: Timer?
+    
+    func setUp(){
+        
+        newRegionList = GlobalData.currentRegionList
+        switchMornitoringList()
+        self.saveCurrentListLocal()
+        self.updateTimer = Timer.scheduledTimer(timeInterval: Constant.restartTime, target: self, selector: #selector(self.loadServerList), userInfo: nil, repeats: true)
+        
+        
     }
     
     override func viewDidLoad() {
@@ -194,18 +223,52 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
         collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
         
-        
+        loadServerList()
+        start()
+        setUp()
         //setupData()
-        loadFirstTime()
-       
-        
-         NotificationCenter.default.addObserver(self,selector: #selector(sync), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
-        NotificationCenter.default.addObserver(self,selector: #selector(sync), name: NSNotification.Name(rawValue: "syncServer"), object: nil)
+
         
     }
     
+    func switchMornitoringList(){
+        
+        if (self.n > 1){
+            
+            for uniqueRegion in GlobalData.currentRegionList{
+                
+                self.locationManager.stopMonitoring(for: uniqueRegion)
+            }
+            
+        }
+        
+        if (newRegionList.count > 0){
+            
+            GlobalData.currentRegionList = newRegionList
+            
+            if (GlobalData.currentRegionList.count <= 20){
+                
+                for uniqueRegion in GlobalData.currentRegionList{
+                    
+                    self.locationManager.startMonitoring(for: uniqueRegion)
+                }
+            }else{
+                // group beacon
+            }
+        }
+        self.n = newRegionList.count
+        
+    }
+
+    
+    var newRegionList = [CLBeaconRegion]()
+    var residentList = [Resident]()
+    
+    
+    var n = 0
+    
     func sync(){
-        self.residents = GlobalData.residentList
+        self.residents = GlobalData.missingList
         self.collectionView!.reloadData()
         let today = Date()
         print("now1 \(today)")
@@ -309,8 +372,10 @@ class ResidentCell: BaseCell {
                     residentPhoto.image = UIImage(data:data! as Data)
                 }
             }
-            lastseen.text = resident?.seen
-        
+            lastseen.text = resident?.report
+            if (lastseen.text == ""){
+                lastseen.text = "not report yet"
+            }
             
         }
     }
