@@ -7,6 +7,6 @@ target ‘WeTrack’ do
     pod 'RealmSwift'
     pod 'Firebase/Auth'
     pod 'GoogleSignIn'
- 
+    pod ‘FirebaseMessaging’
 end
  

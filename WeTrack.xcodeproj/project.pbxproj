@@ -7,20 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3802C30F1E4181060028707E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802C30E1E4181060028707E /* MapView.swift */; };
 		380970AA1E41B63D00BB8391 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380970A91E41B63D00BB8391 /* Reachability.swift */; };
+		38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */; };
+		38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */; };
 		38303D7E1E40735D00893536 /* Beacon_Resident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303D7D1E40735D00893536 /* Beacon_Resident.swift */; };
 		383FDBF31E5D27ED0058199B /* RelativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FDBF21E5D27ED0058199B /* RelativeController.swift */; };
 		384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DE4061E3AEC0C00528AD7 /* NearMeController.swift */; };
 		386A34EC1E5BDF5D00BDC1DC /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */; };
-		386A34EE1E5BE61100BDC1DC /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34ED1E5BE61100BDC1DC /* TableViewController.swift */; };
+		386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34ED1E5BE61100BDC1DC /* SettingController.swift */; };
 		386A34F01E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386A34EF1E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets */; };
 		388049141E304C4C009CF14F /* ResidentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049131E304C4C009CF14F /* ResidentList.swift */; };
-		388049161E304FE9009CF14F /* BeaconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049151E304FE9009CF14F /* BeaconController.swift */; };
 		388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049171E3056EB009CF14F /* CustomTabBarController.swift */; };
 		38AD5E6A1E5A7FCB00E4A050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */; };
 		38C286401E2F3E60004526BF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2863F1E2F3E60004526BF /* LoginController.swift */; };
-		38C3867A1E38804F00EE4727 /* ResidentInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C386791E38804F00EE4727 /* ResidentInfo2.swift */; };
 		38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3867B1E3888A900EE4727 /* DetailController.swift */; };
 		38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563231E28B6A0004DE7A1 /* AppDelegate.swift */; };
 		38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D563271E28B6A0004DE7A1 /* Main.storyboard */; };
@@ -63,21 +62,24 @@
 
 /* Begin PBXFileReference section */
 		22D45AAD9A3520E6085A7B73 /* Pods_WeTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3802C30E1E4181060028707E /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		380970A91E41B63D00BB8391 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		38122E271E5ED5E50036AF52 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDevice.h; sourceTree = "<group>"; };
+		38122E281E5ED5E50036AF52 /* BluetoothDeviceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDeviceHandler.h; sourceTree = "<group>"; };
+		38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothDeviceHandler.m; sourceTree = "<group>"; };
+		38122E2A1E5ED5E50036AF52 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManager.h; sourceTree = "<group>"; };
+		38122E2B1E5ED5E50036AF52 /* BluetoothManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManagerHandler.h; sourceTree = "<group>"; };
+		38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothManagerHandler.m; sourceTree = "<group>"; };
 		38303D7D1E40735D00893536 /* Beacon_Resident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacon_Resident.swift; sourceTree = "<group>"; };
 		383FDBF21E5D27ED0058199B /* RelativeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeController.swift; sourceTree = "<group>"; };
 		384DE4061E3AEC0C00528AD7 /* NearMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeController.swift; sourceTree = "<group>"; };
 		386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
-		386A34ED1E5BE61100BDC1DC /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		386A34ED1E5BE61100BDC1DC /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		386A34EF1E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 14-16-58-664.xcassets"; sourceTree = "<group>"; };
 		388049131E304C4C009CF14F /* ResidentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentList.swift; sourceTree = "<group>"; };
-		388049151E304FE9009CF14F /* BeaconController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconController.swift; sourceTree = "<group>"; };
 		388049171E3056EB009CF14F /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeTrack-Bridging-Header.h"; sourceTree = "<group>"; };
 		38C2863F1E2F3E60004526BF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		38C386791E38804F00EE4727 /* ResidentInfo2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentInfo2.swift; sourceTree = "<group>"; };
 		38C3867B1E3888A900EE4727 /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		38D563201E28B6A0004DE7A1 /* WeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D563231E28B6A0004DE7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38122E2F1E5ED5F20036AF52 /* Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				38122E271E5ED5E50036AF52 /* BluetoothDevice.h */,
+				38122E281E5ED5E50036AF52 /* BluetoothDeviceHandler.h */,
+				38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */,
+				38122E2A1E5ED5E50036AF52 /* BluetoothManager.h */,
+				38122E2B1E5ED5E50036AF52 /* BluetoothManagerHandler.h */,
+				38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */,
+			);
+			name = "Objective-C";
+			sourceTree = "<group>";
+		};
 		38D563171E28B6A0004DE7A1 = {
 			isa = PBXGroup;
 			children = (
@@ -146,26 +161,24 @@
 		38D563221E28B6A0004DE7A1 /* WeTrack */ = {
 			isa = PBXGroup;
 			children = (
-				38C386791E38804F00EE4727 /* ResidentInfo2.swift */,
-				383FDBF21E5D27ED0058199B /* RelativeController.swift */,
-				388049151E304FE9009CF14F /* BeaconController.swift */,
-				384DE4061E3AEC0C00528AD7 /* NearMeController.swift */,
-				388049131E304C4C009CF14F /* ResidentList.swift */,
+				38122E2F1E5ED5F20036AF52 /* Objective-C */,
+				38C2863F1E2F3E60004526BF /* LoginController.swift */,
 				388049171E3056EB009CF14F /* CustomTabBarController.swift */,
-				3802C30E1E4181060028707E /* MapView.swift */,
-				386A34ED1E5BE61100BDC1DC /* TableViewController.swift */,
+				388049131E304C4C009CF14F /* ResidentList.swift */,
+				383FDBF21E5D27ED0058199B /* RelativeController.swift */,
+				38C3867B1E3888A900EE4727 /* DetailController.swift */,
+				384DE4061E3AEC0C00528AD7 /* NearMeController.swift */,
+				386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */,
+				386A34ED1E5BE61100BDC1DC /* SettingController.swift */,
+				38303D7D1E40735D00893536 /* Beacon_Resident.swift */,
 				38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */,
 				38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */,
-				38C3867B1E3888A900EE4727 /* DetailController.swift */,
 				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
 				380970A91E41B63D00BB8391 /* Reachability.swift */,
 				38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */,
-				38303D7D1E40735D00893536 /* Beacon_Resident.swift */,
 				386A34EF1E5C12E400BDC1DC /* Assets 14-16-58-664.xcassets */,
-				38C2863F1E2F3E60004526BF /* LoginController.swift */,
 				38D563321E28B6A0004DE7A1 /* Info.plist */,
 				38D563231E28B6A0004DE7A1 /* AppDelegate.swift */,
-				386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */,
 				38D563571E28BC77004DE7A1 /* Items.swift */,
 			);
 			path = WeTrack;
@@ -417,18 +430,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				388049141E304C4C009CF14F /* ResidentList.swift in Sources */,
-				386A34EE1E5BE61100BDC1DC /* TableViewController.swift in Sources */,
-				3802C30F1E4181060028707E /* MapView.swift in Sources */,
+				386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */,
 				38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */,
 				386A34EC1E5BDF5D00BDC1DC /* MoreController.swift in Sources */,
+				38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,
 				384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */,
 				38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */,
-				388049161E304FE9009CF14F /* BeaconController.swift in Sources */,
-				38C3867A1E38804F00EE4727 /* ResidentInfo2.swift in Sources */,
 				380970AA1E41B63D00BB8391 /* Reachability.swift in Sources */,
 				383FDBF31E5D27ED0058199B /* RelativeController.swift in Sources */,
+				38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */,
 				38C286401E2F3E60004526BF /* LoginController.swift in Sources */,
 				38303D7E1E40735D00893536 /* Beacon_Resident.swift in Sources */,
 			);
