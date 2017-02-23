@@ -8,11 +8,13 @@
 
 import UIKit
 
-class MoreController: UITableViewController {
+class MoreController: UIViewController {
 
+    @IBOutlet weak var username: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        username.text = Constant.username.uppercased()
         // Do any additional setup after loading the view.
     }
 

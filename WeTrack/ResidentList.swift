@@ -27,6 +27,32 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     
     fileprivate let cellId = "cellId"
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // for Collection View
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 90, height: 120)
+        
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        
+        navigationItem.title = "Missing Residents"
+        
+        collectionView?.backgroundColor = UIColor.white
+        collectionView?.alwaysBounceVertical = true
+        
+        collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
+        
+        loadServerList()
+        start()
+        setUp()
+        //setupData()
+        
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.residents = GlobalData.missingList
@@ -34,6 +60,20 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
        print(" all re \(GlobalData.allResidents.count)")
        print(" all mis \(GlobalData.missingList.count)")
+    }
+    
+    
+    func setUp(){
+        
+        newRegionList = GlobalData.currentRegionList
+        switchMornitoringList()
+        self.saveCurrentListLocal()
+        self.updateTimer = Timer.scheduledTimer(timeInterval: Constant.restartTime, target: self, selector: #selector(self.loadServerList), userInfo: nil, repeats: true)
+        
+        NotificationCenter.default.addObserver(self,selector: #selector(start), name: NSNotification.Name(rawValue: "enableScanning"), object: nil)
+        
+        NotificationCenter.default.addObserver(self,selector: #selector(stop), name: NSNotification.Name(rawValue: "disableScanning"), object: nil)
+        
     }
 
     func loadServerList(){
@@ -152,19 +192,37 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     let locationManager = CLLocationManager()
     
     func start(){
+        
+        if (Constant.isScanning == false){
+            return
+        }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "start"), object: nil)
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
-        if (GlobalData.currentRegionList.count > 0 && GlobalData.currentRegionList.count < 20 ){
+        if (GlobalData.currentRegionList.count <= 20){
+            
             for uniqueRegion in GlobalData.currentRegionList{
                 
-                locationManager.startMonitoring(for: uniqueRegion)
+                self.locationManager.startMonitoring(for: uniqueRegion)
             }
+        }else{
+            // group beacon
         }
-        
 
     }
+    
+    func stop(){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stop"), object: nil)
+        
+        for uniqueRegion in GlobalData.currentRegionList{
+            
+            self.locationManager.stopMonitoring(for: uniqueRegion)
+        }
+   
+    }
+    
+    
  
     func loadLocal(){
         
@@ -195,41 +253,6 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     
     var updateTimer: Timer?
     
-    func setUp(){
-        
-        newRegionList = GlobalData.currentRegionList
-        switchMornitoringList()
-        self.saveCurrentListLocal()
-        self.updateTimer = Timer.scheduledTimer(timeInterval: Constant.restartTime, target: self, selector: #selector(self.loadServerList), userInfo: nil, repeats: true)
-        
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // for Collection View
-        
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 90, height: 120)
-        
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        
-        navigationItem.title = "Missing Resident"
-  
-        collectionView?.backgroundColor = UIColor.white
-        collectionView?.alwaysBounceVertical = true
-        
-        collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
-        
-        loadServerList()
-        start()
-        setUp()
-        //setupData()
-
-        
-    }
     
     func switchMornitoringList(){
         
@@ -246,15 +269,8 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
             
             GlobalData.currentRegionList = newRegionList
             
-            if (GlobalData.currentRegionList.count <= 20){
-                
-                for uniqueRegion in GlobalData.currentRegionList{
-                    
-                    self.locationManager.startMonitoring(for: uniqueRegion)
-                }
-            }else{
-                // group beacon
-            }
+            start()
+            
         }
         self.n = newRegionList.count
         

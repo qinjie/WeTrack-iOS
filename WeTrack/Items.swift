@@ -24,6 +24,8 @@ struct Constant{
     static var role = 40
     static var id = 0
     static var email = "np@gmail.com"
+    static var noti = true
+    static var isScanning = true
 }
 
 struct GlobalData{

@@ -90,7 +90,7 @@ class Beacon: Object{
 
 
 class Resident: Object{
-    dynamic var name: String = "Zerry"
+    dynamic var name: String = "Test"
     dynamic var id: Int32 = 0
     dynamic var photo: String = ""
     dynamic var nric: String = ""

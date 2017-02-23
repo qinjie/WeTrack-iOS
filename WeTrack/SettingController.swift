@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class SettingController: UITableViewController {
 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +35,36 @@ class TableViewController: UITableViewController {
         
     }
     
+    @IBOutlet weak var switchNotiBtn: UISwitch!
+    @IBAction func switchNoti(_ sender: Any) {
+        
+        if (switchNotiBtn.isOn){
+            
+            Constant.noti = true
+      
+        }else{
+            
+            Constant.noti = false
+        }
+    }
     
+    @IBOutlet weak var switchScanBtn: UISwitch!
+    
+    @IBAction func switchScan(_ sender: Any) {
+        
+        if (switchScanBtn.isOn){
+            
+            Constant.isScanning = true
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableScanning"), object: nil)
+            
+        }else{
+            
+            Constant.isScanning = false
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableScanning"), object: nil)
+            
+        }
+    }
     
     
     // MARK: - Table view data source

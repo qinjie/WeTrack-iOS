@@ -75,12 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
-        
-        
-        
     }
-    
-    
+  
     
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -132,13 +128,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         switch state {
             case .inside:
                 print(" -____- Inside \(region.identifier)");
-        
-                noti(content: "INSIDE  " + region.identifier)
+                
+                if (Constant.noti){
+                    noti(content: "INSIDE  " + region.identifier)
+                }
                 
                 let info = region.identifier.components(separatedBy: "#")
-                
-                
-                
+ 
                 let today = Date()
                 let dateFormatter = DateFormatter()
                 
@@ -287,7 +283,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
             GlobalData.nearMe = GlobalData.nearMe.filter({$0.id.description != info[2]})
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
-            noti(content: "EXIT " + region.identifier)
+            if (Constant.noti){
+                noti(content: "Out of " + region.identifier)
+            }
+            
         }
     }
     

@@ -44,7 +44,7 @@ class NearMeController: UICollectionViewController, UICollectionViewDelegateFlow
         
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         
-        navigationItem.title = "Near resident"
+        navigationItem.title = "Near Residents"
         
         collectionView?.backgroundColor = UIColor.white
         collectionView?.alwaysBounceVertical = true
