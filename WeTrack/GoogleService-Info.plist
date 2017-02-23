@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>747063229538-oqnep5jf05csjltti5m69db8k5kjnq7i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.747063229538-oqnep5jf05csjltti5m69db8k5kjnq7i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCVQziWg51065_s9R-PbyNgyg8RofcEBTY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>747063229538</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.np.iot.wetrack</string>
+	<key>PROJECT_ID</key>
+	<string>we-track-50c51</string>
+	<key>STORAGE_BUCKET</key>
+	<string>we-track-50c51.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:747063229538:ios:d19ff22332f099eb</string>
+	<key>DATABASE_URL</key>
+	<string>https://we-track-50c51.firebaseio.com</string>
+</dict>
+</plist>
