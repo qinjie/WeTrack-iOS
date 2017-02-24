@@ -239,10 +239,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         //  clearLocal()
         try! realm.write {
             
-//            let bc = Array(realm.objects(Beacon.self))
-//            let rl = Array(realm.objects(Resident.self))
-//            realm.delete(rl)
-//            realm.delete(bc)
+            realm.deleteAll()
             
             print("count \(GlobalData.allResidents.count)")
             realm.add(GlobalData.allResidents)

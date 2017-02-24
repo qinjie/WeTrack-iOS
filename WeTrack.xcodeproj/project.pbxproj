@@ -15,7 +15,6 @@
 		38303D7E1E40735D00893536 /* Beacon_Resident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303D7D1E40735D00893536 /* Beacon_Resident.swift */; };
 		383FDBF31E5D27ED0058199B /* RelativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FDBF21E5D27ED0058199B /* RelativeController.swift */; };
 		384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DE4061E3AEC0C00528AD7 /* NearMeController.swift */; };
-		386A34EC1E5BDF5D00BDC1DC /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */; };
 		386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34ED1E5BE61100BDC1DC /* SettingController.swift */; };
 		388049141E304C4C009CF14F /* ResidentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049131E304C4C009CF14F /* ResidentList.swift */; };
 		388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049171E3056EB009CF14F /* CustomTabBarController.swift */; };
@@ -79,7 +78,6 @@
 		38303D7D1E40735D00893536 /* Beacon_Resident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacon_Resident.swift; sourceTree = "<group>"; };
 		383FDBF21E5D27ED0058199B /* RelativeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeController.swift; sourceTree = "<group>"; };
 		384DE4061E3AEC0C00528AD7 /* NearMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeController.swift; sourceTree = "<group>"; };
-		386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
 		386A34ED1E5BE61100BDC1DC /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		388049131E304C4C009CF14F /* ResidentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentList.swift; sourceTree = "<group>"; };
 		388049171E3056EB009CF14F /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				383FDBF21E5D27ED0058199B /* RelativeController.swift */,
 				38C3867B1E3888A900EE4727 /* DetailController.swift */,
 				384DE4061E3AEC0C00528AD7 /* NearMeController.swift */,
-				386A34EB1E5BDF5D00BDC1DC /* MoreController.swift */,
 				386A34ED1E5BE61100BDC1DC /* SettingController.swift */,
 				38303D7D1E40735D00893536 /* Beacon_Resident.swift */,
 				38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */,
@@ -459,7 +456,6 @@
 				388049141E304C4C009CF14F /* ResidentList.swift in Sources */,
 				386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */,
 				38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */,
-				386A34EC1E5BDF5D00BDC1DC /* MoreController.swift in Sources */,
 				38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,

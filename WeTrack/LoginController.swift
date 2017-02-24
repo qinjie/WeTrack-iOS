@@ -14,10 +14,7 @@ import GoogleSignIn
 
 class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
-    
-    @IBOutlet weak var usernameTxt: UITextField!
-    
-    @IBOutlet weak var passTxt: UITextField!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +25,8 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         GIDSignIn.sharedInstance().delegate = self
         setupGoogleButtons()
         
+        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
+        spinnerIndicator.color = UIColor.black
         
         //   let ref = FIRDatabase.database().reference(fromURL: "https://wetrack2-79f58.firebaseio.com/")
         
@@ -37,6 +36,11 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        spinnerIndicator.startAnimating()
+        alertController.view.addSubview(spinnerIndicator)
+        self.present(alertController, animated: false, completion: nil)
+        
         if let err = error {
             print("Failed to log into Google: ", err)
             return
@@ -57,15 +61,15 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
             guard let uid = user?.uid else { return }
             print("user email login \(user?.email) ")
             print("Successfully logged into Firebase with Google", uid)
-            self.loginWithEmail(email: "eceiot.np@gmail.com")
+            self.loginWithEmail(email: (user?.email)!)
         })
     }
     
+    @IBOutlet weak var loginAnoBtn: UIButton!
+    
     fileprivate func setupGoogleButtons() {
         //add google sign in button
-        let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: 16, y: 116 + 66, width: view.frame.width - 32, height: 50)
-        // view.addSubview(googleButton)
+       
     }
     
     /**
@@ -101,6 +105,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
     
     @IBAction func loginwgg(_ sender: Any) {
+    
         
         
         GIDSignIn.sharedInstance().signIn()
@@ -108,76 +113,21 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         
     }
     
-    @IBAction func loginwfb(_ sender: Any) {
-        GIDSignIn.sharedInstance().signIn()
-        //        FBSDKLoginManager().logIn(withReadPermissions: ["email"], from: self) { (result, err) in
-        //            if err != nil {
-        //                print("Custom FB Login failed:", err)
-        //                return
-        //            }
-        //
-        //            self.showEmailAddress()
-        //        }
-    }
+    //Wating dialog
+    let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
+    let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
-    //    func showEmailAddress() {
-    //
-    //        let accessToken = FBSDKAccessToken.current()
-    //        guard let accessTokenString = accessToken?.tokenString else { return }
-    //
-    //        let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
-    //        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
-    //            if error != nil {
-    //                print("Something went wrong with our FB user: ", error ?? "")
-    //                return
-    //            }
-    //
-    //            print("Successfully logged in with our user: ", user ?? "")
-    //        })
-    //        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "email"]).start(completionHandler: {(connection, result, error) in
-    //
-    //            if error != nil {
-    //                print("Failed to start graph request")
-    //                return
-    //            }
-    //
-    //            if let userDict = result as? NSDictionary{
-    //
-    //                let email = userDict["email"] as? String
-    //                print("user Email \(email)")
-    //
-    //                self.loginWithEmail(email: "eceiot.np@gmail.com")
-    //            }
-    //
-    //        })
-    //    }
     
     @IBAction func loginTapped(_ sender: Any) {
         
-        if ((usernameTxt.text != "") && (passTxt.text != "")) {
-            
-            loginWithEmail(email: usernameTxt.text!)
-            
-        }
-        else{
-            
-            //displayMyAlertMessage(mess: "All fields are required")
-            
-        }
+    
         
     }
     
     
     func loginWithEmail(email: String){
         
-        //Wating dialog
-        let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
-        let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
-        spinnerIndicator.color = UIColor.black
-        spinnerIndicator.startAnimating()
-        alertController.view.addSubview(spinnerIndicator)
-        self.present(alertController, animated: false, completion: nil)
+        
         
         let parameters: Parameters = [
             
@@ -201,7 +151,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     
                 }
                 else{
-                    alertController.dismiss(animated: true, completion: nil)
+                    self.alertController.dismiss(animated: true, completion: nil)
                     self.displayMyAlertMessage(mess: "Username or Password is Invalid!")
                 }
                 
@@ -312,41 +262,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         }
     }
     
-    func clearLocal() {
-        /* try! realm.write {
-         realm.delete(Beacon.self)
-         realm.delete(Resident.self)
-         }*/
-        //        let delegate = UIApplication.shared.delegate as? AppDelegate
-        //
-        //        if let context = delegate?.persistentContainer.viewContext {
-        //
-        //            do {
-        //
-        //                let entityNames = ["Beacon"]
-        //
-        //                for entityName in entityNames {
-        //                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        //
-        //                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
-        //
-        //                    for object in objects! {
-        //                        context.delete(object)
-        //                    }
-        //
-        //                }
-        //
-        //                try(context.save())
-        //
-        //            } catch let err {
-        //                print(err)
-        //            }
-        //
-        //        }
-    }
-    
-    
-    
+      
     
     
     /*
