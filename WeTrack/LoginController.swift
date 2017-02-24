@@ -11,6 +11,7 @@ import Alamofire
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
+import SwiftyJSON
 
 class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
@@ -31,9 +32,53 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         //   let ref = FIRDatabase.database().reference(fromURL: "https://wetrack2-79f58.firebaseio.com/")
         
         
+        let file = "file.txt" //this is the file. we will write to and read from it
         
-        // Do any additional setup after loading the view.
+      
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let path = dir.appendingPathComponent(file)
+            
+            //reading
+            do {
+                let text2 = try String(contentsOf: path, encoding: String.Encoding.utf8)
+                print("text2 \(text2)")
+                Constant.device_token = text2
+                print("text3 \(Constant.device_token)")
+            }
+            catch {/* error handling here */}
+        }
+
+        
+        
+        let x = LocationHistory(bId: "1", uId: "2", newlat: "3", newlong: "4")
+        
+        let dict = [x]
+     
+        
+        let file2 = "data.txt" //this is the file. we will write to and read from it
+        
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let filePath = dir.appendingPathComponent(file2)
+            
+            // write to file
+            NSKeyedArchiver.archiveRootObject(dict, toFile: filePath.path)
+            
+            // read from file
+            let dict2 = NSKeyedUnarchiver.unarchiveObject(withFile: filePath.path) as! [LocationHistory]
+            
+            let y = dict2[0]
+            print("test \(y.lat)")
+        }
+        
+        
     }
+
+
+    
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
@@ -118,17 +163,12 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
     
-    @IBAction func loginTapped(_ sender: Any) {
-        
-    
-        
-    }
+   
     
     
     func loginWithEmail(email: String){
         
-        
-        
+ 
         let parameters: Parameters = [
             
             "email": email
@@ -157,18 +197,9 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 
             }
             else{
-                //                if (statusCode == 400){
-                //                    DispatchQueue.main.async(execute: {
-                //                        alertController.dismiss(animated: true, completion: nil)
-                //                        //    self.txtErrorMessage.text = "Incorrect data!"
-                //                    })
-                //                }
-                //                else{
-                //                    DispatchQueue.main.async(execute: {
-                //                        alertController.dismiss(animated: true, completion: nil)
-                //                        //  self.txtErrorMessage.text = "Server error!"
-                //                    })
-                //                }
+                
+                self.displayMyAlertMessage(mess: "Please check internet connection!")
+                
             }
         }
         
@@ -246,6 +277,34 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 }
             })
         }
+        
+    }
+    
+    @IBAction func loginTapped(_ sender: Any) {
+        
+        // Login Anonymously
+        
+        let parameters: Parameters = [
+            
+            "token": Constant.device_token,
+            "user_id": 0
+        ]
+        
+        print("device token  \(Constant.device_token)")
+        
+        Alamofire.request(Constant.URLcreateDeviceTk, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            if let JSON = response.result.value as? [String: Any] {
+                print("\(JSON)")
+                let result = JSON["result"] as! String
+                if (result == "correct"){
+                    Constant.token = JSON["token"] as! String
+                    Constant.user_id = JSON["user_id"] as! Int
+                    Constant.username = "Anonymous"
+                    self.loadRelativeList()
+                }
+            }
+        }
+        
         
     }
     
