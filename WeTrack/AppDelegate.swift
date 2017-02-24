@@ -30,17 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         //        var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
         //         self.window.rootViewController = loginController
-        if (UserDefaults.standard.string(forKey: "username") == nil) {
-            
-            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
-            
-            self.window.rootViewController = loginController
-        }else{
-            
-            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
-            
-            self.window.rootViewController = mainViewController
-        }
+//        if (UserDefaults.standard.string(forKey: "username") == nil) {
+//            
+//            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
+//            
+//            self.window.rootViewController = loginController
+//        }else{
+//            
+//            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
+//            
+//            self.window.rootViewController = mainViewController
+//        }
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
         UIApplication.shared.cancelAllLocalNotifications()

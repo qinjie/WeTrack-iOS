@@ -28,6 +28,7 @@ class SettingController: UITableViewController, CBPeripheralDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+  
     
     @IBAction func logout(_ sender: Any) {
         
@@ -72,7 +73,7 @@ class SettingController: UITableViewController, CBPeripheralDelegate {
             
             Constant.isScanning = true
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "enableScanning"), object: nil)
-            
+            turnOnBlt()
         }else{
             
             Constant.isScanning = false
