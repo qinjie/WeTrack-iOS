@@ -78,8 +78,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let refreshedToken = FIRInstanceID.instanceID().token()
         print("InstanceID token: \(refreshedToken)")
         
-        if ( Constant.device_token == ""){
-            Constant.device_token = refreshedToken!
+        let file = "file.txt" //this is the file. we will write to and read from it
+        
+        let text = refreshedToken! //just a text
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let path = dir.appendingPathComponent(file)
+            
+            //writing
+            do {
+                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
+            }
+            catch {/* error handling here */}
+            
+         
         }
         connectToFcm()
         

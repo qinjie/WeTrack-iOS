@@ -11,13 +11,11 @@ import Alamofire
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
+import SwiftyJSON
 
 class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
-    
-    @IBOutlet weak var usernameTxt: UITextField!
-    
-    @IBOutlet weak var passTxt: UITextField!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +26,66 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         GIDSignIn.sharedInstance().delegate = self
         setupGoogleButtons()
         
+        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
+        spinnerIndicator.color = UIColor.black
         
         //   let ref = FIRDatabase.database().reference(fromURL: "https://wetrack2-79f58.firebaseio.com/")
         
         
+        let file = "file.txt" //this is the file. we will write to and read from it
         
-        // Do any additional setup after loading the view.
+      
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let path = dir.appendingPathComponent(file)
+            
+            //reading
+            do {
+                let text2 = try String(contentsOf: path, encoding: String.Encoding.utf8)
+                print("text2 \(text2)")
+                Constant.device_token = text2
+                print("text3 \(Constant.device_token)")
+            }
+            catch {/* error handling here */}
+        }
+
+        
+        
+        let x = LocationHistory(bId: "1", uId: "2", newlat: "3", newlong: "4")
+        
+        let dict = [x]
+     
+        
+        let file2 = "data.txt" //this is the file. we will write to and read from it
+        
+        
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let filePath = dir.appendingPathComponent(file2)
+            
+            // write to file
+            NSKeyedArchiver.archiveRootObject(dict, toFile: filePath.path)
+            
+            // read from file
+            let dict2 = NSKeyedUnarchiver.unarchiveObject(withFile: filePath.path) as! [LocationHistory]
+            
+            let y = dict2[0]
+            print("test \(y.lat)")
+        }
+        
+        
     }
+
+
+    
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        spinnerIndicator.startAnimating()
+        alertController.view.addSubview(spinnerIndicator)
+        self.present(alertController, animated: false, completion: nil)
+        
         if let err = error {
             print("Failed to log into Google: ", err)
             return
@@ -57,15 +106,15 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
             guard let uid = user?.uid else { return }
             print("user email login \(user?.email) ")
             print("Successfully logged into Firebase with Google", uid)
-            self.loginWithEmail(email: "eceiot.np@gmail.com")
+            self.loginWithEmail(email: (user?.email)!)
         })
     }
     
+    @IBOutlet weak var loginAnoBtn: UIButton!
+    
     fileprivate func setupGoogleButtons() {
         //add google sign in button
-        let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: 16, y: 116 + 66, width: view.frame.width - 32, height: 50)
-        // view.addSubview(googleButton)
+       
     }
     
     /**
@@ -101,6 +150,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
     
     @IBAction func loginwgg(_ sender: Any) {
+    
         
         
         GIDSignIn.sharedInstance().signIn()
@@ -108,81 +158,23 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         
     }
     
-    @IBAction func loginwfb(_ sender: Any) {
-        GIDSignIn.sharedInstance().signIn()
-        //        FBSDKLoginManager().logIn(withReadPermissions: ["email"], from: self) { (result, err) in
-        //            if err != nil {
-        //                print("Custom FB Login failed:", err)
-        //                return
-        //            }
-        //
-        //            self.showEmailAddress()
-        //        }
-    }
+    //Wating dialog
+    let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
+    let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
-    //    func showEmailAddress() {
-    //
-    //        let accessToken = FBSDKAccessToken.current()
-    //        guard let accessTokenString = accessToken?.tokenString else { return }
-    //
-    //        let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
-    //        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
-    //            if error != nil {
-    //                print("Something went wrong with our FB user: ", error ?? "")
-    //                return
-    //            }
-    //
-    //            print("Successfully logged in with our user: ", user ?? "")
-    //        })
-    //        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "email"]).start(completionHandler: {(connection, result, error) in
-    //
-    //            if error != nil {
-    //                print("Failed to start graph request")
-    //                return
-    //            }
-    //
-    //            if let userDict = result as? NSDictionary{
-    //
-    //                let email = userDict["email"] as? String
-    //                print("user Email \(email)")
-    //
-    //                self.loginWithEmail(email: "eceiot.np@gmail.com")
-    //            }
-    //
-    //        })
-    //    }
     
-    @IBAction func loginTapped(_ sender: Any) {
-        
-        if ((usernameTxt.text != "") && (passTxt.text != "")) {
-            
-            loginWithEmail(email: usernameTxt.text!)
-            
-        }
-        else{
-            
-            //displayMyAlertMessage(mess: "All fields are required")
-            
-        }
-        
-    }
+   
     
     
     func loginWithEmail(email: String){
         
-        //Wating dialog
-        let alertController = UIAlertController(title: nil, message: "Please wait...\n\n", preferredStyle: UIAlertControllerStyle.alert)
-        let spinnerIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        spinnerIndicator.center = CGPoint(x: 135.0, y: 65.5)
-        spinnerIndicator.color = UIColor.black
-        spinnerIndicator.startAnimating()
-        alertController.view.addSubview(spinnerIndicator)
-        self.present(alertController, animated: false, completion: nil)
-        
+ 
         let parameters: Parameters = [
             
             "email": email
         ]
+        
+         print("email\(email)")
         
         Alamofire.request(Constant.URLlogin, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             if let JSON = response.result.value as? [String: Any] {
@@ -193,41 +185,33 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     Constant.token = JSON["token"] as! String
                     Constant.user_id = JSON["user_id"] as! Int
                     Constant.username = JSON["username"] as! String
+                    Constant.role = JSON["role"] as! Int
                     self.createDeviceTk()
-                    self.loadRelativeList()
                     print("Username \(Constant.username)")
                     print("tokenlogin =  \(Constant.token)")
                     UserDefaults.standard.set(Constant.username, forKey: "username")
                     
                 }
                 else{
-                    alertController.dismiss(animated: true, completion: nil)
+                    self.alertController.dismiss(animated: true, completion: nil)
                     self.displayMyAlertMessage(mess: "Username or Password is Invalid!")
                 }
                 
             }
             else{
-                //                if (statusCode == 400){
-                //                    DispatchQueue.main.async(execute: {
-                //                        alertController.dismiss(animated: true, completion: nil)
-                //                        //    self.txtErrorMessage.text = "Incorrect data!"
-                //                    })
-                //                }
-                //                else{
-                //                    DispatchQueue.main.async(execute: {
-                //                        alertController.dismiss(animated: true, completion: nil)
-                //                        //  self.txtErrorMessage.text = "Server error!"
-                //                    })
-                //                }
+                
+                self.displayMyAlertMessage(mess: "Please check internet connection!")
+                
             }
         }
+        
         
     }
     
     
     func loadRelativeList(){
         
-        
+        print("constant token \(Constant.token)")
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + Constant.token
             // "Accept": "application/json"
@@ -299,6 +283,23 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         
     }
     
+    @IBAction func loginTapped(_ sender: Any) {
+        
+        // Login Anonymously
+        
+        let parameters: Parameters = [
+            
+            "token": Constant.device_token,
+            "user_id": 0
+        ]
+        
+        print("device token  \(Constant.device_token)")
+        
+        createDeviceTk()
+        
+        
+    }
+    
     func createDeviceTk(){
         
         let parameters: Parameters = [
@@ -308,45 +309,24 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         ]
         
         Alamofire.request(Constant.URLcreateDeviceTk, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            if let JSON = response.result.value as? [String: Any] {
+                print("\(JSON)")
+                let result = JSON["result"] as! String
+                if (result == "correct" && Constant.user_id == 0){
+                    Constant.token = JSON["token"] as! String
+                    Constant.user_id = JSON["user_id"] as! Int
+                    Constant.username = "Anonymous"
+                    Constant.role = JSON["role"] as! Int
+                   
+                }
+                self.loadRelativeList()
+            }
+            
             
         }
     }
     
-    func clearLocal() {
-        /* try! realm.write {
-         realm.delete(Beacon.self)
-         realm.delete(Resident.self)
-         }*/
-        //        let delegate = UIApplication.shared.delegate as? AppDelegate
-        //
-        //        if let context = delegate?.persistentContainer.viewContext {
-        //
-        //            do {
-        //
-        //                let entityNames = ["Beacon"]
-        //
-        //                for entityName in entityNames {
-        //                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        //
-        //                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
-        //
-        //                    for object in objects! {
-        //                        context.delete(object)
-        //                    }
-        //
-        //                }
-        //
-        //                try(context.save())
-        //
-        //            } catch let err {
-        //                print(err)
-        //            }
-        //
-        //        }
-    }
-    
-    
-    
+      
     
     
     /*

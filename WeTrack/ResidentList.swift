@@ -77,6 +77,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     }
 
     func loadServerList(){
+        print(" token \(Constant.token)")
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + Constant.token
             // "Accept": "application/json"
@@ -232,22 +233,19 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     }
     
     func saveCurrentListLocal(){
-        if (GlobalData.currentRegionList.count == 0 || GlobalData.beaconList.count == 0){
-            return
-        }
-        
-        //  clearLocal()
-        try! realm.write {
-            
-//            let bc = Array(realm.objects(Beacon.self))
-//            let rl = Array(realm.objects(Resident.self))
-//            realm.delete(rl)
-//            realm.delete(bc)
-            
-            print("count \(GlobalData.allResidents.count)")
-            realm.add(GlobalData.allResidents)
-            realm.add(GlobalData.beaconList)
-        }
+//        if (GlobalData.currentRegionList.count == 0 || GlobalData.beaconList.count == 0){
+//            return
+//        }
+//        
+//        //  clearLocal()
+//        try! realm.write {
+//            
+//            realm.deleteAll()
+//            
+//            print("count \(GlobalData.allResidents.count)")
+//            realm.add(GlobalData.allResidents)
+//            realm.add(GlobalData.beaconList)
+//        }
 
     }
     

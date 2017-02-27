@@ -26,64 +26,6 @@ class Beacon: Object{
         return "id"
     }
     
-//    required init() {
-//        uuid = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-//        major = 0
-//        id = 0
-//        minor = 0
-//        status = true
-//        resident_id = 0
-//        name = "Helios"
-//        photopath = "uploads/human_images/no_image.png"
-//        
-//        detect = false
-//        
-//        seen = "00"
-//    }
-//    
-//    init(beaconId: String, det: Bool, time: String){
-//        
-//        if (GlobalData.beaconList.contains(where: {$0.id.description == beaconId})){
-//            let x =  GlobalData.beaconList.first(where: {$0.id.description == beaconId})
-//            
-//            uuid = (x?.uuid)!
-//            major = (x?.major)!
-//            id = (x?.id)!
-//            minor = (x?.minor)!
-//            status = true
-//            resident_id = (x?.resident_id)!
-//            name = (x?.name)!
-//            photopath = (x?.photopath)!
-//            
-//            detect = det
-//            
-//            seen = time
-//            
-//        }
-//            
-//        else{
-//            uuid = "B9407F30-F5F8-466E-AFF9-25556B57FE6D"
-//            major = 0
-//            id = 0
-//            minor = 0
-//            status = true
-//            resident_id = 0
-//            name = "Helios"
-//            photopath = "uploads/human_images/no_image.png"
-//            
-//            detect = false
-//            
-//            seen = "00"
-//        }
-//    }
-    
-//    required init(value: Any, schema: RLMSchema) {
-//        fatalError("init(value:schema:) has not been implemented")
-//    }
-//    
-//    required init(value: Any, schema: RLMSchema) {
-//        fatalError("init(value:schema:) has not been implemented")
-//    }
 
     
 }
@@ -124,16 +66,36 @@ class Resident: Object{
 
 }
 
-class LocationHistory{
+
+class LocationHistory: NSObject, NSCoding {
+    
     var beaconId: String = "123"
     var userId: String = "68"
     var lat: String = "1.0"
     var long: String = "123"
+    
     init(bId: String, uId: String, newlat: String, newlong: String){
         beaconId = bId
         userId = uId
         lat = newlat
         long = newlong
     }
+
     
+    required init(coder aDecoder: NSCoder) {
+        beaconId = aDecoder.decodeObject(forKey: "beaconId") as? String ?? ""
+        userId = aDecoder.decodeObject(forKey: "userId") as? String ?? ""
+        lat = aDecoder.decodeObject(forKey: "lat") as? String ?? ""
+        long = aDecoder.decodeObject(forKey: "long") as? String ?? ""
+        
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(beaconId, forKey: "beaconId")
+        aCoder.encode(userId, forKey: "userId")
+        aCoder.encode(lat, forKey: "lat")
+        aCoder.encode(long, forKey: "long")
+    }
 }
+
+
