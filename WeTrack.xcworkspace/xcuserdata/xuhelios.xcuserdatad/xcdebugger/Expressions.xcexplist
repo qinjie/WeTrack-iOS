@@ -3,88 +3,19 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ResidentList.sync(sender : UIBarButtonItem) -&gt; ():ResidentList.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "LoginController.(createDeviceTk() -&gt; ()).(closure #1):LoginController.swift">
       </ContextState>
       <ContextState
-         contextName = "LoginController.(saveCurrentListLocal() -&gt; ()).(closure #1):LoginController.swift">
+         contextName = "GLOBAL">
          <PersistentStrings>
             <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BeaconController.clearLocal() -&gt; ():BeaconController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BeaconController.switchMornitoringList() -&gt; ():BeaconController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.n">
+               value = "Constant.device_token">
             </PersistentString>
             <PersistentString
-               value = "newRegionList.count">
+               value = "Constant.user_id">
             </PersistentString>
             <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ResidentList.start() -&gt; ():ResidentList.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.currentRegionList.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BeaconController.saveCurrentListLocal() -&gt; ():BeaconController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BeaconController.(loadServerList() -&gt; ()).(closure #1):BeaconController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Realm.write(() throws -&gt; ()) throws -&gt; ():Realm.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BeaconController.loadServerList() -&gt; ():BeaconController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "GlobalData.beaconList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Sequence.(first(where : (A.Iterator.Element) throws -&gt; Bool) throws -&gt; A.Iterator.Element?).(closure #1):(null)">
-         <PersistentStrings>
-            <PersistentString
-               value = "x">
+               value = "remark.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -6,44 +6,41 @@
 //  Copyright © 2017 beacon. All rights reserved.
 //
 import Foundation
-import RealmSwift
 
-class Beacon: Object{
+
+class Beacon{
     
-    dynamic var detect: Bool = true
-    dynamic var id: Int32 = 0
-    dynamic var major: Int32 = 0
-    dynamic var minor: Int32 = 0
-    dynamic var name: String = ""
-    dynamic var photopath: String = ""
-    dynamic var resident_id: Int32 = 0
-    dynamic var report: String = ""
-    dynamic var status: Bool = true
-    dynamic var uuid: String = ""
+    var detect: Bool = true
+    var id: Int32 = 0
+    var major: Int32 = 0
+    var minor: Int32 = 0
+    var name: String = ""
+    var photopath: String = ""
+    var resident_id: Int32 = 0
+    var report: String = ""
+    var status: Bool = true
+    var uuid: String = ""
     
-    //Set primary key
-    override static func primaryKey() -> String? {
-        return "id"
-    }
+
     
 
     
 }
 
 
-class Resident: Object{
-    dynamic var name: String = "Test"
-    dynamic var id: Int32 = 0
-    dynamic var photo: String = ""
-    dynamic var nric: String = ""
-    dynamic var report: String = ""
-    dynamic var status: Bool = true
-    dynamic var remark: String = "No report"
-    dynamic var dob: String = "00"
-    dynamic var address: String = "No report"
-    dynamic var lat: String = "00"
-    dynamic var long: String = "00"
-    dynamic var isRelative: Bool = false
+class Resident{
+    var name: String = "Test"
+    var id: Int32 = 0
+    var photo: String = ""
+    var nric: String = ""
+    var report: String = ""
+    var status: Bool = true
+    var remark: String = "No report"
+    var dob: String = "00"
+    var address: String = "No report"
+    var lat: String = "00"
+    var long: String = "00"
+    var isRelative: Bool = false
 //    required init() {
 //        name = "Zerry"
 //        

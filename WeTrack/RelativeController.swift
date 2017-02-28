@@ -91,15 +91,13 @@ class RelativeController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        
         if let indexPath = getIndexPathForSelectedCell() {
             
             let x = relatives?[indexPath.item]
             
-            let detailViewController = segue.destination as! DetailController
-            detailViewController.res = x!
+            let detailPage = segue.destination as! ResidentDetailPage
+            detailPage.resident = x!
         }
-        
         
     }
     

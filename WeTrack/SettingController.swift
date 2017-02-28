@@ -13,12 +13,37 @@ import CoreBluetooth
 class SettingController: UITableViewController, CBPeripheralManagerDelegate {
     
     
+    @IBOutlet weak var userprofile: UIImageView!
     @IBOutlet weak var usernameLb: UILabel!
+    
+    @IBOutlet weak var roleLbl: UILabel!
+    @IBOutlet weak var idLbl: UILabel!
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         usernameLb.text = Constant.username.uppercased()
-
+        roleLbl.text = Constant.role.description
+        idLbl.text = Constant.user_id.description
+        if (Constant.role != 5){
+            if (Constant.userphoto != nil){
+                let photo = NSData(contentsOf: Constant.userphoto!)
+                if (photo != nil){
+                    userprofile.image = UIImage(data: photo as! Data)
+                }
+                
+            }
+        }else{
+            
+            userprofile.image = UIImage(named: "default_avatar")
+        }
+        
+            
+            
+    
+        
         bluetoothPeripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         
         // Uncomment the following line to preserve selection between presentations
@@ -40,7 +65,7 @@ class SettingController: UITableViewController, CBPeripheralManagerDelegate {
         
     
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableScanning"), object: nil)
-            
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logout"), object: nil)
          
         
      

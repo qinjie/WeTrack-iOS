@@ -4,9 +4,9 @@ use_frameworks!
 
 target ‘WeTrack’ do
     pod 'Alamofire'
-    pod 'RealmSwift'
     pod 'Firebase/Auth'
     pod 'GoogleSignIn'
     pod ‘FirebaseMessaging’
+    pod ‘SwiftyJSON’
 end
  

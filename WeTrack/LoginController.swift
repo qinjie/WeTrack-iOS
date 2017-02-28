@@ -21,6 +21,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         super.viewDidLoad()
         //  let loginButton = FBSDKLoginButton()
         
+       // Constant.device_token = UserDefaults.standard.string(forKey: "devicetoken")!
         
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
@@ -31,50 +32,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         
         //   let ref = FIRDatabase.database().reference(fromURL: "https://wetrack2-79f58.firebaseio.com/")
         
-        
-        let file = "file.txt" //this is the file. we will write to and read from it
-        
-      
-        
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            
-            let path = dir.appendingPathComponent(file)
-            
-            //reading
-            do {
-                let text2 = try String(contentsOf: path, encoding: String.Encoding.utf8)
-                print("text2 \(text2)")
-                Constant.device_token = text2
-                print("text3 \(Constant.device_token)")
-            }
-            catch {/* error handling here */}
-        }
-
-        
-        
-        let x = LocationHistory(bId: "1", uId: "2", newlat: "3", newlong: "4")
-        
-        let dict = [x]
-     
-        
-        let file2 = "data.txt" //this is the file. we will write to and read from it
-        
-        
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            
-            let filePath = dir.appendingPathComponent(file2)
-            
-            // write to file
-            NSKeyedArchiver.archiveRootObject(dict, toFile: filePath.path)
-            
-            // read from file
-            let dict2 = NSKeyedUnarchiver.unarchiveObject(withFile: filePath.path) as! [LocationHistory]
-            
-            let y = dict2[0]
-            print("test \(y.lat)")
-        }
-        
-        
+   
     }
 
 
@@ -82,17 +40,18 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
+       
         spinnerIndicator.startAnimating()
         alertController.view.addSubview(spinnerIndicator)
-        self.present(alertController, animated: false, completion: nil)
+        
         
         if let err = error {
             print("Failed to log into Google: ", err)
-            return
+                       return
         }
         
         print("Successfully logged into Google", user)
-        
+        self.present(alertController, animated: false, completion: nil)
         guard let idToken = user.authentication.idToken else { return }
         guard let accessToken = user.authentication.accessToken else { return }
         let credentials = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
@@ -105,6 +64,10 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
             
             guard let uid = user?.uid else { return }
             print("user email login \(user?.email) ")
+            
+            Constant.userphoto = user?.photoURL
+
+
             print("Successfully logged into Firebase with Google", uid)
             self.loginWithEmail(email: (user?.email)!)
         })
@@ -117,30 +80,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
        
     }
     
-    /**
-     Sent to the delegate when the button was used to logout.
-     - Parameter loginButton: The button that was clicked.
-     */
-    //    public func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-    //
-    //        print("Logout of facebook")
-    //    }
-    //
-    //    /**
-    //     Sent to the delegate when the button was used to login.
-    //     - Parameter loginButton: the sender
-    //     - Parameter result: The results of the login
-    //     - Parameter error: The error (if any) from the login
-    //     */
-    //    public func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-    //        if error != nil {
-    //            print(error)
-    //            return
-    //        }
-    //
-    //
-    //        print("Successfully logged in with facebook...")
-    //    }
+
     
     
     override func didReceiveMemoryWarning() {
@@ -150,9 +90,16 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
     
     @IBAction func loginwgg(_ sender: Any) {
-    
         
         
+        let reachability = Reachability()
+        if reachability?.isReachable == false {
+            displayMyAlertMessage(mess: "Please check internet connection")
+            return
+        }
+        
+        
+        Constant.device_token = UserDefaults.standard.string(forKey: "devicetoken")!
         GIDSignIn.sharedInstance().signIn()
         
         
@@ -187,10 +134,9 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     Constant.username = JSON["username"] as! String
                     Constant.role = JSON["role"] as! Int
                     self.createDeviceTk()
-                    print("Username \(Constant.username)")
-                    print("tokenlogin =  \(Constant.token)")
                     UserDefaults.standard.set(Constant.username, forKey: "username")
-                    
+                    UserDefaults.standard.set(Constant.user_id, forKey: "userid")
+                    UserDefaults.standard.set(Constant.role, forKey: "role")
                 }
                 else{
                     self.alertController.dismiss(animated: true, completion: nil)
@@ -204,8 +150,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 
             }
         }
-        
-        
+
     }
     
     
@@ -253,18 +198,21 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                             print("add \(newResident.address)")
                         }
                     }
-                    
-                    if let relatives = json["relatives"] as? [[String: Any]]{
-                        
-                        for relative in relatives{
+             
+                        if let relatives = json["relatives"] as? [[String: Any]]{
                             
-                            let x = relative["id"] as! Int
-                            if (x == Constant.user_id){
-                                print("\(json["fullname"])")
-                                newResident.isRelative = true
-                                break
+                            for relative in relatives{
+                                
+                                let x = relative["id"] as! Int
+                                print("relative id \(x)")
+                                if (x == Constant.user_id){
+                                 //   print("relative \(json["fullname"])")
+                                    newResident.isRelative = true
+                                    break
+                                }
                             }
-                        }
+                
+
                     }
                     
                     GlobalData.allResidents.append(newResident)
@@ -286,13 +234,16 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     @IBAction func loginTapped(_ sender: Any) {
         
         // Login Anonymously
-        
-        let parameters: Parameters = [
-            
-            "token": Constant.device_token,
-            "user_id": 0
-        ]
-        
+        let reachability = Reachability()
+        if reachability?.isReachable == false {
+            displayMyAlertMessage(mess: "Please check internet connection")
+            return
+        }
+        Constant.user_id = 0
+        Constant.device_token = UserDefaults.standard.string(forKey: "devicetoken")!
+        UserDefaults.standard.set("Anonymous", forKey: "username")
+        UserDefaults.standard.set(Constant.user_id, forKey: "userid")
+        Constant.username = "Anonymous"
         print("device token  \(Constant.device_token)")
         
         createDeviceTk()
@@ -315,11 +266,14 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 if (result == "correct" && Constant.user_id == 0){
                     Constant.token = JSON["token"] as! String
                     Constant.user_id = JSON["user_id"] as! Int
+                    print("newid \(Constant.user_id)")
                     Constant.username = "Anonymous"
                     Constant.role = JSON["role"] as! Int
-                   
+                    UserDefaults.standard.set(Constant.user_id, forKey: "userid")
+                    UserDefaults.standard.set(Constant.role, forKey: "role")
                 }
                 self.loadRelativeList()
+                
             }
             
             
@@ -356,7 +310,13 @@ extension UIViewController {
         
         let okAction = UIAlertAction(title: "OK!!", style: UIAlertActionStyle.default, handler: nil)
         
+       // okAction.setValue(image, forKey: "image")
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 50, height: 50))
+        imageView.image = UIImage(named: "warn")
+        myAlert.view.addSubview(imageView)
+       
         myAlert.addAction(okAction)
+        
         
         self.present(myAlert, animated: true, completion: nil)
         

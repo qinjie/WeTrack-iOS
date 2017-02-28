@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class NearMeController: UICollectionViewController, UICollectionViewDelegateFlowLayout , CLLocationManagerDelegate{
+class NearMeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var residents : [Resident]?
     var locationManager: CLLocationManager!
@@ -21,9 +21,7 @@ class NearMeController: UICollectionViewController, UICollectionViewDelegateFlow
         super.viewWillAppear(true)
         self.residents = GlobalData.nearMe
         self.collectionView!.reloadData()
-        self.locationManager = CLLocationManager()
-        self.locationManager.delegate = self
-        self.locationManager.requestAlwaysAuthorization()
+     
     }
 
     // send information of 2 classmates you detected to server
@@ -137,61 +135,7 @@ class NearMeController: UICollectionViewController, UICollectionViewDelegateFlow
 //        }
 //        return indexPath
 //    }
-    func noti(content : String){
-        var notification = UILocalNotification()
-        notification.alertBody = content
-        notification.soundName = "Default"
-        UIApplication.shared.presentLocalNotificationNow(notification)
-    }
-    
-    
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion){
-        
-        print("@3: -____- state \(region.identifier)" )
-        switch state {
-        case .inside:
-            print(" -____- Inside \(region.identifier)");
-            
-            if (Constant.noti){
-                noti(content: "INSIDE  " + region.identifier)
-            }
-        //report(region: CLRegion)
-        case .outside:
-            print(" -____- Outside");
-            
-            // noti(content: "OUTSIDE  " + region.identifier)
-            
-        case .unknown:
-            print(" -____- Unknown");
-        default:
-            print(" -____-  default");
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
-        //print("@1: did enter region!!!")
-        
-        if (region is CLBeaconRegion) {
-            
-            print("@2: did enter region!!!  \(region.identifier)" )
-            
-            //   noti(content: "ENTER  " + region.identifier)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
-        // print("@1: did exit region!!!")
-        
-        
-        if (Constant.noti){
-            noti(content: "Out of " + region.identifier)
-            
-            
-        }
-    }
-
+   
     
 }
 class NearCell: BaseCell {
