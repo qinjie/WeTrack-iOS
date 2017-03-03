@@ -9,8 +9,10 @@
 import UIKit
 import CoreLocation
 import Alamofire
-import Firebase
 import GoogleSignIn
+
+import Firebase
+
 import FirebaseMessaging
 
 @UIApplicationMain
@@ -30,17 +32,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         //        var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
         //         self.window.rootViewController = loginController
-//        if (UserDefaults.standard.string(forKey: "username") == nil) {
-//            
-//            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
-//            
-//            self.window.rootViewController = loginController
-//        }else{
-//            
-//            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
-//            
-//            self.window.rootViewController = mainViewController
-//        }
+        if (UserDefaults.standard.string(forKey: "username") == nil) {
+            
+            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
+            
+            self.window.rootViewController = loginController
+        }else{
+            
+            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
+            
+            self.window.rootViewController = mainViewController
+        }
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
         UIApplication.shared.cancelAllLocalNotifications()
@@ -53,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             try self.reachability.startNotifier()
         } catch {
         }
+        
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
         
         
         FIRApp.configure()
@@ -78,24 +84,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let refreshedToken = FIRInstanceID.instanceID().token()
         print("InstanceID token: \(refreshedToken)")
         
+        UserDefaults.standard.set(refreshedToken, forKey: "devicetoken")
+        
         let file = "file.txt" //this is the file. we will write to and read from it
         
-        let text = refreshedToken! //just a text
-        
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            
-            let path = dir.appendingPathComponent(file)
-            
-            //writing
-            do {
-                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
-            }
-            catch {/* error handling here */}
-            
-         
-        }
+//        let text = refreshedToken! //just a text
+//        
+//        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+//            
+//            let path = dir.appendingPathComponent(file)
+//            
+//            //writing
+//            do {
+//                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
+//            }
+//            catch {/* error handling here */}
+//            
+//         
+//        }
         connectToFcm()
         
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        FIRMessaging.messaging().connect { error in
+            print("ahihi \(error)")
+        }
     }
     
     func connectToFcm() {
@@ -197,17 +211,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
             let t = GlobalData.allResidents.first(where: {$0.id.description == info[2]})
             if (z != nil && t != nil){
-                try! realm.write {
+              
                     z?.report = y
                     t?.report = y
-                }
+            
                 
                 x.name = (z?.name)!
                 x.major = (z?.major)!
                 x.minor = (z?.minor)!
                 x.photopath = (z?.photopath)!
                 x.resident_id = (z?.resident_id)!
-                x.id = Int32(info[1])!
+                x.id = Int(info[1])!
                 x.detect = true
                 x.report = y
                 // at here
@@ -217,7 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if (!GlobalData.nearMe.contains(where: {$0.id.description == info[2]})){
                 let z = Resident()
                 z.name = info[0]
-                z.id = Int32(info[2])!
+                z.id = info[2]
                 z.status = true
                 z.photo = x.photopath
                 GlobalData.nearMe.append(z)
@@ -253,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             
             let parameters: [String: Any] = [
                 "beacon_id" : beaconId,
-                "user_id" : 68,
+                "user_id" : Constant.user_id,
                 "longitude": long,
                 "latitude": lat
             ]
@@ -273,14 +287,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print("Notreachable")
             let x = LocationHistory(bId: beaconId, uId: userId, newlat: (lat?.description)!, newlong: (long?.description)!)
             self.lh.append(x)
-            //            try! realm.write {
-            //                let lh = LocationHistory()
-            //                lh.beaconId = beaconId
-            //                lh.userId = userId
-            //                lh.lat = (lat?.description)!
-            //                lh.long = (long?.description)!
-            //                realm.add(lh)
-            //            }
+
+            
+            let file2 = "data.txt" //this is the file. we will write to and read from it
+            
+            
+            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                
+                let filePath = dir.appendingPathComponent(file2)
+                
+                // write to file
+                NSKeyedArchiver.archiveRootObject(lh, toFile: filePath.path)
+                
+                // read from file
+                let dict2 = NSKeyedUnarchiver.unarchiveObject(withFile: filePath.path) as! [LocationHistory]
+                
+                for y in dict2{
+                    print("testlocal \(y.lat)")
+                }
+                
+            }
         }
         
         
@@ -317,16 +343,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let z = GlobalData.beaconList.first(where: {$0.id.description == info[1]})
             let t = GlobalData.allResidents.first(where: {$0.id.description == info[2]})
             if (z != nil && t != nil){
-                try! realm.write {
+               
                     z?.report = y
                     t?.report = y
-                }
+            
                 x.name = (z?.name)!
                 x.major = (z?.major)!
                 x.minor = (z?.minor)!
                 x.photopath = (z?.photopath)!
                 x.resident_id = (z?.resident_id)!
-                x.id = Int32(info[1])!
+                x.id = Int(info[1])!
                 
                 x.detect = false
                 x.report = y
@@ -403,24 +429,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             } else {
                 print("Reachable via Cellular")
             }
-            if (lh.count > 0){
-                noti(content: "please open app")
-            }
-            //  let lh = Array(realm.objects(LocationHistory.self))
-            for l in lh{
+            let file2 = "data.txt" //this is the file. we will write to and read from it
+            
+            
+            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 
-                let parameters: [String: Any] = [
-                    "beacon_id" : l.beaconId,
-                    "user_id" : 68,
-                    "longitude": l.long,
-                    "latitude": l.lat
+                let filePath = dir.appendingPathComponent(file2)
+                
+                let headers: HTTPHeaders = [
+                    "Authorization": "Bearer " + Constant.token
+                    // "Accept": "application/json"
                 ]
-                Alamofire.request(Constant.URLreport , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-                    let JSONS = response.result.value
-                    print(" reponse\(JSONS)")
+                
+                // read from file
+                if let dict2 = NSKeyedUnarchiver.unarchiveObject(withFile: filePath.path) as? [LocationHistory]{
+                    for l in dict2{
+                        
+                        
+                        let parameters: [String: Any] = [
+                            "beacon_id" : l.beaconId,
+                            "user_id" : Constant.user_id,
+                            "longitude": l.long,
+                            "latitude": l.lat
+                        ]
+                        Alamofire.request(Constant.URLreport , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                            let JSONS = response.result.value
+                            print(" reponse offline\(JSONS)")
+                        }
+                        
+                    }
                 }
                 
+               
+                
             }
+            
             
         } else {
             print("Network not reachable")

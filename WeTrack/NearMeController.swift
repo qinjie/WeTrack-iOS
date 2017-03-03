@@ -5,7 +5,7 @@
 //  Created by xuhelios on 1/27/17.
 //  Copyright © 2017 beacon. All rights reserved.
 //
-
+import CoreLocation
 import UIKit
 
 private let reuseIdentifier = "Cell"
@@ -13,6 +13,7 @@ private let reuseIdentifier = "Cell"
 class NearMeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var residents : [Resident]?
+    var locationManager: CLLocationManager!
     
     fileprivate let cellId = "cellId"
     
@@ -20,7 +21,7 @@ class NearMeController: UICollectionViewController, UICollectionViewDelegateFlow
         super.viewWillAppear(true)
         self.residents = GlobalData.nearMe
         self.collectionView!.reloadData()
-        
+     
     }
 
     // send information of 2 classmates you detected to server
@@ -134,7 +135,7 @@ class NearMeController: UICollectionViewController, UICollectionViewDelegateFlow
 //        }
 //        return indexPath
 //    }
-    
+   
     
 }
 class NearCell: BaseCell {

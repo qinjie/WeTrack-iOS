@@ -6,70 +6,7 @@
 //  Copyright © 2017 beacon. All rights reserved.
 //
 
-//import UIKit
-//
-//class Detail: UIViewController {
-//
-//    @IBOutlet weak var residentPhoto: UIImageView!
-//    @IBOutlet weak var name: UITextField!
-//    
-//    @IBOutlet weak var userId: UITextField!
-//    @IBOutlet weak var bg: UIImageView!
-//    @IBOutlet weak var remark: UITextField!
-//    
-//    var txt = ""
-//    
-//    var resident = Resident()
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        name.text = resident.name
-//        userId.text = resident.id.description
-//        remark.text = resident.remark
-//        if (resident.photo == ""){
-//            residentPhoto.image = UIImage(named: "default_avatar")
-//        }else{
-//            let url = NSURL(string: Constant.photoURL + (resident.photo))
-//            
-//            //print("Urlimage \(url)")
-//            
-//            let data = NSData(contentsOf: url as! URL)
-//            if data != nil {
-//                residentPhoto.image = UIImage(data:data! as Data)
-//            }
-//        }
-//        self.view.addConstraint(NSLayoutConstraint(item: residentPhoto, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0))
-//        self.view.addConstraint(NSLayoutConstraint(item: name, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0))
-//        self.view.addConstraint(NSLayoutConstraint(item: bg, attribute: .centerY, relatedBy: .equal, toItem: residentPhoto, attribute: .centerY, multiplier: 1.0, constant: 0.0))
-//        residentPhoto.layer.cornerRadius = residentPhoto.frame.size.width / 2
-//        residentPhoto.clipsToBounds = true
-//        residentPhoto.layer.borderWidth = 5.0
-//        bg.addSubview(residentPhoto)
-//        
-//        residentPhoto.layer.borderColor = UIColor.white.cgColor
-//        // Do any additional setup after loading the view.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//    
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}
-
-
+import Alamofire
 import UIKit
 
 class DetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -154,9 +91,52 @@ class DetailController: UICollectionViewController, UICollectionViewDelegateFlow
     }
     
     func changeStt(mySwitch: UISwitch) {
+        
         if mySwitch.isOn {
             print("ON")
             res?.status = true
+            
+            // report missing
+            let alert = UIAlertController(title: "Report Missing Relative", message: "Remark", preferredStyle: UIAlertControllerStyle.alert)
+            
+           
+           
+            alert.addAction(UIAlertAction(title: "Report", style: UIAlertActionStyle.default, handler: { action in
+                 let remark = alert.textFields![0] as UITextField
+                
+                let parameters: [String: Any] = [
+                    "id" : Constant.user_id,
+                    "remark" : remark.text
+                ]
+                
+                let headers: HTTPHeaders = [
+                    "Authorization": "Bearer " + Constant.token
+                    // "Accept": "application/json"
+                ]
+                DispatchQueue.main.async(execute: {
+                    
+                    Alamofire.request(Constant.URLstatus , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                        let JSONS = response.result.value
+                        print(" reponse\(JSONS)")
+                    }
+                })
+                
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { action in
+                
+                mySwitch.isOn = false
+                mySwitch.setOn(false, animated: true)
+                self.res?.status = false
+                
+            }))
+            alert.addTextField(configurationHandler: { (textField) -> Void in
+                textField.placeholder = "Remark"
+                textField.textAlignment = .center
+            })
+            
+            self.present(alert, animated: true, completion: nil)
+            
         }
         else {
             print ("OFF")
@@ -244,7 +224,7 @@ class AppDetailHeader: BaseCell {
                 statusLabel.text = "Available"
             }
          
-            sttButton.isEnabled = (resident?.isRelative)!
+            sttButton.isHidden = !(resident?.isRelative)!
             
             locationLabel.text = resident?.address
         }

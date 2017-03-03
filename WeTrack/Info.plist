@@ -55,6 +55,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Advertisement would like to use bluetooth.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Need permission to mornitor beacon</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -63,6 +65,8 @@
 	<array>
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
+		<string>external-accessory</string>
+		<string>fetch</string>
 		<string>location</string>
 		<string>remote-notification</string>
 	</array>
@@ -80,7 +84,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>Advertisement would like to use bluetooth.</string>
 </dict>
 </plist>

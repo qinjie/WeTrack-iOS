@@ -12,8 +12,12 @@
 		38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */; };
 		38122E311E5EE2FA0036AF52 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38122E301E5EE2FA0036AF52 /* AboutController.swift */; };
 		38122E331E5EE47D0036AF52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38122E321E5EE47D0036AF52 /* Assets.xcassets */; };
+		3826218B1E66C83800CE0F6D /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826218A1E66C83800CE0F6D /* FAQController.swift */; };
+		3826218D1E66C8FC00CE0F6D /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826218C1E66C8FC00CE0F6D /* FAQ.swift */; };
+		382621901E66C9DC00CE0F6D /* faqs.json in Resources */ = {isa = PBXBuildFile; fileRef = 3826218F1E66C9DC00CE0F6D /* faqs.json */; };
 		38303D7E1E40735D00893536 /* Beacon_Resident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38303D7D1E40735D00893536 /* Beacon_Resident.swift */; };
 		383FDBF31E5D27ED0058199B /* RelativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FDBF21E5D27ED0058199B /* RelativeController.swift */; };
+		38409B591E66B0E5001182BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38409B581E66B0E5001182BE /* GoogleService-Info.plist */; };
 		384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DE4061E3AEC0C00528AD7 /* NearMeController.swift */; };
 		386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34ED1E5BE61100BDC1DC /* SettingController.swift */; };
 		388049141E304C4C009CF14F /* ResidentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049131E304C4C009CF14F /* ResidentList.swift */; };
@@ -22,7 +26,6 @@
 		388D93CD1E5F2A34007CE910 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 388D93CC1E5F2A34007CE910 /* about.png */; };
 		388D93CF1E5F2A3B007CE910 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 388D93CE1E5F2A3B007CE910 /* checkmark.png */; };
 		388D93D11E5F2A4E007CE910 /* css in Resources */ = {isa = PBXBuildFile; fileRef = 388D93D01E5F2A4E007CE910 /* css */; };
-		38AD5E6A1E5A7FCB00E4A050 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */; };
 		38C286401E2F3E60004526BF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2863F1E2F3E60004526BF /* LoginController.swift */; };
 		38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3867B1E3888A900EE4727 /* DetailController.swift */; };
 		38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563231E28B6A0004DE7A1 /* AppDelegate.swift */; };
@@ -31,6 +34,8 @@
 		38D5633C1E28B6A0004DE7A1 /* WeTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5633B1E28B6A0004DE7A1 /* WeTrackTests.swift */; };
 		38D563471E28B6A0004DE7A1 /* WeTrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563461E28B6A0004DE7A1 /* WeTrackUITests.swift */; };
 		38D563581E28BC77004DE7A1 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563571E28BC77004DE7A1 /* Items.swift */; };
+		38E574921E654F4100CA8EB4 /* ResidentDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E574911E654F4100CA8EB4 /* ResidentDetailPage.swift */; };
+		38EA91991E67B9AC00B6282C /* FAQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA91981E67B9AC00B6282C /* FAQTableViewCell.swift */; };
 		670365C49A2B43BFBB06E9B3 /* Pods_WeTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D45AAD9A3520E6085A7B73 /* Pods_WeTrack.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +80,12 @@
 		38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothManagerHandler.m; sourceTree = "<group>"; };
 		38122E301E5EE2FA0036AF52 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		38122E321E5EE47D0036AF52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3826218A1E66C83800CE0F6D /* FAQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
+		3826218C1E66C8FC00CE0F6D /* FAQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		3826218F1E66C9DC00CE0F6D /* faqs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = faqs.json; sourceTree = "<group>"; };
 		38303D7D1E40735D00893536 /* Beacon_Resident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacon_Resident.swift; sourceTree = "<group>"; };
 		383FDBF21E5D27ED0058199B /* RelativeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeController.swift; sourceTree = "<group>"; };
+		38409B581E66B0E5001182BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		384DE4061E3AEC0C00528AD7 /* NearMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeController.swift; sourceTree = "<group>"; };
 		386A34ED1E5BE61100BDC1DC /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		388049131E304C4C009CF14F /* ResidentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentList.swift; sourceTree = "<group>"; };
@@ -85,12 +94,11 @@
 		388D93CC1E5F2A34007CE910 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		388D93CE1E5F2A3B007CE910 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		388D93D01E5F2A4E007CE910 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; path = css; sourceTree = "<group>"; };
-		38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeTrack-Bridging-Header.h"; sourceTree = "<group>"; };
 		38C2863F1E2F3E60004526BF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		38C3867B1E3888A900EE4727 /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		38D563201E28B6A0004DE7A1 /* WeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		38D563231E28B6A0004DE7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		38D563231E28B6A0004DE7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		38D563281E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38D563301E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38D563321E28B6A0004DE7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +109,8 @@
 		38D563461E28B6A0004DE7A1 /* WeTrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeTrackUITests.swift; sourceTree = "<group>"; };
 		38D563481E28B6A0004DE7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38D563571E28BC77004DE7A1 /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		38E574911E654F4100CA8EB4 /* ResidentDetailPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentDetailPage.swift; sourceTree = "<group>"; };
+		38EA91981E67B9AC00B6282C /* FAQTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQTableViewCell.swift; sourceTree = "<group>"; };
 		4EDDBCE614D377CDA43E8A3F /* Pods-WeTrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeTrack.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeTrack/Pods-WeTrack.release.xcconfig"; sourceTree = "<group>"; };
 		C52E4CA18A32599C47FC5DEB /* Pods-WeTrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeTrack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeTrack/Pods-WeTrack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +154,20 @@
 			name = "Objective-C";
 			sourceTree = "<group>";
 		};
+		382621911E66CAE400CE0F6D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				38122E321E5EE47D0036AF52 /* Assets.xcassets */,
+				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
+				38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */,
+				38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */,
+				38D563321E28B6A0004DE7A1 /* Info.plist */,
+				38409B581E66B0E5001182BE /* GoogleService-Info.plist */,
+				3826218F1E66C9DC00CE0F6D /* faqs.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		388D93D21E5F2A72007CE910 /* AboutPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,24 +206,11 @@
 			isa = PBXGroup;
 			children = (
 				38122E2F1E5ED5F20036AF52 /* Objective-C */,
-				38C2863F1E2F3E60004526BF /* LoginController.swift */,
-				388049171E3056EB009CF14F /* CustomTabBarController.swift */,
-				388049131E304C4C009CF14F /* ResidentList.swift */,
-				383FDBF21E5D27ED0058199B /* RelativeController.swift */,
-				38C3867B1E3888A900EE4727 /* DetailController.swift */,
-				384DE4061E3AEC0C00528AD7 /* NearMeController.swift */,
-				386A34ED1E5BE61100BDC1DC /* SettingController.swift */,
-				38303D7D1E40735D00893536 /* Beacon_Resident.swift */,
-				38AD5E691E5A7FCB00E4A050 /* GoogleService-Info.plist */,
-				38122E321E5EE47D0036AF52 /* Assets.xcassets */,
-				38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */,
-				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
-				380970A91E41B63D00BB8391 /* Reachability.swift */,
-				38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */,
-				38D563321E28B6A0004DE7A1 /* Info.plist */,
-				38D563231E28B6A0004DE7A1 /* AppDelegate.swift */,
-				38D563571E28BC77004DE7A1 /* Items.swift */,
+				38EA91961E67B46F00B6282C /* LoginPage */,
+				38EA91971E67B49500B6282C /* Resident_Beacon Page */,
+				38EA91951E67B3F900B6282C /* FAQ */,
 				388D93D21E5F2A72007CE910 /* AboutPage */,
+				382621911E66CAE400CE0F6D /* Resources */,
 			);
 			path = WeTrack;
 			sourceTree = "<group>";
@@ -220,6 +231,42 @@
 				38D563481E28B6A0004DE7A1 /* Info.plist */,
 			);
 			path = WeTrackUITests;
+			sourceTree = "<group>";
+		};
+		38EA91951E67B3F900B6282C /* FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				3826218C1E66C8FC00CE0F6D /* FAQ.swift */,
+				38EA91981E67B9AC00B6282C /* FAQTableViewCell.swift */,
+				3826218A1E66C83800CE0F6D /* FAQController.swift */,
+			);
+			name = FAQ;
+			sourceTree = "<group>";
+		};
+		38EA91961E67B46F00B6282C /* LoginPage */ = {
+			isa = PBXGroup;
+			children = (
+				38C2863F1E2F3E60004526BF /* LoginController.swift */,
+				388049171E3056EB009CF14F /* CustomTabBarController.swift */,
+				380970A91E41B63D00BB8391 /* Reachability.swift */,
+				38D563231E28B6A0004DE7A1 /* AppDelegate.swift */,
+				38D563571E28BC77004DE7A1 /* Items.swift */,
+			);
+			name = LoginPage;
+			sourceTree = "<group>";
+		};
+		38EA91971E67B49500B6282C /* Resident_Beacon Page */ = {
+			isa = PBXGroup;
+			children = (
+				38E574911E654F4100CA8EB4 /* ResidentDetailPage.swift */,
+				388049131E304C4C009CF14F /* ResidentList.swift */,
+				383FDBF21E5D27ED0058199B /* RelativeController.swift */,
+				38C3867B1E3888A900EE4727 /* DetailController.swift */,
+				384DE4061E3AEC0C00528AD7 /* NearMeController.swift */,
+				386A34ED1E5BE61100BDC1DC /* SettingController.swift */,
+				38303D7D1E40735D00893536 /* Beacon_Resident.swift */,
+			);
+			name = "Resident_Beacon Page";
 			sourceTree = "<group>";
 		};
 		87EBC43B076F9660C80649C2 /* Pods */ = {
@@ -312,7 +359,7 @@
 				TargetAttributes = {
 					38D5631F1E28B6A0004DE7A1 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = S7QWTC4RY5;
+						DevelopmentTeam = YN73BLV7YH;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -360,8 +407,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				388D93D11E5F2A4E007CE910 /* css in Resources */,
+				382621901E66C9DC00CE0F6D /* faqs.json in Resources */,
+				38409B591E66B0E5001182BE /* GoogleService-Info.plist in Resources */,
 				38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */,
-				38AD5E6A1E5A7FCB00E4A050 /* GoogleService-Info.plist in Resources */,
 				388D93CD1E5F2A34007CE910 /* about.png in Resources */,
 				38122E331E5EE47D0036AF52 /* Assets.xcassets in Resources */,
 				388D93CB1E5F2A2D007CE910 /* about.html in Resources */,
@@ -455,13 +503,17 @@
 			files = (
 				388049141E304C4C009CF14F /* ResidentList.swift in Sources */,
 				386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */,
+				38EA91991E67B9AC00B6282C /* FAQTableViewCell.swift in Sources */,
 				38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */,
 				38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
+				3826218D1E66C8FC00CE0F6D /* FAQ.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,
+				38E574921E654F4100CA8EB4 /* ResidentDetailPage.swift in Sources */,
 				384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */,
 				38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */,
 				380970AA1E41B63D00BB8391 /* Reachability.swift in Sources */,
+				3826218B1E66C83800CE0F6D /* FAQController.swift in Sources */,
 				383FDBF31E5D27ED0058199B /* RelativeController.swift in Sources */,
 				38122E311E5EE2FA0036AF52 /* AboutController.swift in Sources */,
 				38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */,
@@ -618,7 +670,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S7QWTC4RY5;
+				DEVELOPMENT_TEAM = YN73BLV7YH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -639,7 +691,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S7QWTC4RY5;
+				DEVELOPMENT_TEAM = YN73BLV7YH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
