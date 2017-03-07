@@ -135,6 +135,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     Constant.role = JSON["role"] as! Int
                     self.createDeviceTk()
                     UserDefaults.standard.set(Constant.username, forKey: "username")
+                    UserDefaults.standard.set(Constant.token, forKey: "token")
                     UserDefaults.standard.set(Constant.user_id, forKey: "userid")
                     UserDefaults.standard.set(Constant.role, forKey: "role")
                 }
@@ -222,6 +223,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     
                 }
             }
+            
             print(" all re1 \(GlobalData.allResidents.count)")
             
             GlobalData.relativeList = GlobalData.allResidents.filter({$0.isRelative == true})
@@ -251,6 +253,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
 //                }
                 
             }
+            
             
             
             
@@ -304,6 +307,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     Constant.role = JSON["role"] as! Int
                     UserDefaults.standard.set(Constant.user_id, forKey: "userid")
                     UserDefaults.standard.set(Constant.role, forKey: "role")
+                    UserDefaults.standard.set(Constant.token, forKey: "token")
                 }
                 self.loadRelativeList()
                 

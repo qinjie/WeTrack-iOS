@@ -84,17 +84,7 @@ class ResidentDetailPage: UITableViewController {
     
     @IBAction func changeStt(_ sender: Any) {
         
-        if switchBtn.isOn {
-            status.text = "Missing"
-            print("ON")}
-        else {
-            status.text = "Available"
-            print ("OFF")
-            resident?.status = false
-        }
 
-            resident?.status = true
-            status.text = "Missing"
             // report missing
             let alert = UIAlertController(title: "Report Missing Relative", message: "Remark", preferredStyle: UIAlertControllerStyle.alert)
             
@@ -124,14 +114,31 @@ class ResidentDetailPage: UITableViewController {
                     }
                 })
                 
-                
+                if self.switchBtn.isOn {
+                    self.status.text = "Missing"
+                    self.resident?.status = true
+                    print("ON")}
+                else {
+                    self.status.text = "Available"
+                    print ("OFF")
+                    self.resident?.status = false
+                }
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { action in
                 
             
                 self.switchBtn.isOn = !self.switchBtn.isOn
                 self.switchBtn.setOn(self.switchBtn.isOn, animated: true)
-                self.resident?.status = self.switchBtn.isOn
+                
+                if self.switchBtn.isOn {
+                    self.status.text = "Missing"
+                    self.resident?.status = true
+                    print("ON")}
+                else {
+                    self.status.text = "Available"
+                    print ("OFF")
+                    self.resident?.status = false
+                }
                 
             }))
             alert.addTextField(configurationHandler: { (textField) -> Void in
@@ -140,7 +147,8 @@ class ResidentDetailPage: UITableViewController {
             })
             
             self.present(alert, animated: true, completion: nil)
-            
+        
+        
         
     }
 

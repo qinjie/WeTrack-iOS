@@ -45,6 +45,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         Constant.username = UserDefaults.standard.string(forKey: "username")!
         Constant.user_id = UserDefaults.standard.integer(forKey: "userid")
         Constant.role = UserDefaults.standard.integer(forKey: "role")
+       
         
         if (Constant.role != 5 && Constant.isLogin == false){
             
@@ -240,7 +241,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
                                 newBeacon.name = (r.name) + "#" + String(newBeacon.id) + "#" + String(r.id)
                                 print("** NAME \(newBeacon.name)")
                                 let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
-                                let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMajorValue, identifier: newBeacon.name )
+                                let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMinorValue, identifier: newBeacon.name )
                                 print("mornitor \(newBeacon.name)")
                                 
                                 self.newRegionList.append(newRegion)

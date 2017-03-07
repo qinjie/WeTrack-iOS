@@ -27,7 +27,6 @@
 		388D93CF1E5F2A3B007CE910 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 388D93CE1E5F2A3B007CE910 /* checkmark.png */; };
 		388D93D11E5F2A4E007CE910 /* css in Resources */ = {isa = PBXBuildFile; fileRef = 388D93D01E5F2A4E007CE910 /* css */; };
 		38C286401E2F3E60004526BF /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C2863F1E2F3E60004526BF /* LoginController.swift */; };
-		38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3867B1E3888A900EE4727 /* DetailController.swift */; };
 		38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563231E28B6A0004DE7A1 /* AppDelegate.swift */; };
 		38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D563271E28B6A0004DE7A1 /* Main.storyboard */; };
 		38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */; };
@@ -96,7 +95,6 @@
 		388D93D01E5F2A4E007CE910 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; path = css; sourceTree = "<group>"; };
 		38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeTrack-Bridging-Header.h"; sourceTree = "<group>"; };
 		38C2863F1E2F3E60004526BF /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		38C3867B1E3888A900EE4727 /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		38D563201E28B6A0004DE7A1 /* WeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D563231E28B6A0004DE7A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		38D563281E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 				38E574911E654F4100CA8EB4 /* ResidentDetailPage.swift */,
 				388049131E304C4C009CF14F /* ResidentList.swift */,
 				383FDBF21E5D27ED0058199B /* RelativeController.swift */,
-				38C3867B1E3888A900EE4727 /* DetailController.swift */,
 				384DE4061E3AEC0C00528AD7 /* NearMeController.swift */,
 				386A34ED1E5BE61100BDC1DC /* SettingController.swift */,
 				38303D7D1E40735D00893536 /* Beacon_Resident.swift */,
@@ -504,7 +501,6 @@
 				388049141E304C4C009CF14F /* ResidentList.swift in Sources */,
 				386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */,
 				38EA91991E67B9AC00B6282C /* FAQTableViewCell.swift in Sources */,
-				38C3867C1E3888A900EE4727 /* DetailController.swift in Sources */,
 				38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				3826218D1E66C8FC00CE0F6D /* FAQ.swift in Sources */,

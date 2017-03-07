@@ -20,11 +20,7 @@ class Beacon{
     var report: String = ""
     var status: Bool = true
     var uuid: String = ""
-    
-
-    
-
-    
+   
 }
 
 
