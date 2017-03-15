@@ -21,7 +21,7 @@ class FAQController: UIViewController {
         super.viewDidLoad()
         //title =
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 100
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +80,7 @@ extension FAQController: UITableViewDataSource {
         cell.answerTextView.backgroundColor = cell.backgroundColor
         cell.selectionStyle = .none
         
-        cell.answerTextView.text = faq.isExpanded ? faq.answer : ""
+        cell.answerTextView.text = faq.isExpanded ? faq.answer : faq.answer
         cell.answerTextView.textAlignment = faq.isExpanded ? .left : .center
         
         return cell
@@ -100,7 +100,7 @@ extension FAQController: UITableViewDelegate {
         faqs[indexPath.row] = faq
         
         // 3
-        cell.answerTextView.text = faq.isExpanded ? faq.answer : ""
+        cell.answerTextView.text = faq.isExpanded ? faq.answer : faq.answer
         cell.answerTextView.textAlignment = faq.isExpanded ? .left : .center
         
         // 4

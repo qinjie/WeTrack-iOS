@@ -84,8 +84,12 @@ class ResidentDetailPage: UITableViewController {
     
     @IBAction func changeStt(_ sender: Any) {
         
-
+        
             // report missing
+        if (self.switchBtn.isOn){
+            
+        
+        
             let alert = UIAlertController(title: "Report Missing Relative", message: "Remark", preferredStyle: UIAlertControllerStyle.alert)
             
             
@@ -113,16 +117,10 @@ class ResidentDetailPage: UITableViewController {
                         print(" reponse\(JSONS)")
                     }
                 })
-                
-                if self.switchBtn.isOn {
+
                     self.status.text = "Missing"
                     self.resident?.status = true
-                    print("ON")}
-                else {
-                    self.status.text = "Available"
-                    print ("OFF")
-                    self.resident?.status = false
-                }
+             
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { action in
                 
@@ -130,15 +128,10 @@ class ResidentDetailPage: UITableViewController {
                 self.switchBtn.isOn = !self.switchBtn.isOn
                 self.switchBtn.setOn(self.switchBtn.isOn, animated: true)
                 
-                if self.switchBtn.isOn {
-                    self.status.text = "Missing"
-                    self.resident?.status = true
-                    print("ON")}
-                else {
-                    self.status.text = "Available"
-                    print ("OFF")
-                    self.resident?.status = false
-                }
+                self.status.text = "Available"
+            
+                self.resident?.status = false
+                
                 
             }))
             alert.addTextField(configurationHandler: { (textField) -> Void in
@@ -147,7 +140,31 @@ class ResidentDetailPage: UITableViewController {
             })
             
             self.present(alert, animated: true, completion: nil)
-        
+        }else{
+            
+            self.status.text = "Available"
+      
+            self.resident?.status = false
+            let parameters: [String: Any] = [
+                "id" : self.resident?.id,
+                "remark" : ""
+            ]
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer " + Constant.token
+                // "Accept": "application/json"
+            ]
+            
+            DispatchQueue.main.async(execute: {
+                
+                Alamofire.request(Constant.URLstatus , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                    let JSONS = response.result.value
+                    print(" reponse\(JSONS)")
+                }
+            })
+
+            
+        }
         
         
     }

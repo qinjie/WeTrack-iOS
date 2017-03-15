@@ -91,14 +91,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     
     @IBAction func loginwgg(_ sender: Any) {
         
-        
-        let reachability = Reachability()
-        if reachability?.isReachable == false {
-            displayMyAlertMessage(mess: "Please check internet connection")
-            return
-        }
-        
-        
+
         Constant.device_token = UserDefaults.standard.string(forKey: "devicetoken")!
         GIDSignIn.sharedInstance().signIn()
         
@@ -270,11 +263,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
     @IBAction func loginTapped(_ sender: Any) {
         
         // Login Anonymously
-        let reachability = Reachability()
-        if reachability?.isReachable == false {
-            displayMyAlertMessage(mess: "Please check internet connection")
-            return
-        }
+ 
         Constant.user_id = 0
         Constant.device_token = UserDefaults.standard.string(forKey: "devicetoken")!
         UserDefaults.standard.set("Anonymous", forKey: "username")

@@ -56,8 +56,15 @@ class CustomTabBarController: UITabBarController {
         topBorder.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
         topBorder.backgroundColor = UIColor(red:0.90, green:0.91, blue:0.92, alpha:1.0).cgColor
         
+        
         tabBar.layer.addSublayer(topBorder)
         tabBar.clipsToBounds = true
+        Constant.role = UserDefaults.standard.integer(forKey: "role")
+        
+        if (Constant.role == 5){
+            tabBar.items?[2].isEnabled = false
+        }
+        print("tabb \(tabBar.items?.count)")
         
         let selectedColor   = UIColor(red: 246.0/255.0, green: 155.0/255.0, blue: 13.0/255.0, alpha: 1.0)
         let unselectedColor = UIColor(red: 16.0/255.0, green: 224.0/255.0, blue: 223.0/255.0, alpha: 1.0)

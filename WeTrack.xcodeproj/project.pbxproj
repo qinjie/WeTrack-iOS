@@ -19,6 +19,10 @@
 		383FDBF31E5D27ED0058199B /* RelativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FDBF21E5D27ED0058199B /* RelativeController.swift */; };
 		38409B591E66B0E5001182BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38409B581E66B0E5001182BE /* GoogleService-Info.plist */; };
 		384DE4071E3AEC0C00528AD7 /* NearMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DE4061E3AEC0C00528AD7 /* NearMeController.swift */; };
+		385F51281E77841700313FF1 /* designer_credit.png in Resources */ = {isa = PBXBuildFile; fileRef = 385F51241E77841700313FF1 /* designer_credit.png */; };
+		385F51291E77841700313FF1 /* developer_credit.png in Resources */ = {isa = PBXBuildFile; fileRef = 385F51251E77841700313FF1 /* developer_credit.png */; };
+		385F512A1E77841700313FF1 /* human_credit.png in Resources */ = {isa = PBXBuildFile; fileRef = 385F51261E77841700313FF1 /* human_credit.png */; };
+		385F512B1E77841700313FF1 /* thanks_to.png in Resources */ = {isa = PBXBuildFile; fileRef = 385F51271E77841700313FF1 /* thanks_to.png */; };
 		386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A34ED1E5BE61100BDC1DC /* SettingController.swift */; };
 		388049141E304C4C009CF14F /* ResidentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049131E304C4C009CF14F /* ResidentList.swift */; };
 		388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388049171E3056EB009CF14F /* CustomTabBarController.swift */; };
@@ -86,6 +90,10 @@
 		383FDBF21E5D27ED0058199B /* RelativeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeController.swift; sourceTree = "<group>"; };
 		38409B581E66B0E5001182BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		384DE4061E3AEC0C00528AD7 /* NearMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeController.swift; sourceTree = "<group>"; };
+		385F51241E77841700313FF1 /* designer_credit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = designer_credit.png; sourceTree = "<group>"; };
+		385F51251E77841700313FF1 /* developer_credit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = developer_credit.png; sourceTree = "<group>"; };
+		385F51261E77841700313FF1 /* human_credit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = human_credit.png; sourceTree = "<group>"; };
+		385F51271E77841700313FF1 /* thanks_to.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thanks_to.png; sourceTree = "<group>"; };
 		386A34ED1E5BE61100BDC1DC /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		388049131E304C4C009CF14F /* ResidentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResidentList.swift; sourceTree = "<group>"; };
 		388049171E3056EB009CF14F /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -166,6 +174,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		385F51231E7783ED00313FF1 /* About Us */ = {
+			isa = PBXGroup;
+			children = (
+				385F51241E77841700313FF1 /* designer_credit.png */,
+				385F51251E77841700313FF1 /* developer_credit.png */,
+				385F51261E77841700313FF1 /* human_credit.png */,
+				385F51271E77841700313FF1 /* thanks_to.png */,
+			);
+			name = "About Us";
+			sourceTree = "<group>";
+		};
 		388D93D21E5F2A72007CE910 /* AboutPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +228,7 @@
 				38EA91951E67B3F900B6282C /* FAQ */,
 				388D93D21E5F2A72007CE910 /* AboutPage */,
 				382621911E66CAE400CE0F6D /* Resources */,
+				385F51231E7783ED00313FF1 /* About Us */,
 			);
 			path = WeTrack;
 			sourceTree = "<group>";
@@ -404,13 +424,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				388D93D11E5F2A4E007CE910 /* css in Resources */,
+				385F512B1E77841700313FF1 /* thanks_to.png in Resources */,
 				382621901E66C9DC00CE0F6D /* faqs.json in Resources */,
+				385F51291E77841700313FF1 /* developer_credit.png in Resources */,
 				38409B591E66B0E5001182BE /* GoogleService-Info.plist in Resources */,
 				38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */,
 				388D93CD1E5F2A34007CE910 /* about.png in Resources */,
 				38122E331E5EE47D0036AF52 /* Assets.xcassets in Resources */,
 				388D93CB1E5F2A2D007CE910 /* about.html in Resources */,
+				385F51281E77841700313FF1 /* designer_credit.png in Resources */,
 				388D93CF1E5F2A3B007CE910 /* checkmark.png in Resources */,
+				385F512A1E77841700313FF1 /* human_credit.png in Resources */,
 				38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

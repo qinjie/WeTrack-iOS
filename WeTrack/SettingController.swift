@@ -16,8 +16,7 @@ class SettingController: UITableViewController, CBPeripheralManagerDelegate {
     @IBOutlet weak var userprofile: UIImageView!
     @IBOutlet weak var usernameLb: UILabel!
     
-    @IBOutlet weak var roleLbl: UILabel!
-    @IBOutlet weak var idLbl: UILabel!
+
     
 
     
@@ -25,8 +24,7 @@ class SettingController: UITableViewController, CBPeripheralManagerDelegate {
         super.viewDidLoad()
         
         usernameLb.text = Constant.username.uppercased()
-        roleLbl.text = Constant.role.description
-        idLbl.text = Constant.user_id.description
+      
         if (Constant.role != 5){
             if (Constant.userphoto != nil){
                 let photo = NSData(contentsOf: Constant.userphoto!)
