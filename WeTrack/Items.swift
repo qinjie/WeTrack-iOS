@@ -22,7 +22,7 @@ struct Constant{
     static let URLstatus = baseURL + "api/web/index.php/v1/resident/status"
     static var device_token = ""
     
-    static let restartTime = 60.0
+    static let restartTime = 300.0
     static let photoURL = "http://128.199.93.67/WeTrack/backend/web/"
     static var token = ""
     static var username = ""

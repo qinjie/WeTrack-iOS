@@ -42,6 +42,11 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
         collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
         
+        let SyncBtn = UIBarButtonItem(title: "Sync", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ResidentList.sync(sender:)))
+        SyncBtn.image = UIImage(named: "sync30")
+        self.navigationItem.rightBarButtonItem = SyncBtn
+
+        
         Constant.username = UserDefaults.standard.string(forKey: "username")!
         Constant.user_id = UserDefaults.standard.integer(forKey: "userid")
         Constant.role = UserDefaults.standard.integer(forKey: "role")
@@ -91,6 +96,15 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         setUp()
         //setupData()
         
+        
+        
+        
+    }
+    
+    func sync(sender: UIBarButtonItem) {
+        // Perform your custom actions
+        // ...
+        loadServerList()
         
     }
     
@@ -269,6 +283,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
             self.residents = GlobalData.missingList
             self.collectionView!.reloadData()
             
+            GlobalData.nearMe.removeAll()
         }
     }
     
