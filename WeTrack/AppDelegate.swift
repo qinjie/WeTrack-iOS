@@ -196,11 +196,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         case .inside:
             print(" -____- Inside \(region.identifier)");
             
+            let info = region.identifier.components(separatedBy: "#")
+        
             if (Constant.noti){
-                noti(content: "INSIDE  " + region.identifier)
+                noti(content: info[0] + " is nearby.")
             }
             
-            let info = region.identifier.components(separatedBy: "#")
+            
             
             let today = Date()
             let dateFormatter = DateFormatter()
@@ -362,9 +364,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
             GlobalData.nearMe = GlobalData.nearMe.filter({$0.id.description != info[2]})
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
-            if (Constant.noti){
-                noti(content: "Out of " + region.identifier)
-            }
+//            if (Constant.noti){
+//                noti(content: "Out of " + region.identifier)
+//            }
             
         }
     }

@@ -42,11 +42,6 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
         collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
         
-        let SyncBtn = UIBarButtonItem(title: "Sync", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ResidentList.sync(sender:)))
-        SyncBtn.image = UIImage(named: "sync30")
-        self.navigationItem.rightBarButtonItem = SyncBtn
-
-        
         Constant.username = UserDefaults.standard.string(forKey: "username")!
         Constant.user_id = UserDefaults.standard.integer(forKey: "userid")
         Constant.role = UserDefaults.standard.integer(forKey: "role")
@@ -101,9 +96,8 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
     }
     
-    func sync(sender: UIBarButtonItem) {
-        // Perform your custom actions
-        // ...
+    @IBAction func sync(_ sender: Any) {
+    
         loadServerList()
         
     }
@@ -257,7 +251,8 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
                                 let uuid = NSUUID(uuidString: newBeacon.uuid) as! UUID
                                 let newRegion = CLBeaconRegion(proximityUUID: uuid, major: UInt16(newBeacon.major) as CLBeaconMajorValue, minor: UInt16(newBeacon.minor) as CLBeaconMinorValue, identifier: newBeacon.name )
                                 print("mornitor \(newBeacon.name)")
-                                
+                           
+            
                                 self.newRegionList.append(newRegion)
                                 GlobalData.beaconList.append(newBeacon)
                                 

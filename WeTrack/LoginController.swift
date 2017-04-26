@@ -134,13 +134,29 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                 }
                 else{
                     self.alertController.dismiss(animated: true, completion: nil)
-                    self.displayMyAlertMessage(mess: "Username or Password is Invalid!")
+                    self.displayMyAlertMessage(title: "LOGIN FAILED", mess: "This function can only be used by registered user. You can go to nearest police station for registration or use Anonymous login!")
+                    do {
+                        GIDSignIn.sharedInstance().signOut()
+                        // Set the view to the login screen after signing out
+                        
+                    } catch let signOutError as NSError {
+                        print ("Error signing out: \(signOutError)")
+                    }
+
+                    do {
+                        GIDSignIn.sharedInstance().signOut()
+                        // Set the view to the login screen after signing out
+                        
+                    } catch let signOutError as NSError {
+                        print ("Error signing out: \(signOutError)")
+                    }
+
                 }
                 
             }
             else{
-                
-                self.displayMyAlertMessage(mess: "Please check internet connection!")
+                self.alertController.dismiss(animated: true, completion: nil)
+                self.displayMyAlertMessage(title: "LOGIN FAILED", mess: "Please check Internet connection!")
                 
             }
         }
@@ -269,7 +285,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         UserDefaults.standard.set("Anonymous", forKey: "username")
         UserDefaults.standard.set(Constant.user_id, forKey: "userid")
         Constant.username = "Anonymous"
-        print("device token  \(Constant.device_token)")
+        //print("device token  \(Constant.device_token)")
         
         createDeviceTk()
         
@@ -330,16 +346,13 @@ extension UIViewController {
     //        view.endEditing(true)
     //    }
     //    
-    func displayMyAlertMessage(mess : String){
+    func displayMyAlertMessage(title: String, mess : String){
         
-        var myAlert = UIAlertController(title: "Alert", message: mess, preferredStyle: UIAlertControllerStyle.alert)
+        var myAlert = UIAlertController(title: title, message: mess, preferredStyle: UIAlertControllerStyle.alert)
         
         let okAction = UIAlertAction(title: "OK!!", style: UIAlertActionStyle.default, handler: nil)
         
-       // okAction.setValue(image, forKey: "image")
-        let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 50, height: 50))
-        imageView.image = UIImage(named: "warn")
-        myAlert.view.addSubview(imageView)
+      
        
         myAlert.addAction(okAction)
         

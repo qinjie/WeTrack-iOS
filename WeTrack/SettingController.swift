@@ -8,7 +8,9 @@
 import FirebaseAuth
 import UIKit
 import Alamofire
+import GoogleSignIn
 import CoreBluetooth
+
 
 class SettingController: UITableViewController, CBPeripheralManagerDelegate {
     
