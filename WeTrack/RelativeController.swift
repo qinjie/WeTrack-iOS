@@ -18,8 +18,8 @@ class RelativeController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.relatives = GlobalData.relativeList
-        self.collectionView!.reloadData()
+//        self.relatives = GlobalData.relativeList
+//        self.collectionView!.reloadData()
         
     }
     

@@ -104,8 +104,8 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.residents = GlobalData.missingList
-        self.collectionView!.reloadData()
+//        self.residents = GlobalData.missingList
+//        self.collectionView!.reloadData()
         
        print(" all re \(GlobalData.allResidents.count)")
        print(" all mis \(GlobalData.missingList.count)")
@@ -268,10 +268,10 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
             }
             GlobalData.relativeList = GlobalData.allResidents.filter({$0.isRelative == true})
             
-            var notification = UILocalNotification()
-            notification.alertBody = "Load new list"
-            notification.soundName = "Default"
-            UIApplication.shared.presentLocalNotificationNow(notification)
+//            var notification = UILocalNotification()
+//            notification.alertBody = "Load new list"
+//            notification.soundName = "Default"
+//            UIApplication.shared.presentLocalNotificationNow(notification)
             
             self.switchMornitoringList()
             
@@ -386,7 +386,7 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
             return count
             
         }
-        return 1
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
