@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class NearMeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class NearMeController: BaseCollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var residents : [Resident]?
     var locationManager: CLLocationManager!

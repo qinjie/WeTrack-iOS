@@ -18,29 +18,34 @@ import UIKit
 import Alamofire
 import CoreLocation
 
-class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
- 
+class ResidentList: BaseViewController, CLLocationManagerDelegate {
+    @IBOutlet weak var tbl : UITableView!
     var residents : [Resident]?
-    
-    fileprivate let cellId = "cellId"
-    
+    fileprivate let cellId = "ResidentTableViewCell"
+    var refreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
+        tbl.register(UINib.init(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
+        tbl.estimatedRowHeight = 100
+        tbl.rowHeight = UITableViewAutomaticDimension
+        tbl.separatorColor = UIColor.seperatorApp
+        tbl.tableFooterView = UIView.init(frame: CGRect.zero)
+        
         
         // for Collection View
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 90, height: 120)
-        
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        //collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         
         navigationItem.title = "Missing Residents"
+        self.refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.mainApp
+        self.refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        tbl.addSubview(refreshControl)
         
-        collectionView?.backgroundColor = UIColor.white
-        collectionView?.alwaysBounceVertical = true
-        
-        collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
+//        collectionView?.backgroundColor = UIColor.white
+//        collectionView?.alwaysBounceVertical = true
+//        
+//        collectionView?.register(ResidentCell.self, forCellWithReuseIdentifier: cellId)
         
         Constant.username = UserDefaults.standard.string(forKey: "username")!
         Constant.user_id = UserDefaults.standard.integer(forKey: "userid")
@@ -96,6 +101,10 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
     }
     
+    func reloadData() {
+        loadServerList()
+    }
+    
     @IBAction func sync(_ sender: Any) {
     
         loadServerList()
@@ -144,11 +153,13 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         GlobalData.missingList = [Resident]()
         Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print("check2")
+            NSLog("Ahihi \(response)")
             let statusCode = response.response?.statusCode
+            self.refreshControl.endRefreshing()
             print("connection code \(statusCode)")
             if (statusCode == 200){
                 
-                
+                self.refreshControl.endRefreshing()
                 
                 if let newdata = response.result.value as? [[String: Any]] {
                     
@@ -276,7 +287,8 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
             self.switchMornitoringList()
             
             self.residents = GlobalData.missingList
-            self.collectionView!.reloadData()
+            self.tbl.reloadData()
+            
             
             GlobalData.nearMe.removeAll()
         }
@@ -373,52 +385,52 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
     
     func sync(){
         self.residents = GlobalData.missingList
-        self.collectionView!.reloadData()
+        self.tbl.reloadData()
         let today = Date()
         print("now1 \(today)")
     
     }
 
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = residents?.count {
-            
-            return count
-            
-        }
-        return 0
-    }
+//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        if let count = residents?.count {
+//            
+//            return count
+//            
+//        }
+//        return 0
+//    }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ResidentCell
-        if let resident = residents?[indexPath.item] {
-            cell.resident = resident
-        }
-        return cell
-        
-    }
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ResidentCell
+//        if let resident = residents?[indexPath.item] {
+//            cell.resident = resident
+//        }
+//        return cell
+//        
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: view.frame.width, height: 100)
+//    }
     
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-  
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "detailSegue", sender: nil)
-    //    self.performSegue(withIdentifier: "detailSegue", sender: nil)
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let controller = storyboard?.instantiateViewController(withIdentifier: "Detail") as! Detail
-//                   self.navigationController?.pushViewController(controller, animated: true)
-//                } else {
-//                    NSLog("Nil cmnr")
-//                }
+//    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//    
+//  
+//    
+//    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        //self.performSegue(withIdentifier: "detailSegue", sender: nil)
+//    //    self.performSegue(withIdentifier: "detailSegue", sender: nil)
+////        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+////        let controller = storyboard?.instantiateViewController(withIdentifier: "Detail") as! Detail
+////                   self.navigationController?.pushViewController(controller, animated: true)
+////                } else {
+////                    NSLog("Nil cmnr")
+////                }
 
-    }
+    //}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -439,179 +451,36 @@ class ResidentList: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
         var indexPath:IndexPath?
         
-        if (collectionView?.indexPathsForSelectedItems!.count)! > 0 {
-            indexPath = collectionView?.indexPathsForSelectedItems![0]
-        }
-        return indexPath
-    }
-
-    
-}
-class ResidentCell: BaseCell {
-    
-    //    let profileImageView: UIImageView = {
-    //        let imageView = UIImageView()
-    //        imageView.contentMode = .scaleAspectFill
-    //        imageView.layer.cornerRadius = 34
-    //        imageView.layer.masksToBounds = true
-    //        return imageView
-    //    }()
-    
-    var resident: Resident?{
-        didSet {
-            
-            residentName.text = resident?.name
-            idLabel.text = resident?.id.description
-            //let url = Constant.photoURL + (resident?.photo)!
-            
-            if (resident?.photo == ""){
-                residentPhoto.image = UIImage(named: "default_avatar")
-            }else{
-                let url = NSURL(string: Constant.photoURL + (resident?.photo)!)
-                
-                //print("Urlimage \(url)")
-                
-                let data = NSData(contentsOf: url as! URL)
-                if data != nil {
-                    residentPhoto.image = UIImage(data:data! as Data)
-                }
-            }
-            lastseen.text = resident?.report
-            if (lastseen.text == ""){
-                lastseen.text = "not report yet"
-            }
-            
-        }
-    }
-    
-    let residentPhoto: UIImageView = {
-        
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        
-        imageView.image = UIImage(named: "yoo2")
-        
-        imageView.layer.cornerRadius = 34
-        imageView.layer.masksToBounds = true
-        return imageView
-
-    }()
-    
-    let idLabel: UILabel = {
-        let label = UILabel()
-        label.text = "0000"
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
-    
-    
-    
-    let dividerLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(red:0.00, green:0.36, blue:0.16, alpha:0.5)
-        // view.backgroundColor = UIColor(red:0, green:0.92, blue:0.41, alpha:0.5)
-        return view
-    }()
-    
-    let residentName: UILabel = {
-        let label = UILabel()
-        label.text = "Xu Helios"
-        label.textColor = UIColor(red:0.10, green:0.31, blue:0.17, alpha:1.0)
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        return label
-    }()
-    
-    let lastseen: UILabel = {
-        let label = UILabel()
-        label.text = "......"
-        label.textColor = UIColor(red:0.10, green:0.31, blue:0.17, alpha:1.0)
-        //  label.backgroundColor = UIColor(red:0.51, green:0.83, blue:0.93, alpha:0.5)
-        label.textColor = UIColor.darkGray
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
-    }()
-    
-    
-    let statusImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        return imageView
-    }()
-    
-    override func setupViews() {
-        
-        addSubview(residentPhoto)
-        addSubview(dividerLineView)
-        
-        setupContainerView()
-        
-        //   statusImage.image = UIImage(named: "dol")
-        
-        addConstraintsWithFormat("H:|-12-[v0(69)]", views: residentPhoto)
-        addConstraintsWithFormat("V:[v0(69)]", views: residentPhoto)
-        
-        addConstraint(NSLayoutConstraint(item: residentPhoto, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        
-        addConstraintsWithFormat("H:|-82-[v0]|", views: dividerLineView)
-        addConstraintsWithFormat("V:[v0(1)]|", views: dividerLineView)
-    }
-    
-    fileprivate func setupContainerView() {
-        let containerView = UIView()
-        addSubview(containerView)
-        
-        addConstraintsWithFormat("H:|-100-[v0]|", views: containerView)
-        addConstraintsWithFormat("V:[v0(69)]", views: containerView)
-        addConstraint(NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        
-   
-        containerView.addSubview(residentName)
-        containerView.addSubview(lastseen)
-        containerView.addSubview(statusImage)
-        
-        containerView.addConstraintsWithFormat("V:|[v0(35)][v1(34)]|", views: residentName, lastseen)
-        
-        containerView.addConstraintsWithFormat("H:|[v0]-8-[v1(40)]-12-|", views: residentName, statusImage)
-        
-        containerView.addConstraintsWithFormat("H:|[v0]-8-[v1(40)]-12-|", views: lastseen, statusImage)
-        
-        containerView.addConstraintsWithFormat("V:[v0(20)]|", views: statusImage)
-    }
-    
-    
-}
-
-
-
-extension UIView {
-    
-    func addConstraintsWithFormat(_ format: String, views: UIView...) {
-        
-        var viewsDictionary = [String: UIView]()
-        for (index, view) in views.enumerated() {
-            let key = "v\(index)"
-            viewsDictionary[key] = view
-            view.translatesAutoresizingMaskIntoConstraints = false
+        if (self.tbl.indexPathForSelectedRow != nil) {
+            return (self.tbl.indexPathForSelectedRow)
         }
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+        return nil
     }
-    
-}
 
-class BaseCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupViews() {
-    }
 }
+ extension ResidentList : UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return residents?.count ?? 0
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! ResidentTableViewCell
+        cell.setData(resident: (residents?[indexPath.row])!)
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "detailSegue", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+ }
+
+
+
+
+
+
 

@@ -9,5 +9,7 @@ target ‘WeTrack’ do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod ‘SwiftyJSON’
+    pod 'SDWebImage', '~>3.8'
+    pod 'MBProgressHUD'
 end
  

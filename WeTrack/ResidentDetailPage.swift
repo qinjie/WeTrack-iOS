@@ -56,6 +56,14 @@ class ResidentDetailPage: UITableViewController {
         remark.text = resident?.remark
         
         reported.text = resident?.report
+        if (resident?.status == true) {
+            lblStatus.text = "Available"
+        } else {
+            lblStatus.text = "None"
+        }
+        
+        
+        
         
     }
 
@@ -68,6 +76,10 @@ class ResidentDetailPage: UITableViewController {
     @IBOutlet weak var dob: UILabel!
     @IBOutlet weak var remark: UILabel!
     @IBOutlet weak var reported: UILabel!
+    @IBOutlet weak var lblStatus : UILabel!
+    @IBOutlet weak var lblBeaconDetect : UILabel!
+    @IBOutlet weak var lblBeaconLocation : UILabel!
+    @IBOutlet weak var lblBeaconBelong : UILabel!
     
     
     @IBAction func openMap(_ sender: Any) {
@@ -167,6 +179,9 @@ class ResidentDetailPage: UITableViewController {
         }
         
         
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ResidentDetailPage.viewDidLoad() -&gt; ():ResidentDetailPage.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "resident">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ResidentList.loadServerList() -&gt; ():ResidentList.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Constant.URLmissing">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

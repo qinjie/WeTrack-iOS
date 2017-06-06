@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3607E6A71EE55A88005C0DC6 /* ResidentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607E6A51EE55A88005C0DC6 /* ResidentTableViewCell.swift */; };
+		3607E6A81EE55A88005C0DC6 /* ResidentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */; };
+		36EC12141EE53E2E004D30E8 /* UIColor-Hex-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */; };
+		36EC12171EE5419D004D30E8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12161EE5419D004D30E8 /* BaseViewController.swift */; };
+		36EC12191EE541D3004D30E8 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */; };
+		36EC121B1EE542EA004D30E8 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC121A1EE542EA004D30E8 /* BaseTableViewController.swift */; };
+		36EC121D1EE548A1004D30E8 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC121C1EE548A1004D30E8 /* UIView+IBInspectable.swift */; };
+		36EC12201EE54F41004D30E8 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC121F1EE54F41004D30E8 /* BaseCell.swift */; };
+		36EC12221EE54F69004D30E8 /* ResidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12211EE54F69004D30E8 /* ResidentCell.swift */; };
 		380970AA1E41B63D00BB8391 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380970A91E41B63D00BB8391 /* Reachability.swift */; };
 		38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */; };
 		38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */; };
@@ -74,6 +83,15 @@
 
 /* Begin PBXFileReference section */
 		22D45AAD9A3520E6085A7B73 /* Pods_WeTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3607E6A51EE55A88005C0DC6 /* ResidentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResidentTableViewCell.swift; path = Resident_BeaconPage/ResidentCell/ResidentTableViewCell.swift; sourceTree = "<group>"; };
+		3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResidentTableViewCell.xib; path = Resident_BeaconPage/ResidentCell/ResidentTableViewCell.xib; sourceTree = "<group>"; };
+		36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Hex-Swift.swift"; sourceTree = "<group>"; };
+		36EC12161EE5419D004D30E8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
+		36EC121A1EE542EA004D30E8 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		36EC121C1EE548A1004D30E8 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
+		36EC121F1EE54F41004D30E8 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCell.swift; path = Entity/BaseCell.swift; sourceTree = "<group>"; };
+		36EC12211EE54F69004D30E8 /* ResidentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResidentCell.swift; path = Entity/ResidentCell.swift; sourceTree = "<group>"; };
 		380970A91E41B63D00BB8391 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		38122E271E5ED5E50036AF52 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDevice.h; sourceTree = "<group>"; };
 		38122E281E5ED5E50036AF52 /* BluetoothDeviceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDeviceHandler.h; sourceTree = "<group>"; };
@@ -147,6 +165,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3607E6A41EE55A63005C0DC6 /* ResidentCell */ = {
+			isa = PBXGroup;
+			children = (
+				3607E6A51EE55A88005C0DC6 /* ResidentTableViewCell.swift */,
+				3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */,
+			);
+			name = ResidentCell;
+			sourceTree = "<group>";
+		};
+		36EC12121EE53E10004D30E8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				36EC121C1EE548A1004D30E8 /* UIView+IBInspectable.swift */,
+				36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		36EC12151EE54183004D30E8 /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				36EC12161EE5419D004D30E8 /* BaseViewController.swift */,
+				36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */,
+				36EC121A1EE542EA004D30E8 /* BaseTableViewController.swift */,
+			);
+			name = BaseClass;
+			sourceTree = "<group>";
+		};
+		36EC121E1EE54F20004D30E8 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				36EC121F1EE54F41004D30E8 /* BaseCell.swift */,
+				36EC12211EE54F69004D30E8 /* ResidentCell.swift */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
 		38122E2F1E5ED5F20036AF52 /* Objective-C */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +277,9 @@
 		38D563221E28B6A0004DE7A1 /* WeTrack */ = {
 			isa = PBXGroup;
 			children = (
+				36EC121E1EE54F20004D30E8 /* Entity */,
+				36EC12151EE54183004D30E8 /* BaseClass */,
+				36EC12121EE53E10004D30E8 /* Extension */,
 				38122E2F1E5ED5F20036AF52 /* Objective-C */,
 				38EA91961E67B46F00B6282C /* LoginPage */,
 				38EA91971E67B49500B6282C /* Resident_Beacon Page */,
@@ -276,6 +334,7 @@
 		38EA91971E67B49500B6282C /* Resident_Beacon Page */ = {
 			isa = PBXGroup;
 			children = (
+				3607E6A41EE55A63005C0DC6 /* ResidentCell */,
 				38E574911E654F4100CA8EB4 /* ResidentDetailPage.swift */,
 				388049131E304C4C009CF14F /* ResidentList.swift */,
 				383FDBF21E5D27ED0058199B /* RelativeController.swift */,
@@ -376,7 +435,7 @@
 				TargetAttributes = {
 					38D5631F1E28B6A0004DE7A1 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = QN7G299E4Y;
+						DevelopmentTeam = 77G8PUN44T;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -434,6 +493,7 @@
 				388D93CB1E5F2A2D007CE910 /* about.html in Resources */,
 				385F51281E77841700313FF1 /* designer_credit.png in Resources */,
 				388D93CF1E5F2A3B007CE910 /* checkmark.png in Resources */,
+				3607E6A81EE55A88005C0DC6 /* ResidentTableViewCell.xib in Resources */,
 				385F512A1E77841700313FF1 /* human_credit.png in Resources */,
 				38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */,
 			);
@@ -523,8 +583,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				388049141E304C4C009CF14F /* ResidentList.swift in Sources */,
+				36EC12141EE53E2E004D30E8 /* UIColor-Hex-Swift.swift in Sources */,
 				386A34EE1E5BE61100BDC1DC /* SettingController.swift in Sources */,
+				36EC12221EE54F69004D30E8 /* ResidentCell.swift in Sources */,
+				36EC12201EE54F41004D30E8 /* BaseCell.swift in Sources */,
+				36EC121B1EE542EA004D30E8 /* BaseTableViewController.swift in Sources */,
 				38EA91991E67B9AC00B6282C /* FAQTableViewCell.swift in Sources */,
+				36EC12171EE5419D004D30E8 /* BaseViewController.swift in Sources */,
+				36EC121D1EE548A1004D30E8 /* UIView+IBInspectable.swift in Sources */,
+				3607E6A71EE55A88005C0DC6 /* ResidentTableViewCell.swift in Sources */,
 				38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				3826218D1E66C8FC00CE0F6D /* FAQ.swift in Sources */,
@@ -539,6 +606,7 @@
 				38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */,
 				38C286401E2F3E60004526BF /* LoginController.swift in Sources */,
 				38303D7E1E40735D00893536 /* Beacon_Resident.swift in Sources */,
+				36EC12191EE541D3004D30E8 /* BaseCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,7 +760,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QN7G299E4Y;
+				DEVELOPMENT_TEAM = 77G8PUN44T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -700,7 +768,7 @@
 				);
 				INFOPLIST_FILE = WeTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.np.iot.wetrack.2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.np.iot.wetrack.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeTrack-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -713,7 +781,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QN7G299E4Y;
+				DEVELOPMENT_TEAM = 77G8PUN44T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -721,7 +789,7 @@
 				);
 				INFOPLIST_FILE = WeTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.np.iot.wetrack.2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.np.iot.wetrack.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeTrack-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

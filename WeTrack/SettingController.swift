@@ -10,9 +10,9 @@ import UIKit
 import Alamofire
 import GoogleSignIn
 import CoreBluetooth
+import SwiftyJSON
 
-
-class SettingController: UITableViewController, CBPeripheralManagerDelegate {
+class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
     
     
     @IBOutlet weak var userprofile: UIImageView!
@@ -26,6 +26,7 @@ class SettingController: UITableViewController, CBPeripheralManagerDelegate {
         super.viewDidLoad()
         
         usernameLb.text = Constant.username.uppercased()
+        navigationItem.title = "Setting"
       
         if (Constant.role != 5){
             if (Constant.userphoto != nil){
@@ -40,7 +41,7 @@ class SettingController: UITableViewController, CBPeripheralManagerDelegate {
             userprofile.image = UIImage(named: "default_avatar")
         }
         
-            
+        self.tableView.separatorColor = UIColor.seperatorApp
             
     
         
@@ -58,48 +59,62 @@ class SettingController: UITableViewController, CBPeripheralManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func deleteData() {
+        UserDefaults.standard.removeObject(forKey: "username")
+        UserDefaults.standard.removeObject(forKey: "token")
+        UserDefaults.standard.removeObject(forKey: "userid")
+        UserDefaults.standard.removeObject(forKey: "role")
+    }
+    
+    func logOut() {
+        
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableScanning"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logout"), object: nil)
+        
+        
+        
+        
+        
+        deleteDeviceTk()
+        
+    }
   
     
     @IBAction func logout(_ sender: Any) {
-        
-        
-    
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableScanning"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "logout"), object: nil)
-         
-        
-     
-        
-        UserDefaults.standard.removeObject(forKey: "username")
-        deleteDeviceTk()
-        
-        if (Constant.role != 5){
-            do {
-                GIDSignIn.sharedInstance().signOut()
-                               // Set the view to the login screen after signing out
-               
-            } catch let signOutError as NSError {
-                print ("Error signing out: \(signOutError)")
-            }
-        }
-        
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.resetAppToFirstController()
-        
-
-        
-        
+        self.logOut()
     }
     
     func deleteDeviceTk(){
-        
+        self.showLoadingHUD()
         let parameters: Parameters = [
             "token": Constant.device_token,
             "user_id": Constant.user_id
         ]
         
+        
         Alamofire.request(Constant.URLdelDeviceTk, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            self.hideLoadingHUD()
+            if (response.data != nil) {
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.resetAppToFirstController()
+
+                let json = JSON.init(data: response.data!)
+                if (Constant.role != 5){
+                    do {
+                        GIDSignIn.sharedInstance().signOut()
+                        
+                        // Set the view to the login screen after signing out
+                        
+                    } catch let signOutError as NSError {
+                        print ("Error signing out: \(signOutError)")
+                    }
+                }
+
+            } else {
+                self.displayMyAlertMessage(title: "No internet connect", mess: "")
+            }
             
         }
     }
@@ -181,5 +196,10 @@ class SettingController: UITableViewController, CBPeripheralManagerDelegate {
         
        
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if ((indexPath.section == 2) && (indexPath.row == 0)) {
+            self.logOut()
+        }
+    }
 }

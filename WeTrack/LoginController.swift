@@ -116,6 +116,7 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         
          print("email\(email)")
         
+        
         Alamofire.request(Constant.URLlogin, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             if let JSON = response.result.value as? [String: Any] {
                 print("\(JSON)")
@@ -348,7 +349,7 @@ extension UIViewController {
     //    
     func displayMyAlertMessage(title: String, mess : String){
         
-        var myAlert = UIAlertController(title: title, message: mess, preferredStyle: UIAlertControllerStyle.alert)
+        let myAlert = UIAlertController(title: title, message: mess, preferredStyle: UIAlertControllerStyle.alert)
         
         let okAction = UIAlertAction(title: "OK!!", style: UIAlertActionStyle.default, handler: nil)
         

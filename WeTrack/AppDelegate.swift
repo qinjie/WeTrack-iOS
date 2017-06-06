@@ -11,6 +11,7 @@ import CoreLocation
 import Alamofire
 import GoogleSignIn
 
+
 import Firebase
 
 import FirebaseMessaging
@@ -28,26 +29,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        UIApplication.shared.statusBarStyle = .lightContent
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         //        var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
         //         self.window.rootViewController = loginController
         if (UserDefaults.standard.string(forKey: "username") == nil) {
             
-            var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
+            let loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
             
             self.window.rootViewController = loginController
         }else{
             
-            var mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
+            let mainViewController: CustomTabBarController? = (mainStoryboard.instantiateViewController(withIdentifier: "Home") as? CustomTabBarController)
             
             self.window.rootViewController = mainViewController
             
             Constant.token = UserDefaults.standard.string(forKey: "token")!
         }
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
-        UIApplication.shared.cancelAllLocalNotifications()
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification, object: nil)
         NotificationCenter.default.addObserver(self,selector: #selector(startBackground), name: NSNotification.Name(rawValue: "start"), object: nil)
@@ -79,6 +79,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     public func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
         FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: FIRInstanceIDAPNSTokenType.sandbox)
+        let characterSet = CharacterSet(charactersIn: "<>")
+        let deviceTokenString = deviceToken.description.trimmingCharacters(in: characterSet).replacingOccurrences(of: " ", with: "");
+        NSLog("deviceToken",deviceTokenString)
+        let device_token = UserDefaults.standard.value(forKey: "devicetoken")
+        if (device_token == nil) {
+            UserDefaults.standard.set(deviceTokenString, forKey: "devicetoken")
+        }
+        //if (UserDefaults.standard.string(forKey: "devicetoken")!)
     }
     
     func tokenRefreshNotification(notification: NSNotification) {
