@@ -71,8 +71,8 @@
                 <constraints>
                     <constraint firstItem="3PO-fs-nj4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3Cx-o9-LTo"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3PO-fs-nj4" secondAttribute="bottom" constant="4" id="3am-zc-yFW"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XZE-4j-r7J" secondAttribute="bottom" constant="26" id="FSU-7x-gaK"/>
-                    <constraint firstItem="XZE-4j-r7J" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="LL7-BN-9ep"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XZE-4j-r7J" secondAttribute="bottom" constant="16" id="FSU-7x-gaK"/>
+                    <constraint firstItem="XZE-4j-r7J" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="LL7-BN-9ep"/>
                     <constraint firstAttribute="trailing" secondItem="3PO-fs-nj4" secondAttribute="trailing" constant="12" id="UPb-kQ-OtT"/>
                     <constraint firstItem="3PO-fs-nj4" firstAttribute="leading" secondItem="XZE-4j-r7J" secondAttribute="trailing" constant="12" id="W6S-oh-jNa"/>
                     <constraint firstItem="XZE-4j-r7J" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lxl-Sp-Dvp"/>

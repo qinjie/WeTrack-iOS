@@ -482,8 +482,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     func resetAppToFirstController() {
-        var mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
         self.window.rootViewController = loginController
     }
 }

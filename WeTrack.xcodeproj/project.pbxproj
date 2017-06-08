@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3607E6A71EE55A88005C0DC6 /* ResidentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607E6A51EE55A88005C0DC6 /* ResidentTableViewCell.swift */; };
 		3607E6A81EE55A88005C0DC6 /* ResidentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */; };
+		3632A8A91EE6887600E6F7D7 /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632A8A71EE6887600E6F7D7 /* NearMe.swift */; };
+		3632A8AA1EE6887600E6F7D7 /* NearMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632A8A81EE6887600E6F7D7 /* NearMe.xib */; };
 		36EC12141EE53E2E004D30E8 /* UIColor-Hex-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */; };
 		36EC12171EE5419D004D30E8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12161EE5419D004D30E8 /* BaseViewController.swift */; };
 		36EC12191EE541D3004D30E8 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */; };
@@ -85,6 +87,8 @@
 		22D45AAD9A3520E6085A7B73 /* Pods_WeTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3607E6A51EE55A88005C0DC6 /* ResidentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResidentTableViewCell.swift; path = Resident_BeaconPage/ResidentCell/ResidentTableViewCell.swift; sourceTree = "<group>"; };
 		3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResidentTableViewCell.xib; path = Resident_BeaconPage/ResidentCell/ResidentTableViewCell.xib; sourceTree = "<group>"; };
+		3632A8A71EE6887600E6F7D7 /* NearMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearMe.swift; path = NearMeCell/NearMe.swift; sourceTree = "<group>"; };
+		3632A8A81EE6887600E6F7D7 /* NearMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NearMe.xib; path = NearMeCell/NearMe.xib; sourceTree = "<group>"; };
 		36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Hex-Swift.swift"; sourceTree = "<group>"; };
 		36EC12161EE5419D004D30E8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,15 @@
 				3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */,
 			);
 			name = ResidentCell;
+			sourceTree = "<group>";
+		};
+		3632A8A61EE6885600E6F7D7 /* NearMeCell */ = {
+			isa = PBXGroup;
+			children = (
+				3632A8A71EE6887600E6F7D7 /* NearMe.swift */,
+				3632A8A81EE6887600E6F7D7 /* NearMe.xib */,
+			);
+			name = NearMeCell;
 			sourceTree = "<group>";
 		};
 		36EC12121EE53E10004D30E8 /* Extension */ = {
@@ -334,6 +347,7 @@
 		38EA91971E67B49500B6282C /* Resident_Beacon Page */ = {
 			isa = PBXGroup;
 			children = (
+				3632A8A61EE6885600E6F7D7 /* NearMeCell */,
 				3607E6A41EE55A63005C0DC6 /* ResidentCell */,
 				38E574911E654F4100CA8EB4 /* ResidentDetailPage.swift */,
 				388049131E304C4C009CF14F /* ResidentList.swift */,
@@ -491,6 +505,7 @@
 				388D93CD1E5F2A34007CE910 /* about.png in Resources */,
 				38122E331E5EE47D0036AF52 /* Assets.xcassets in Resources */,
 				388D93CB1E5F2A2D007CE910 /* about.html in Resources */,
+				3632A8AA1EE6887600E6F7D7 /* NearMe.xib in Resources */,
 				385F51281E77841700313FF1 /* designer_credit.png in Resources */,
 				388D93CF1E5F2A3B007CE910 /* checkmark.png in Resources */,
 				3607E6A81EE55A88005C0DC6 /* ResidentTableViewCell.xib in Resources */,
@@ -607,6 +622,7 @@
 				38C286401E2F3E60004526BF /* LoginController.swift in Sources */,
 				38303D7E1E40735D00893536 /* Beacon_Resident.swift in Sources */,
 				36EC12191EE541D3004D30E8 /* BaseCollectionViewController.swift in Sources */,
+				3632A8A91EE6887600E6F7D7 /* NearMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

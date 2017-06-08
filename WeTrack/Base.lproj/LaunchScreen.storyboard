@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,44 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="J5Q-v8-T8L">
+                                <rect key="frame" x="123.5" y="269" width="128" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product of Ngee Ann Polytechnic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hU-Xx-yC8">
+                                <rect key="frame" x="58" y="622" width="259.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8HO-nc-YNo">
+                                <rect key="frame" x="10" y="64" width="355" height="195"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIr-cg-s1F">
+                                        <rect key="frame" x="68.5" y="67.5" width="218" height="60"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="XIr-cg-s1F" firstAttribute="centerY" secondItem="8HO-nc-YNo" secondAttribute="centerY" id="ITp-hR-qPX"/>
+                                    <constraint firstItem="XIr-cg-s1F" firstAttribute="centerX" secondItem="8HO-nc-YNo" secondAttribute="centerX" id="iFx-KD-QMA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="J5Q-v8-T8L" firstAttribute="top" secondItem="8HO-nc-YNo" secondAttribute="bottom" constant="10" id="6zk-Sq-W6f"/>
+                            <constraint firstItem="9hU-Xx-yC8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9AD-PP-AQd"/>
+                            <constraint firstAttribute="trailing" secondItem="8HO-nc-YNo" secondAttribute="trailing" constant="10" id="F6A-ca-MaS"/>
+                            <constraint firstItem="8HO-nc-YNo" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="44" id="RD8-lS-rtb"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="9hU-Xx-yC8" secondAttribute="bottom" constant="24" id="a1b-T5-UXp"/>
+                            <constraint firstItem="8HO-nc-YNo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="10" id="fzk-ml-WrJ"/>
+                            <constraint firstItem="J5Q-v8-T8L" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jnn-Ke-J91"/>
+                            <constraint firstItem="J5Q-v8-T8L" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zh8-yk-PEU"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -28,4 +65,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch" width="128" height="128"/>
+    </resources>
 </document>

@@ -232,6 +232,12 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     
                     
                 }
+                DispatchQueue.main.async(execute: {
+                    //alertController.dismiss(animated: true, completion: nil)
+                    OperationQueue.main.addOperation {
+                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                    }
+                })
             }
             
             print(" all re1 \(GlobalData.allResidents.count)")
@@ -265,14 +271,6 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
             }
             
             
-            
-            
-            DispatchQueue.main.async(execute: {
-                //alertController.dismiss(animated: true, completion: nil)
-                OperationQueue.main.addOperation {
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                }
-            })
         }
         
     }

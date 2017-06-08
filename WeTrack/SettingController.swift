@@ -87,37 +87,47 @@ class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
     
     func deleteDeviceTk(){
         self.showLoadingHUD()
-        let parameters: Parameters = [
-            "token": Constant.device_token,
-            "user_id": Constant.user_id
-        ]
-        
-        
-        Alamofire.request(Constant.URLdelDeviceTk, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            self.hideLoadingHUD()
+        let httpHeader : [String : String] = ["Authorization" : "Bearer " + Constant.token]
+        Alamofire.request(Constant.URLLogout, method: .get, parameters: nil, headers: httpHeader).responseJSON { (response) in
             if (response.data != nil) {
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.resetAppToFirstController()
-
                 let json = JSON.init(data: response.data!)
-                if (Constant.role != 5){
-                    do {
-                        GIDSignIn.sharedInstance().signOut()
+                let parameters: Parameters = [
+                    "token": Constant.device_token,
+                    "user_id": Constant.user_id
+                ]
+                
+                
+                Alamofire.request(Constant.URLdelDeviceTk, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+                    self.hideLoadingHUD()
+                    if (response.data != nil) {
                         
-                        // Set the view to the login screen after signing out
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.resetAppToFirstController()
                         
-                    } catch let signOutError as NSError {
-                        print ("Error signing out: \(signOutError)")
+                        let json = JSON.init(data: response.data!)
+                        if (Constant.role != 5){
+                            do {
+                                GIDSignIn.sharedInstance().signOut()
+                                
+                                // Set the view to the login screen after signing out
+                                
+                            } catch let signOutError as NSError {
+                                print ("Error signing out: \(signOutError)")
+                            }
+                        }
+                        
+                    } else {
+                        self.displayMyAlertMessage(title: "No internet connect", mess: "")
                     }
+                    
                 }
 
+                
             } else {
-                self.displayMyAlertMessage(title: "No internet connect", mess: "")
+                self.displayMyAlertMessage(title: "Warning", mess: "No internet connection")
             }
-            
         }
-    }
+           }
     
     @IBOutlet weak var switchNotiBtn: UISwitch!
     @IBAction func switchNoti(_ sender: Any) {

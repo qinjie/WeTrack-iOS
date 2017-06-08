@@ -20,6 +20,7 @@ struct Constant{
     static let URLcreateDeviceTk = baseURL + "api/web/index.php/v1/device-token/new"
     static let URLdelDeviceTk = baseURL + "api/web/index.php/v1/device-token/del"
     static let URLstatus = baseURL + "api/web/index.php/v1/resident/status"
+    static let URLLogout = baseURL + "api/web/index.php/v1/user/logout"
     static var device_token = ""
     
     static let restartTime = 300.0
