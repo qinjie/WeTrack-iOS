@@ -63,4 +63,10 @@ extension UIColor {
     open class var unselected: UIColor {
         return UIColor.init(rgba: "#EEEEEE")
     }
+    open class var redApp: UIColor {
+        return UIColor.init(rgba: "#E53935")
+    }
+    open class var yellowApp: UIColor {
+        return UIColor.init(rgba: "#F57F17")
+    }
 }

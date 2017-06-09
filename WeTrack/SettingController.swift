@@ -18,14 +18,15 @@ class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
     @IBOutlet weak var userprofile: UIImageView!
     @IBOutlet weak var usernameLb: UILabel!
     
-
+    @IBOutlet weak var lblEmail : UILabel!
     
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameLb.text = Constant.username.uppercased()
+        usernameLb.text = Constant.username
+        lblEmail.text = Constant.email
         navigationItem.title = "Setting"
       
         if (Constant.role != 5){
@@ -64,6 +65,7 @@ class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
         UserDefaults.standard.removeObject(forKey: "token")
         UserDefaults.standard.removeObject(forKey: "userid")
         UserDefaults.standard.removeObject(forKey: "role")
+        UserDefaults.standard.removeObject(forKey: "email")
     }
     
     func logOut() {
@@ -100,7 +102,7 @@ class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
                 Alamofire.request(Constant.URLdelDeviceTk, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
                     self.hideLoadingHUD()
                     if (response.data != nil) {
-                        
+                        self.deleteData()
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         appDelegate.resetAppToFirstController()
                         

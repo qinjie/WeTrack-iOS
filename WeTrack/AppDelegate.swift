@@ -29,11 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if (UserDefaults.standard.string(forKey: "email") != nil) {
+            Constant.email = UserDefaults.standard.value(forKey: "email") as? String ?? ""
+        }
         UIApplication.shared.statusBarStyle = .lightContent
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         //        var loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
         //         self.window.rootViewController = loginController
-        if (UserDefaults.standard.string(forKey: "username") == nil) {
+        if (UserDefaults.standard.string(forKey: "token") == nil) {
             
             let loginController: LoginController? = (mainStoryboard.instantiateViewController(withIdentifier: "Login") as? LoginController)
             
@@ -387,6 +390,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Saves changes in the application's managed object context before the application terminates.
         //  self.saveContext()
     }
+    
+    
     
     // MARK: - Core Data stack
     

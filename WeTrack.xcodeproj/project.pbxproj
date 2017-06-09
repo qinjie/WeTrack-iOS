@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		3607E6A71EE55A88005C0DC6 /* ResidentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3607E6A51EE55A88005C0DC6 /* ResidentTableViewCell.swift */; };
 		3607E6A81EE55A88005C0DC6 /* ResidentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */; };
+		360B50511EE9223200E38917 /* NearCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B50501EE9223200E38917 /* NearCell.swift */; };
+		360B50531EE9288F00E38917 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B50521EE9288F00E38917 /* Location.swift */; };
 		3632A8A91EE6887600E6F7D7 /* NearMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632A8A71EE6887600E6F7D7 /* NearMe.swift */; };
 		3632A8AA1EE6887600E6F7D7 /* NearMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632A8A81EE6887600E6F7D7 /* NearMe.xib */; };
+		363778A91EEA34280058776F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 363778A81EEA34280058776F /* Assets.xcassets */; };
 		36EC12141EE53E2E004D30E8 /* UIColor-Hex-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */; };
 		36EC12171EE5419D004D30E8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12161EE5419D004D30E8 /* BaseViewController.swift */; };
 		36EC12191EE541D3004D30E8 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */; };
@@ -22,7 +25,6 @@
 		38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */; };
 		38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */; };
 		38122E311E5EE2FA0036AF52 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38122E301E5EE2FA0036AF52 /* AboutController.swift */; };
-		38122E331E5EE47D0036AF52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38122E321E5EE47D0036AF52 /* Assets.xcassets */; };
 		3826218B1E66C83800CE0F6D /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826218A1E66C83800CE0F6D /* FAQController.swift */; };
 		3826218D1E66C8FC00CE0F6D /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826218C1E66C8FC00CE0F6D /* FAQ.swift */; };
 		382621901E66C9DC00CE0F6D /* faqs.json in Resources */ = {isa = PBXBuildFile; fileRef = 3826218F1E66C9DC00CE0F6D /* faqs.json */; };
@@ -87,8 +89,11 @@
 		22D45AAD9A3520E6085A7B73 /* Pods_WeTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3607E6A51EE55A88005C0DC6 /* ResidentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResidentTableViewCell.swift; path = Resident_BeaconPage/ResidentCell/ResidentTableViewCell.swift; sourceTree = "<group>"; };
 		3607E6A61EE55A88005C0DC6 /* ResidentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResidentTableViewCell.xib; path = Resident_BeaconPage/ResidentCell/ResidentTableViewCell.xib; sourceTree = "<group>"; };
+		360B50501EE9223200E38917 /* NearCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearCell.swift; path = Entity/NearCell.swift; sourceTree = "<group>"; };
+		360B50521EE9288F00E38917 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Entity/Location.swift; sourceTree = "<group>"; };
 		3632A8A71EE6887600E6F7D7 /* NearMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearMe.swift; path = NearMeCell/NearMe.swift; sourceTree = "<group>"; };
 		3632A8A81EE6887600E6F7D7 /* NearMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NearMe.xib; path = NearMeCell/NearMe.xib; sourceTree = "<group>"; };
+		363778A81EEA34280058776F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = WeTrack/Assets.xcassets; sourceTree = "<group>"; };
 		36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Hex-Swift.swift"; sourceTree = "<group>"; };
 		36EC12161EE5419D004D30E8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +109,6 @@
 		38122E2B1E5ED5E50036AF52 /* BluetoothManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManagerHandler.h; sourceTree = "<group>"; };
 		38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothManagerHandler.m; sourceTree = "<group>"; };
 		38122E301E5EE2FA0036AF52 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
-		38122E321E5EE47D0036AF52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3826218A1E66C83800CE0F6D /* FAQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
 		3826218C1E66C8FC00CE0F6D /* FAQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
 		3826218F1E66C9DC00CE0F6D /* faqs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = faqs.json; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 			children = (
 				36EC121F1EE54F41004D30E8 /* BaseCell.swift */,
 				36EC12211EE54F69004D30E8 /* ResidentCell.swift */,
+				360B50501EE9223200E38917 /* NearCell.swift */,
+				360B50521EE9288F00E38917 /* Location.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -231,7 +237,6 @@
 		382621911E66CAE400CE0F6D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				38122E321E5EE47D0036AF52 /* Assets.xcassets */,
 				38D563271E28B6A0004DE7A1 /* Main.storyboard */,
 				38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */,
 				38AD5E6C1E5A84AC00E4A050 /* WeTrack-Bridging-Header.h */,
@@ -268,6 +273,7 @@
 		38D563171E28B6A0004DE7A1 = {
 			isa = PBXGroup;
 			children = (
+				363778A81EEA34280058776F /* Assets.xcassets */,
 				38D563221E28B6A0004DE7A1 /* WeTrack */,
 				38D5633A1E28B6A0004DE7A1 /* WeTrackTests */,
 				38D563451E28B6A0004DE7A1 /* WeTrackUITests */,
@@ -500,10 +506,10 @@
 				385F512B1E77841700313FF1 /* thanks_to.png in Resources */,
 				382621901E66C9DC00CE0F6D /* faqs.json in Resources */,
 				385F51291E77841700313FF1 /* developer_credit.png in Resources */,
+				363778A91EEA34280058776F /* Assets.xcassets in Resources */,
 				38409B591E66B0E5001182BE /* GoogleService-Info.plist in Resources */,
 				38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */,
 				388D93CD1E5F2A34007CE910 /* about.png in Resources */,
-				38122E331E5EE47D0036AF52 /* Assets.xcassets in Resources */,
 				388D93CB1E5F2A2D007CE910 /* about.html in Resources */,
 				3632A8AA1EE6887600E6F7D7 /* NearMe.xib in Resources */,
 				385F51281E77841700313FF1 /* designer_credit.png in Resources */,
@@ -603,6 +609,8 @@
 				36EC12221EE54F69004D30E8 /* ResidentCell.swift in Sources */,
 				36EC12201EE54F41004D30E8 /* BaseCell.swift in Sources */,
 				36EC121B1EE542EA004D30E8 /* BaseTableViewController.swift in Sources */,
+				360B50531EE9288F00E38917 /* Location.swift in Sources */,
+				360B50511EE9223200E38917 /* NearCell.swift in Sources */,
 				38EA91991E67B9AC00B6282C /* FAQTableViewCell.swift in Sources */,
 				36EC12171EE5419D004D30E8 /* BaseViewController.swift in Sources */,
 				36EC121D1EE548A1004D30E8 /* UIView+IBInspectable.swift in Sources */,

@@ -20,6 +20,10 @@ class Beacon{
     var report: String = ""
     var status: Bool = true
     var uuid: String = ""
+    
+    func toString() -> String {
+        return "ID: \(id) | Major: \(major) | Minor : \(minor)"
+    }
    
 }
 
@@ -32,12 +36,11 @@ class Resident: NSObject, NSCoding {
     var report: String = ""
     var status: Bool = true
     var remark: String = "No report"
-    var dob: String = "00"
-    var address: String = "No report"
-    var lat: String = "00"
-    var long: String = "00"
+    var dob: String = "00"    
     var isRelative: Bool = false
-    
+    var beacons : [Beacon]?
+    var lastestLocation : Location?
+    var beacon_count = 0
     override init(){
         
         name = "Test"
@@ -48,11 +51,8 @@ class Resident: NSObject, NSCoding {
         status = true
         remark = "No report"
         dob = "00"
-        address = "No report"
-        lat = "00"
-        long = "00"
         isRelative = false
-        
+        self.beacon_count = 0
     }
 //    
 //    init(rName: String, rId: Int32, rPhoto: String, rNric: String, rReport: String, rStatus: Bool, rRemark: String, rDob: String, rAddress: String, rLat: String, rLong: String, rIsRelative: Bool){
@@ -81,9 +81,6 @@ class Resident: NSObject, NSCoding {
         status = aDecoder.decodeObject(forKey: "status") as? Bool ?? true
         remark = aDecoder.decodeObject(forKey: "remark") as? String ?? ""
         dob = aDecoder.decodeObject(forKey: "dob") as? String ?? ""
-        address = aDecoder.decodeObject(forKey: "address") as? String ?? ""
-        lat = aDecoder.decodeObject(forKey: "lat") as? String ?? ""
-        long = aDecoder.decodeObject(forKey: "long") as? String ?? ""
         isRelative = aDecoder.decodeObject(forKey: "isRelative") as? Bool ?? false
         
     }
@@ -96,10 +93,7 @@ class Resident: NSObject, NSCoding {
         aCoder.encode(report, forKey: "report")
         aCoder.encode(status, forKey: "status")
         aCoder.encode(remark, forKey: "remark")
-        aCoder.encode(dob, forKey: "dob")
-        aCoder.encode(address, forKey: "address")
-        aCoder.encode(lat, forKey: "lat")
-        aCoder.encode(long, forKey: "long")
+        aCoder.encode(dob, forKey: "dob")        
         aCoder.encode(isRelative, forKey: "isRelative")
     }
 

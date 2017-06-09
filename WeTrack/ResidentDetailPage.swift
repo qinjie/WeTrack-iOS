@@ -10,11 +10,15 @@ import Alamofire
 import UIKit
 
 class ResidentDetailPage: UITableViewController {
+    @IBOutlet weak var tbl : UITableView!
 
     var resident: Resident?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tbl.estimatedRowHeight = 70
+        tbl.tableFooterView = UIView.init(frame: CGRect.zero)
+        tbl.rowHeight = UITableViewAutomaticDimension
         
         if (resident?.photo == ""){
             photo.image = UIImage(named: "default_avatar")
@@ -46,8 +50,10 @@ class ResidentDetailPage: UITableViewController {
             
             switchBtn.isHidden = true
         }
-        
-        address.text = resident?.address
+        if (self.resident?.lastestLocation != nil) {
+            address.text = resident?.lastestLocation?.address
+        }
+        //
         
         nric.text = resident?.nric
         
@@ -55,16 +61,49 @@ class ResidentDetailPage: UITableViewController {
 
         remark.text = resident?.remark
         
-        reported.text = resident?.report
         if (resident?.status == true) {
-            lblStatus.text = "Available"
+            lblStatus.text = "Missing"
+            lblStatus.textColor = UIColor.redApp
         } else {
-            lblStatus.text = "None"
+            lblStatus.text = "Available"
+            lblStatus.textColor = UIColor.mainApp
         }
         
+        var beacon_detect : Beacon?
+        if (resident?.lastestLocation != nil) {
+            let beacon_id = Int(resident!.lastestLocation!.beacon_id)
+            for item in (resident?.beacons)! {
+                if (item.id == beacon_id) {
+                    beacon_detect = item
+                    break
+                }
+            }
+        }
+        if (resident?.lastestLocation != nil) {
+            lblBeaconLocation.text = resident!.lastestLocation!.address
+        } else {
+            lblBeaconLocation.text = "Unknown"
+        }
         
+        if (resident?.beacons?.count == 0) {
+            lblBeaconBelong.text = "No beacon"
+            lblBeaconBelong.textColor = UIColor.yellowApp
+        } else {
+            var text = ""
+            for item in (self.resident?.beacons!)! {
+                let str = item.toString()
+                text = text + " - " + str + "\n"
+            }
+            lblBeaconBelong.text = text
+            lblBeaconBelong.textColor = UIColor.black
+        }
         
-        
+        if (beacon_detect != nil ) {
+            lblBeaconDetect.text = beacon_detect!.name
+            
+        } else {
+            lblBeaconDetect.text = "Unknown"
+        }
     }
 
     @IBOutlet weak var photo: UIImageView!
@@ -75,7 +114,6 @@ class ResidentDetailPage: UITableViewController {
     @IBOutlet weak var nric: UILabel!
     @IBOutlet weak var dob: UILabel!
     @IBOutlet weak var remark: UILabel!
-    @IBOutlet weak var reported: UILabel!
     @IBOutlet weak var lblStatus : UILabel!
     @IBOutlet weak var lblBeaconDetect : UILabel!
     @IBOutlet weak var lblBeaconLocation : UILabel!
@@ -84,13 +122,18 @@ class ResidentDetailPage: UITableViewController {
     
     @IBAction func openMap(_ sender: Any) {
         var testURL = URL(string: "comgooglemaps-x-callback://")
-        if UIApplication.shared.canOpenURL(testURL!) {
-            let add = (resident?.address.replacingOccurrences(of: " ", with: "+"))! as String
+        if (UIApplication.shared.canOpenURL(testURL!) && (resident?.lastestLocation != nil)) {
+            let add = resident!.lastestLocation!.address
+            let lat = resident!.lastestLocation!.latitude
+            let lon = resident!.lastestLocation!.longitude
             print("add \(add)")
-            var directionsRequest: String = "comgooglemaps://?q=" + add + "&center=" + (resident?.lat)! + "," + (resident?.long)! + "&zoom=15"
+            
+            var directionsRequest: String = "comgooglemaps://?q=\(add)&center=\(lat),\(lon)&zoom=15"
             print("\(directionsRequest)")
             var directionsURL = URL(string: directionsRequest)
             UIApplication.shared.openURL(directionsURL!)
+        } else {
+            self.displayMyAlertMessage(title: "Warning", mess: "Address is not available")
         }
     }
     
@@ -131,6 +174,7 @@ class ResidentDetailPage: UITableViewController {
                 })
 
                     self.status.text = "Missing"
+                    self.status.textColor = UIColor.redApp
                     self.resident?.status = true
              
             }))
@@ -141,6 +185,7 @@ class ResidentDetailPage: UITableViewController {
                 self.switchBtn.setOn(self.switchBtn.isOn, animated: true)
                 
                 self.status.text = "Available"
+                self.status.textColor = UIColor.mainApp
             
                 self.resident?.status = false
                 
@@ -183,5 +228,9 @@ class ResidentDetailPage: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
 }
+

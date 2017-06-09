@@ -54,6 +54,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="NNb-Wu-LMM" firstAttribute="centerY" secondItem="YHs-1p-Zp4" secondAttribute="centerY" id="79J-u9-DfX"/>
                     <constraint firstItem="YHs-1p-Zp4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="I3Z-Hg-AQj"/>
@@ -62,6 +63,7 @@
                     <constraint firstItem="YHs-1p-Zp4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="nOp-pB-HrQ"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="img" destination="YHs-1p-Zp4" id="57U-NP-b2P"/>
                 <outlet property="lblName" destination="uNS-Qy-q0D" id="KEf-p0-M1K"/>

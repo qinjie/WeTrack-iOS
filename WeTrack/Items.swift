@@ -34,6 +34,7 @@ struct Constant{
     static var isScanning = true
     static var userphoto = URL(string: "")
     
+    
     static var isLogin = false
     
 }

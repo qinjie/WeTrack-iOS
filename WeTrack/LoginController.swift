@@ -115,6 +115,8 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         ]
         
          print("email\(email)")
+        Constant.email = email
+        UserDefaults.standard.set(Constant.email, forKey: "email")
         
         
         Alamofire.request(Constant.URLlogin, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
@@ -195,22 +197,22 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
                     newResident.dob = (json["dob"] as? String)!
                     
                     
-                    if let location = json["locations"] as? [[String: Any]]{
-                        if (location.count > 0){
-                            if let add = location[0]["address"] as? String {
-                                newResident.address = add
-                            }
-                            if let add = location[0]["latitude"] as? String{
-                                newResident.lat = add
-                            }
-                            
-                            if let add = location[0]["longitude"] as? String{
-                                newResident.long = add
-                            }
-                            
-                            print("add \(newResident.address)")
-                        }
-                    }
+//                    if let location = json["locations"] as? [[String: Any]]{
+//                        if (location.count > 0){
+//                            if let add = location[0]["address"] as? String {
+//                                newResident.address = add
+//                            }
+//                            if let add = location[0]["latitude"] as? String{
+//                                newResident.lat = add
+//                            }
+//                            
+//                            if let add = location[0]["longitude"] as? String{
+//                                newResident.long = add
+//                            }
+//                            
+//                            print("add \(newResident.address)")
+//                        }
+//                    }
              
                         if let relatives = json["relatives"] as? [[String: Any]]{
                             

@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="130" id="KGk-i7-Jjw" customClass="ResidentTableViewCell" customModule="WeTrack" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="398" height="130"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="KGk-i7-Jjw" customClass="ResidentTableViewCell" customModule="WeTrack" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="398" height="129.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XZE-4j-r7J">
-                        <rect key="frame" x="8" y="37" width="56" height="56"/>
+                        <rect key="frame" x="8" y="17" width="56" height="56"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="XZE-4j-r7J" secondAttribute="height" id="0Rt-CS-NfE"/>
                             <constraint firstAttribute="height" constant="56" id="4rI-4e-tg8"/>
@@ -32,35 +32,44 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PO-fs-nj4">
-                        <rect key="frame" x="76" y="28" width="310" height="73.5"/>
+                        <rect key="frame" x="76" y="16" width="305" height="56.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyO-2I-y9M">
-                                <rect key="frame" x="4" y="2" width="302" height="25.5"/>
+                                <rect key="frame" x="4" y="2" width="273" height="25.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gat-DA-LLK">
-                                <rect key="frame" x="4" y="31.5" width="302" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gat-DA-LLK">
+                                <rect key="frame" x="4" y="31.5" width="273" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36Z-s5-mGS">
-                                <rect key="frame" x="4" y="52.5" width="302" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No report" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36Z-s5-mGS">
+                                <rect key="frame" x="4" y="35.5" width="273" height="17"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDo-br-NiX">
+                                <rect key="frame" x="285" y="21" width="16" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="ndl-CS-QBx"/>
+                                    <constraint firstAttribute="width" secondItem="oDo-br-NiX" secondAttribute="height" constant="1" id="x5a-3d-FUI"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CyO-2I-y9M" firstAttribute="leading" secondItem="3PO-fs-nj4" secondAttribute="leading" constant="4" id="6O6-Kh-RaQ"/>
                             <constraint firstItem="gat-DA-LLK" firstAttribute="trailing" secondItem="CyO-2I-y9M" secondAttribute="trailing" id="Aqh-jA-TI1"/>
-                            <constraint firstAttribute="trailing" secondItem="CyO-2I-y9M" secondAttribute="trailing" constant="4" id="BIW-Kg-3uW"/>
+                            <constraint firstItem="oDo-br-NiX" firstAttribute="leading" secondItem="CyO-2I-y9M" secondAttribute="trailing" constant="8" id="DiG-Jv-onk"/>
                             <constraint firstItem="CyO-2I-y9M" firstAttribute="top" secondItem="3PO-fs-nj4" secondAttribute="top" constant="2" id="FUJ-lH-ByZ"/>
                             <constraint firstItem="gat-DA-LLK" firstAttribute="top" secondItem="CyO-2I-y9M" secondAttribute="bottom" constant="4" id="Gtg-hO-ABx"/>
+                            <constraint firstItem="oDo-br-NiX" firstAttribute="centerY" secondItem="3PO-fs-nj4" secondAttribute="centerY" id="Mj9-Sa-VHl"/>
                             <constraint firstItem="36Z-s5-mGS" firstAttribute="leading" secondItem="gat-DA-LLK" secondAttribute="leading" id="Y4Y-Qf-pgA"/>
+                            <constraint firstAttribute="trailing" secondItem="oDo-br-NiX" secondAttribute="trailing" constant="4" id="bUE-DW-5gX"/>
                             <constraint firstItem="gat-DA-LLK" firstAttribute="leading" secondItem="CyO-2I-y9M" secondAttribute="leading" id="bda-Au-87g"/>
                             <constraint firstAttribute="bottom" secondItem="36Z-s5-mGS" secondAttribute="bottom" constant="4" id="btZ-SZ-YAU"/>
                             <constraint firstItem="36Z-s5-mGS" firstAttribute="trailing" secondItem="gat-DA-LLK" secondAttribute="trailing" id="fSx-BK-sgQ"/>
@@ -68,6 +77,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="3PO-fs-nj4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3Cx-o9-LTo"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3PO-fs-nj4" secondAttribute="bottom" constant="4" id="3am-zc-yFW"/>
@@ -80,13 +90,15 @@
                     <constraint firstItem="3PO-fs-nj4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="v8A-ma-oCc"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="img" destination="XZE-4j-r7J" id="xAm-gO-IFs"/>
+                <outlet property="imgStatus" destination="oDo-br-NiX" id="kfI-dd-BDe"/>
                 <outlet property="lblAdress" destination="36Z-s5-mGS" id="gtu-U8-VX0"/>
                 <outlet property="lblLastSeen" destination="gat-DA-LLK" id="UMs-Ey-yEo"/>
                 <outlet property="lblName" destination="CyO-2I-y9M" id="dg1-9i-Fzt"/>
             </connections>
-            <point key="canvasLocation" x="73" y="115"/>
+            <point key="canvasLocation" x="70.5" y="95"/>
         </tableViewCell>
     </objects>
 </document>

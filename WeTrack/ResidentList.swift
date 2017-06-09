@@ -17,6 +17,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
+ import SwiftyJSON
 
 class ResidentList: BaseViewController, CLLocationManagerDelegate {
     @IBOutlet weak var tbl : UITableView!
@@ -154,6 +155,8 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
         Alamofire.request(Constant.URLmissing, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             print("check2")
             NSLog("Ahihi \(response)")
+            let json = JSON.init(data: response.data!)
+            NSLog("Ahihi \(json)")
             let statusCode = response.response?.statusCode
             self.refreshControl.endRefreshing()
             print("connection code \(statusCode)")
@@ -206,7 +209,7 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
             
             
             for json in JSONS {
-                
+                NSLog("Test demo", json)
                 let status = (json["status"] as? Bool)!
                 
                 if ((status.hashValue != 0)){
@@ -243,7 +246,7 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
                     }
                     
                     if let beacon = json["beacons"] as? [[String: Any]] {
-                        
+                        var tmpBeacon = [Beacon]()
                         for b in beacon{
                             
                             let newBeacon = Beacon()
@@ -268,7 +271,9 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
                                 GlobalData.beaconList.append(newBeacon)
                                 
                             }
+                            tmpBeacon.append(newBeacon)
                         }
+                        r.beacons = tmpBeacon
                     }
                     
                     
@@ -469,7 +474,9 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! ResidentTableViewCell
-        cell.setData(resident: (residents?[indexPath.row])!)
+        let type = (self.residents?[indexPath.row].beacons?.count)! > 0 ? false : true
+        cell.setDate(resident: (self.residents?[indexPath.row])!, warning: type)
+//        cell.setData(resident: (residents?[indexPath.row])!)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
