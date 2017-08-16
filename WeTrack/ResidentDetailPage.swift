@@ -90,12 +90,15 @@ class ResidentDetailPage: UITableViewController {
             lblBeaconBelong.textColor = UIColor.yellowApp
         } else {
             var text = ""
-            for item in (self.resident?.beacons!)! {
-                let str = item.toString()
-                text = text + " - " + str + "\n"
+            if ((self.resident?.beacons) != nil){
+                for item in (self.resident?.beacons!)! {
+                    let str = item.toString()
+                    text = text + " - " + str + "\n"
+                }
+                lblBeaconBelong.text = text
+                lblBeaconBelong.textColor = UIColor.black
             }
-            lblBeaconBelong.text = text
-            lblBeaconBelong.textColor = UIColor.black
+            
         }
         
         if (beacon_detect != nil ) {

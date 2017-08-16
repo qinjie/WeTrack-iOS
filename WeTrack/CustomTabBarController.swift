@@ -68,9 +68,10 @@ class CustomTabBarController: UITabBarController {
         
         let selectedColor   = UIColor.selected
         let unselectedColor = UIColor.unselected
+//        
+//        tabBar.unselectedItemTintColor = unselectedColor
+//        
         
-        tabBar.unselectedItemTintColor = unselectedColor
-            
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: unselectedColor], for: .normal)
    
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: selectedColor], for: .selected)

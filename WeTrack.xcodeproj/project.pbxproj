@@ -47,30 +47,11 @@
 		38D563241E28B6A0004DE7A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563231E28B6A0004DE7A1 /* AppDelegate.swift */; };
 		38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D563271E28B6A0004DE7A1 /* Main.storyboard */; };
 		38D563311E28B6A0004DE7A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D5632F1E28B6A0004DE7A1 /* LaunchScreen.storyboard */; };
-		38D5633C1E28B6A0004DE7A1 /* WeTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5633B1E28B6A0004DE7A1 /* WeTrackTests.swift */; };
-		38D563471E28B6A0004DE7A1 /* WeTrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563461E28B6A0004DE7A1 /* WeTrackUITests.swift */; };
 		38D563581E28BC77004DE7A1 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D563571E28BC77004DE7A1 /* Items.swift */; };
 		38E574921E654F4100CA8EB4 /* ResidentDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E574911E654F4100CA8EB4 /* ResidentDetailPage.swift */; };
 		38EA91991E67B9AC00B6282C /* FAQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA91981E67B9AC00B6282C /* FAQTableViewCell.swift */; };
 		670365C49A2B43BFBB06E9B3 /* Pods_WeTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D45AAD9A3520E6085A7B73 /* Pods_WeTrack.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		38D563381E28B6A0004DE7A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 38D563181E28B6A0004DE7A1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38D5631F1E28B6A0004DE7A1;
-			remoteInfo = WeTrack;
-		};
-		38D563431E28B6A0004DE7A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 38D563181E28B6A0004DE7A1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38D5631F1E28B6A0004DE7A1;
-			remoteInfo = WeTrack;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		38303D841E4078F100893536 /* Embed Frameworks */ = {
@@ -94,6 +75,7 @@
 		3632A8A71EE6887600E6F7D7 /* NearMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NearMe.swift; path = NearMeCell/NearMe.swift; sourceTree = "<group>"; };
 		3632A8A81EE6887600E6F7D7 /* NearMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NearMe.xib; path = NearMeCell/NearMe.xib; sourceTree = "<group>"; };
 		363778A81EEA34280058776F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = WeTrack/Assets.xcassets; sourceTree = "<group>"; };
+		36682DBB1F43DC1200492313 /* WeTrack.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeTrack.entitlements; sourceTree = "<group>"; };
 		36EC12131EE53E2E004D30E8 /* UIColor-Hex-Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Hex-Swift.swift"; sourceTree = "<group>"; };
 		36EC12161EE5419D004D30E8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		36EC12181EE541D3004D30E8 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
@@ -134,10 +116,8 @@
 		38D563281E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38D563301E28B6A0004DE7A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38D563321E28B6A0004DE7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38D563371E28B6A0004DE7A1 /* WeTrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5633B1E28B6A0004DE7A1 /* WeTrackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeTrackTests.swift; sourceTree = "<group>"; };
 		38D5633D1E28B6A0004DE7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38D563421E28B6A0004DE7A1 /* WeTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D563461E28B6A0004DE7A1 /* WeTrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeTrackUITests.swift; sourceTree = "<group>"; };
 		38D563481E28B6A0004DE7A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38D563571E28BC77004DE7A1 /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
@@ -153,20 +133,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				670365C49A2B43BFBB06E9B3 /* Pods_WeTrack.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38D563341E28B6A0004DE7A1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38D5633F1E28B6A0004DE7A1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,8 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				38D563201E28B6A0004DE7A1 /* WeTrack.app */,
-				38D563371E28B6A0004DE7A1 /* WeTrackTests.xctest */,
-				38D563421E28B6A0004DE7A1 /* WeTrackUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,6 +260,7 @@
 		38D563221E28B6A0004DE7A1 /* WeTrack */ = {
 			isa = PBXGroup;
 			children = (
+				36682DBB1F43DC1200492313 /* WeTrack.entitlements */,
 				36EC121E1EE54F20004D30E8 /* Entity */,
 				36EC12151EE54183004D30E8 /* BaseClass */,
 				36EC12121EE53E10004D30E8 /* Extension */,
@@ -407,42 +372,6 @@
 			productReference = 38D563201E28B6A0004DE7A1 /* WeTrack.app */;
 			productType = "com.apple.product-type.application";
 		};
-		38D563361E28B6A0004DE7A1 /* WeTrackTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38D5634E1E28B6A0004DE7A1 /* Build configuration list for PBXNativeTarget "WeTrackTests" */;
-			buildPhases = (
-				38D563331E28B6A0004DE7A1 /* Sources */,
-				38D563341E28B6A0004DE7A1 /* Frameworks */,
-				38D563351E28B6A0004DE7A1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				38D563391E28B6A0004DE7A1 /* PBXTargetDependency */,
-			);
-			name = WeTrackTests;
-			productName = WeTrackTests;
-			productReference = 38D563371E28B6A0004DE7A1 /* WeTrackTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		38D563411E28B6A0004DE7A1 /* WeTrackUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 38D563511E28B6A0004DE7A1 /* Build configuration list for PBXNativeTarget "WeTrackUITests" */;
-			buildPhases = (
-				38D5633E1E28B6A0004DE7A1 /* Sources */,
-				38D5633F1E28B6A0004DE7A1 /* Frameworks */,
-				38D563401E28B6A0004DE7A1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				38D563441E28B6A0004DE7A1 /* PBXTargetDependency */,
-			);
-			name = WeTrackUITests;
-			productName = WeTrackUITests;
-			productReference = 38D563421E28B6A0004DE7A1 /* WeTrackUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -455,25 +384,16 @@
 				TargetAttributes = {
 					38D5631F1E28B6A0004DE7A1 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 77G8PUN44T;
+						DevelopmentTeam = EH5BAL5EWL;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
-					};
-					38D563361E28B6A0004DE7A1 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = S7QWTC4RY5;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 38D5631F1E28B6A0004DE7A1;
-					};
-					38D563411E28B6A0004DE7A1 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = S7QWTC4RY5;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 38D5631F1E28B6A0004DE7A1;
 					};
 				};
 			};
@@ -491,8 +411,6 @@
 			projectRoot = "";
 			targets = (
 				38D5631F1E28B6A0004DE7A1 /* WeTrack */,
-				38D563361E28B6A0004DE7A1 /* WeTrackTests */,
-				38D563411E28B6A0004DE7A1 /* WeTrackUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -517,20 +435,6 @@
 				3607E6A81EE55A88005C0DC6 /* ResidentTableViewCell.xib in Resources */,
 				385F512A1E77841700313FF1 /* human_credit.png in Resources */,
 				38D563291E28B6A0004DE7A1 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38D563351E28B6A0004DE7A1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38D563401E28B6A0004DE7A1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,36 +538,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		38D563331E28B6A0004DE7A1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38D5633C1E28B6A0004DE7A1 /* WeTrackTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		38D5633E1E28B6A0004DE7A1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				38D563471E28B6A0004DE7A1 /* WeTrackUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		38D563391E28B6A0004DE7A1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38D5631F1E28B6A0004DE7A1 /* WeTrack */;
-			targetProxy = 38D563381E28B6A0004DE7A1 /* PBXContainerItemProxy */;
-		};
-		38D563441E28B6A0004DE7A1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 38D5631F1E28B6A0004DE7A1 /* WeTrack */;
-			targetProxy = 38D563431E28B6A0004DE7A1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		38D563271E28B6A0004DE7A1 /* Main.storyboard */ = {
@@ -784,13 +659,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 77G8PUN44T;
+				CODE_SIGN_ENTITLEMENTS = WeTrack/WeTrack.entitlements;
+				DEVELOPMENT_TEAM = EH5BAL5EWL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = WeTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.np.iot.wetrack.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -805,76 +682,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 77G8PUN44T;
+				CODE_SIGN_ENTITLEMENTS = WeTrack/WeTrack.entitlements;
+				DEVELOPMENT_TEAM = EH5BAL5EWL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = WeTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.np.iot.wetrack.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeTrack-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		38D5634F1E28B6A0004DE7A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = S7QWTC4RY5;
-				INFOPLIST_FILE = WeTrackTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrackTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeTrack.app/WeTrack";
-			};
-			name = Debug;
-		};
-		38D563501E28B6A0004DE7A1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = S7QWTC4RY5;
-				INFOPLIST_FILE = WeTrackTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrackTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeTrack.app/WeTrack";
-			};
-			name = Release;
-		};
-		38D563521E28B6A0004DE7A1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = S7QWTC4RY5;
-				INFOPLIST_FILE = WeTrackUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrackUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = WeTrack;
-			};
-			name = Debug;
-		};
-		38D563531E28B6A0004DE7A1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = S7QWTC4RY5;
-				INFOPLIST_FILE = WeTrackUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beacon.WeTrackUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = WeTrack;
 			};
 			name = Release;
 		};
@@ -895,24 +716,6 @@
 			buildConfigurations = (
 				38D5634C1E28B6A0004DE7A1 /* Debug */,
 				38D5634D1E28B6A0004DE7A1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		38D5634E1E28B6A0004DE7A1 /* Build configuration list for PBXNativeTarget "WeTrackTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38D5634F1E28B6A0004DE7A1 /* Debug */,
-				38D563501E28B6A0004DE7A1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		38D563511E28B6A0004DE7A1 /* Build configuration list for PBXNativeTarget "WeTrackUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				38D563521E28B6A0004DE7A1 /* Debug */,
-				38D563531E28B6A0004DE7A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -158,14 +158,19 @@ class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
             alert.addAction(UIAlertAction(title: "Allow", style: UIAlertActionStyle.default, handler: { action in
                     self.turnOnBlt()
                 }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: {action in
+                self.switchScanBtn.isOn = false
+                Constant.isScanning = false
+                self.turnOffBlt()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableScanning"), object: nil)
+            }))
 
             self.present(alert, animated: true, completion: nil)
             
         }else{
             
             Constant.isScanning = false
-            
+            self.turnOffBlt()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "disableScanning"), object: nil)
             
         }
@@ -173,9 +178,15 @@ class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
     
     var bluetoothPeripheralManager: CBPeripheralManager?
     
+    func turnOffBlt() {
+        let bluetoothManager = BluetoothManagerHandler.sharedInstance()
+        bluetoothManager?.disable()
+        bluetoothManager?.setPower(false)
+    }
+    
     func turnOnBlt(){
-        var bluetoothManager = BluetoothManagerHandler.sharedInstance()
-        
+        let bluetoothManager = BluetoothManagerHandler.sharedInstance()
+        bluetoothManager?.enable()
         bluetoothManager?.setPower(true)
     }
     

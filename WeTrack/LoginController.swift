@@ -34,6 +34,14 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         
    
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        Constant.email = UserDefaults.standard.value(forKey: "email") as? String ?? ""
+        Constant.username = UserDefaults.standard.value(forKey: "username") as? String ?? ""
+        Constant.token = UserDefaults.standard.value(forKey: "token") as? String ?? ""
+        Constant.user_id = UserDefaults.standard.value(forKey: "userid") as? Int ?? 0
+        Constant.role = UserDefaults.standard.value(forKey: "role") as? Int ?? 40
+    }
 
 
     
@@ -282,13 +290,17 @@ class LoginController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate{
         // Login Anonymously
  
         Constant.user_id = 0
-        Constant.device_token = UserDefaults.standard.string(forKey: "devicetoken")!
+        if ((UserDefaults.standard.string(forKey: "devicetoken")) != nil){
+            Constant.device_token = UserDefaults.standard.string(forKey: "devicetoken")!
+            createDeviceTk()
+        }
+        
         UserDefaults.standard.set("Anonymous", forKey: "username")
         UserDefaults.standard.set(Constant.user_id, forKey: "userid")
         Constant.username = "Anonymous"
         //print("device token  \(Constant.device_token)")
         
-        createDeviceTk()
+        
         
         
     }

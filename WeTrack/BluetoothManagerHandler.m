@@ -31,12 +31,6 @@ static BluetoothManagerHandler *_handler = nil;
     return [_bluetoothManager powered];
 }
 
-
-- (void) setPower: (bool)powerStatus {
-    [_bluetoothManager setPowered:powerStatus];
-}
-
-
 - (void) startScan {
     [_bluetoothManager setDeviceScanningEnabled: true];
     [_bluetoothManager scanForServices: 0xFFFFFFFF];
