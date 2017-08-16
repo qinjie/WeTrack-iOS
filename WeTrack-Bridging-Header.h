@@ -10,7 +10,6 @@
 #define WeTrack_Bridging_Header_h
 
 #import <GoogleSignIn/GoogleSignIn.h>
-#import "BluetoothManagerHandler.h"
-#import "BluetoothDeviceHandler.h"
+
 
 #endif /* WeTrack_Bridging_Header_h */

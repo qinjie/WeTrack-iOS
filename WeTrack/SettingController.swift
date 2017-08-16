@@ -179,15 +179,15 @@ class SettingController: BaseTableViewController, CBPeripheralManagerDelegate {
     var bluetoothPeripheralManager: CBPeripheralManager?
     
     func turnOffBlt() {
-        let bluetoothManager = BluetoothManagerHandler.sharedInstance()
-        bluetoothManager?.disable()
-        bluetoothManager?.setPower(false)
+//        let bluetoothManager = BluetoothManagerHandler.sharedInstance()
+//        bluetoothManager?.disable()
+//        bluetoothManager?.setPower(false)
     }
     
     func turnOnBlt(){
-        let bluetoothManager = BluetoothManagerHandler.sharedInstance()
-        bluetoothManager?.enable()
-        bluetoothManager?.setPower(true)
+//        let bluetoothManager = BluetoothManagerHandler.sharedInstance()
+//        bluetoothManager?.enable()
+//        bluetoothManager?.setPower(true)
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {

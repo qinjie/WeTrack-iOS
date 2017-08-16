@@ -22,8 +22,6 @@
 		36EC12201EE54F41004D30E8 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC121F1EE54F41004D30E8 /* BaseCell.swift */; };
 		36EC12221EE54F69004D30E8 /* ResidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC12211EE54F69004D30E8 /* ResidentCell.swift */; };
 		380970AA1E41B63D00BB8391 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380970A91E41B63D00BB8391 /* Reachability.swift */; };
-		38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */; };
-		38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */; };
 		38122E311E5EE2FA0036AF52 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38122E301E5EE2FA0036AF52 /* AboutController.swift */; };
 		3826218B1E66C83800CE0F6D /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826218A1E66C83800CE0F6D /* FAQController.swift */; };
 		3826218D1E66C8FC00CE0F6D /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3826218C1E66C8FC00CE0F6D /* FAQ.swift */; };
@@ -84,12 +82,6 @@
 		36EC121F1EE54F41004D30E8 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseCell.swift; path = Entity/BaseCell.swift; sourceTree = "<group>"; };
 		36EC12211EE54F69004D30E8 /* ResidentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResidentCell.swift; path = Entity/ResidentCell.swift; sourceTree = "<group>"; };
 		380970A91E41B63D00BB8391 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		38122E271E5ED5E50036AF52 /* BluetoothDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDevice.h; sourceTree = "<group>"; };
-		38122E281E5ED5E50036AF52 /* BluetoothDeviceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothDeviceHandler.h; sourceTree = "<group>"; };
-		38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothDeviceHandler.m; sourceTree = "<group>"; };
-		38122E2A1E5ED5E50036AF52 /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManager.h; sourceTree = "<group>"; };
-		38122E2B1E5ED5E50036AF52 /* BluetoothManagerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManagerHandler.h; sourceTree = "<group>"; };
-		38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothManagerHandler.m; sourceTree = "<group>"; };
 		38122E301E5EE2FA0036AF52 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		3826218A1E66C83800CE0F6D /* FAQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
 		3826218C1E66C8FC00CE0F6D /* FAQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
@@ -187,19 +179,6 @@
 			name = Entity;
 			sourceTree = "<group>";
 		};
-		38122E2F1E5ED5F20036AF52 /* Objective-C */ = {
-			isa = PBXGroup;
-			children = (
-				38122E271E5ED5E50036AF52 /* BluetoothDevice.h */,
-				38122E281E5ED5E50036AF52 /* BluetoothDeviceHandler.h */,
-				38122E291E5ED5E50036AF52 /* BluetoothDeviceHandler.m */,
-				38122E2A1E5ED5E50036AF52 /* BluetoothManager.h */,
-				38122E2B1E5ED5E50036AF52 /* BluetoothManagerHandler.h */,
-				38122E2C1E5ED5E50036AF52 /* BluetoothManagerHandler.m */,
-			);
-			name = "Objective-C";
-			sourceTree = "<group>";
-		};
 		382621911E66CAE400CE0F6D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,7 +243,6 @@
 				36EC121E1EE54F20004D30E8 /* Entity */,
 				36EC12151EE54183004D30E8 /* BaseClass */,
 				36EC12121EE53E10004D30E8 /* Extension */,
-				38122E2F1E5ED5F20036AF52 /* Objective-C */,
 				38EA91961E67B46F00B6282C /* LoginPage */,
 				38EA91971E67B49500B6282C /* Resident_Beacon Page */,
 				38EA91951E67B3F900B6282C /* FAQ */,
@@ -519,7 +497,6 @@
 				36EC12171EE5419D004D30E8 /* BaseViewController.swift in Sources */,
 				36EC121D1EE548A1004D30E8 /* UIView+IBInspectable.swift in Sources */,
 				3607E6A71EE55A88005C0DC6 /* ResidentTableViewCell.swift in Sources */,
-				38122E2D1E5ED5E50036AF52 /* BluetoothDeviceHandler.m in Sources */,
 				388049181E3056EB009CF14F /* CustomTabBarController.swift in Sources */,
 				3826218D1E66C8FC00CE0F6D /* FAQ.swift in Sources */,
 				38D563581E28BC77004DE7A1 /* Items.swift in Sources */,
@@ -530,7 +507,6 @@
 				3826218B1E66C83800CE0F6D /* FAQController.swift in Sources */,
 				383FDBF31E5D27ED0058199B /* RelativeController.swift in Sources */,
 				38122E311E5EE2FA0036AF52 /* AboutController.swift in Sources */,
-				38122E2E1E5ED5E50036AF52 /* BluetoothManagerHandler.m in Sources */,
 				38C286401E2F3E60004526BF /* LoginController.swift in Sources */,
 				38303D7E1E40735D00893536 /* Beacon_Resident.swift in Sources */,
 				36EC12191EE541D3004D30E8 /* BaseCollectionViewController.swift in Sources */,
