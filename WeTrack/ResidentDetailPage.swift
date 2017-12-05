@@ -23,13 +23,11 @@ class ResidentDetailPage: UITableViewController {
         if (resident?.photo == ""){
             photo.image = UIImage(named: "default_avatar")
         }else{
-            let url = NSURL(string: Constant.photoURL + (resident?.photo)!)
-            
-            //print("Urlimage \(url)")
-            
-            let data = NSData(contentsOf: url as! URL)
-            if data != nil {
-                photo.image = UIImage(data:data! as Data)
+            if let url = NSURL(string: Constant.photoURL + (resident?.photo)!){
+                let data = NSData(contentsOf: url as! URL)
+                if data != nil {
+                    photo.image = UIImage(data:data! as Data)
+                }
             }
         }
         

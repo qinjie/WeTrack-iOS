@@ -44,6 +44,7 @@ class NearMeController: BaseViewController {
         tbl.register(UINib.init(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
         tbl.separatorColor = UIColor.seperatorApp
         tbl.tableFooterView = UIView.init(frame: CGRect.zero)
+        tbl.allowsSelection = false
         
         NotificationCenter.default.addObserver(self,selector: #selector(load), name: NSNotification.Name(rawValue: "updateHistory"), object: nil)
 //        let mapBtn = UIBarButtonItem(title: "Map", style: UIBarButtonItemStyle.plain, target: self, action: #selector(NearMeController.maps(sender:)))
@@ -135,6 +136,9 @@ class NearMeController: BaseViewController {
 extension NearMeController : UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = residents?.count {

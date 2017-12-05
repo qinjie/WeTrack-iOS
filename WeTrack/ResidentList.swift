@@ -17,7 +17,8 @@
 import UIKit
 import Alamofire
 import CoreLocation
- import SwiftyJSON
+import SwiftyJSON
+import SwiftyTimer
 
 class ResidentList: BaseViewController, CLLocationManagerDelegate {
     @IBOutlet weak var tbl : UITableView!
@@ -103,7 +104,9 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
     }
     
     func reloadData() {
-        loadServerList()
+        Timer.after(1) {
+            self.loadServerList()
+        }
     }
     
     @IBAction func sync(_ sender: Any) {
@@ -282,6 +285,13 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
                 }
                 
             }
+            
+            for i in GlobalData.missingList{
+                if !GlobalData.allResidents.contains(i){
+                    GlobalData.allResidents.append(i)
+                }
+            }
+            
             GlobalData.relativeList = GlobalData.allResidents.filter({$0.isRelative == true})
             
 //            var notification = UILocalNotification()
@@ -302,6 +312,7 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     func start(){
+        
         
         if (Constant.isScanning == false){
             return
@@ -453,8 +464,6 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
     
     
     func getIndexPathForSelectedCell() -> IndexPath? {
-        
-        var indexPath:IndexPath?
         
         if (self.tbl.indexPathForSelectedRow != nil) {
             return (self.tbl.indexPathForSelectedRow)

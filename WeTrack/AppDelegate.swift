@@ -248,7 +248,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 k.name = info[0]
                 k.id = info[2]
                 k.status = true
-                k.photo = (t?.photo)!
+                if t != nil{
+                    k.photo = (t?.photo)!
+                }
                 GlobalData.nearMe.append(k)
             }
             
@@ -293,6 +295,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             ]
             
             Alamofire.request(Constant.URLreport , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                
                 let JSONS = response.result.value
                 print(" reponse\(JSONS)")
             }

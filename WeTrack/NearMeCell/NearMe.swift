@@ -13,6 +13,7 @@ class NearMe: UITableViewCell {
     @IBOutlet weak var lblName : UILabel!
     @IBOutlet weak var lblStatus : UILabel!
     @IBOutlet weak var img : UIImageView!
+    var mResident: Resident?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,10 +26,11 @@ class NearMe: UITableViewCell {
     }
     
     func setData(resident : Resident){
+        mResident = resident
         self.img.sd_setImage(with: URL.init(string: resident.photo), placeholderImage: UIImage(named: "default_avatar"))
         
         self.lblName.text = resident.name
-        //self.lblStatus.text =
+        self.lblStatus.text = "Nearby"
     }
     
 }
