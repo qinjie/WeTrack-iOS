@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.requestLocationService()
+        GlobalData.residentStatus.removeAll()
         if (UserDefaults.standard.string(forKey: "email") != nil) {
             Constant.email = UserDefaults.standard.value(forKey: "email") as? String ?? ""
         }
@@ -53,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: ReachabilityChangedNotification, object: nil)
-        NotificationCenter.default.addObserver(self,selector: #selector(startBackground), name: NSNotification.Name(rawValue: "start"), object: nil)
         print("Hi guys")
         self.reachability = Reachability.init()
         do {
@@ -148,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     
-    func startBackground(){
+    func requestLocationService(){
         
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
@@ -208,18 +209,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print(" -____- Inside \(region.identifier)");
             
             let info = region.identifier.components(separatedBy: "#")
-        
-            if (Constant.noti){
-                noti(content: info[0] + " is nearby.")
-            }
-            
-            
-            
+    
             let today = Date()
             let dateFormatter = DateFormatter()
             
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let y = dateFormatter.string(from: today)
+            
+            if (Constant.noti){
+                if let lastTime = GlobalData.residentStatus[info[2]]{
+                    let timeInterval = dateFormatter.date(from: y)?.timeIntervalSince(dateFormatter.date(from: lastTime)!)
+                    if timeInterval! >= 3600{
+                        noti(content: info[0] + " is nearby.")
+                    }
+                }else{
+                    GlobalData.residentStatus[info[2]] = y
+                    noti(content: info[0] + " is nearby.")
+                }
+                
+            }
             
            // let x = Beacon()
             
@@ -278,6 +286,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let lat = locationManager.location?.coordinate.latitude
         let long = locationManager.location?.coordinate.longitude
         
+        if let user = GlobalData.missingList.filter({$0.id == userId}).first{
+            for i in 0...GlobalData.missingList.count-1{
+                if GlobalData.missingList[i].id == user.id{
+                    var location = [String:Any]()
+                    location["longitude"] = long
+                    location["latitude"] = lat
+                    location["user_id"] = Int(userId)
+                    location["beacon_id"] = Int(beaconId)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let today = dateFormatter.string(from: Date())
+                    location["created_at"] = today
+                    GlobalData.missingList[i].lastestLocation = Location(arr: location)
+                    NotificationCenter.default.post(name: Notification.Name(rawValue:"sync"), object: nil)
+                }
+            }
+        }
         
         if (reachability.isReachable){
             

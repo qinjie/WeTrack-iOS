@@ -99,7 +99,7 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
         //setupData()
         
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(syncData), name: Notification.Name(rawValue:"sync"), object: nil)
         
     }
     
@@ -279,6 +279,28 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
                         r.beacons = tmpBeacon
                     }
                     
+                    if let locations = json["locations"] as? [[String:Any]]{
+                        for location in locations{
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            var now = Date()
+                            now = dateFormatter.date(from: dateFormatter.string(from: now))!
+                            if let created_at = location["created_at"] as? String{
+                                let timeInterval = now.timeIntervalSince(dateFormatter.date(from: created_at)!)
+                                if timeInterval < 3600{
+                                      r.lastestLocation = Location(arr: location)
+//                                    r.lastestLocation?.address = location["address"] as! String
+//                                    r.lastestLocation?.id = String(location["id"] as! Int)
+//                                    r.lastestLocation?.beacon_id = String(location["beacon_id"] as! Int)
+//                                    r.lastestLocation?.locator_id = location["locator_id"] as! String
+//                                    r.lastestLocation?.user_id = String(location["user_id"] as! Int)
+//                                    r.lastestLocation?.longitude = location["longitude"] as! String
+//                                    r.lastestLocation?.latitude = location["latitude"] as! String
+//                                    r.lastestLocation?.created_at = created_at
+                                }
+                            }
+                        }
+                    }
                     
                     GlobalData.missingList.append(r)
                     
@@ -317,7 +339,6 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
         if (Constant.isScanning == false){
             return
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "start"), object: nil)
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
@@ -399,7 +420,7 @@ class ResidentList: BaseViewController, CLLocationManagerDelegate {
     
     var n = 0
     
-    func sync(){
+    @objc func syncData(){
         self.residents = GlobalData.missingList
         self.tbl.reloadData()
         let today = Date()

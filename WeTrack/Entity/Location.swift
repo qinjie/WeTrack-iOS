@@ -29,14 +29,14 @@ class Location: NSObject {
         self.address = json["address"].stringValue
         self.created_at = json["created_at"].stringValue
     }
-    init(arr: [String : String]) {
-        self.id = arr["id"] ?? ""
-        self.beacon_id = arr["beacon_id"] ?? ""
-        self.locator_id = arr["locator_id"] ?? ""
-        self.user_id = arr["user_id"] ?? ""
-        self.longitude = arr["longitude"] ?? ""
-        self.latitude = arr["latitude"] ?? ""
-        self.address = arr["address"] ?? ""
-        self.created_at = arr["created_at"] ?? ""
+    init(arr: [String : Any]) {
+        self.id = String(arr["id"] as? Int ?? 0)
+        self.beacon_id = String(arr["beacon_id"] as? Int ?? 0)
+        self.locator_id = String(arr["locator_id"] as? Int ?? 0)
+        self.user_id = String(arr["user_id"] as? Int ?? 0)
+        self.longitude = arr["longitude"] as? String ?? ""
+        self.latitude = arr["latitude"] as? String ?? ""
+        self.address = arr["address"] as? String ?? ""
+        self.created_at = arr["created_at"] as? String ?? ""
     }
 }

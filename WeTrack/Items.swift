@@ -40,6 +40,7 @@ struct Constant{
 }
 
 struct GlobalData{
+    static var residentStatus = [String:String]()
     static var missingList = [Resident]()
     static var allResidents = [Resident]()
     static var relativeList = [Resident]()

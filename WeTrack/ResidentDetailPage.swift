@@ -122,7 +122,8 @@ class ResidentDetailPage: UITableViewController {
     
     
     @IBAction func openMap(_ sender: Any) {
-        var testURL = URL(string: "comgooglemaps-x-callback://")
+        var testURL = URL(string: "comgooglemaps://")
+        //var testURL = URL(string: "comgooglemaps-x-callback://")
         if (UIApplication.shared.canOpenURL(testURL!) && (resident?.lastestLocation != nil)) {
             let add = resident!.lastestLocation!.address
             let lat = resident!.lastestLocation!.latitude
